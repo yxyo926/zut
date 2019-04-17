@@ -10,6 +10,7 @@ public interface IPaperService {
 	
 	List<Paper> findAll() throws Exception;
 	void save(Paper paper)throws Exception;
+	List<Paper> findAllById(String id);
 
 
 }

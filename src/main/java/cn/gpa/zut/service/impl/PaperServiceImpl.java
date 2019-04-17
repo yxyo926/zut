@@ -26,5 +26,10 @@ public class PaperServiceImpl implements IPaperService {
 	public List<Paper> findAll() throws Exception {
 	return paperDao.findAll();
 	}
+	@Override
+	public List<Paper> findAllById(String id) {
+		// TODO Auto-generated method stub
+		return paperDao.findAllById(id);
+	}
 	
 }

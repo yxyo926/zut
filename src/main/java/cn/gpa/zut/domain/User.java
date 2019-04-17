@@ -2,20 +2,19 @@ package cn.gpa.zut.domain;
 
 import java.util.Date;
 
-
 public class User {
-	 private String  user_Id;             
-	 private String Department_Id;        
-	 private String user_Password;       
-	 private String user_name;           
-	 private Integer  user_gender;         
-	 private String  user_post;           
-	 private String  user_phone;          
-	 private String  user_email;           
-	 private Date   user_birthday;        
-     private String   user_college;        
-	 private Integer  user_active;          
-	 private Integer  user_Permissions;
+	private String user_Id;
+	private String department_Id;
+	private String user_password;
+	private String user_name;
+	private Integer user_gender;
+	private String user_post;
+	private String user_phone;
+	private String user_email;
+	private Date user_birthday;
+	private String user_college;
+	private Integer user_active;
+	private Integer user_Permissions;
 	public String getUser_Id() {
 		return user_Id;
 	}
@@ -23,16 +22,16 @@ public class User {
 		this.user_Id = user_Id;
 	}
 	public String getDepartment_Id() {
-		return Department_Id;
+		return department_Id;
 	}
 	public void setDepartment_Id(String department_Id) {
-		Department_Id = department_Id;
+		this.department_Id = department_Id;
 	}
-	public String getUser_Password() {
-		return user_Password;
+	public String getUser_password() {
+		return user_password;
 	}
-	public void setUser_Password(String user_Password) {
-		this.user_Password = user_Password;
+	public void setUser_password(String user_password) {
+		this.user_password = user_password;
 	}
 	public String getUser_name() {
 		return user_name;
@@ -87,9 +86,8 @@ public class User {
 	}
 	public void setUser_Permissions(Integer user_Permissions) {
 		this.user_Permissions = user_Permissions;
-	}   
-	 
-	 
-	 
-}
-
+	}
+	
+	}
+	
+	

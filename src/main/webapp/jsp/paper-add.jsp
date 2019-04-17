@@ -12,7 +12,7 @@
 <meta name="keywords" content="中原工学院业绩管理系统V1.0">
 <meta name="description" content="中原工学院业绩管理系统V1.0">
 </head>
-<body>
+<body onload="bangnum(this)">
 	<div class="four steps">
 		<span class="active step">第一步 填写信息</span> <span class="step">第二步 业绩点分配</span> <span
 			class="disabled step">第三步 提交凭证</span> 
@@ -24,23 +24,23 @@
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>信息编号：</label>
-				<div class="formControls col-xs-8 col-sm-3">
-					<input type="text" class="input-text" value="1" placeholder=""
-						id="" name="paperinfo_Id">
+				<div class="formControls col-xs-8 col-sm-4">
+					<input type="text" class="input-text" value="${sessionScope.infoId}" placeholder=""
+						readonly="true" id="" name="paperinfo_Id">
 				</div>
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>申报人：</label>
-				<div class="formControls col-xs-3 col-sm-3">
-					<input type="text" class="input-text radius size-S" value=""
-						placeholder="" id="" name="paperinfo_Author">
+				<div class="formControls col-xs-3 col-sm-4">
+					<input type="text" class="input-text radius size-S" value="${sessionScope.user.user_name}"
+						readonly="true"  placeholder="" id="" name="paperinfo_Author">
 				</div>
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>论文名称：</label>
-				<div class="formControls col-xs-3 col-sm-3">
+				<div class="formControls col-xs-3 col-sm-4">
 					<input type="text" class="input-text radius size-S" value=""
 						placeholder="" id="" name="paperinfo_Name">
 				</div>
@@ -58,7 +58,7 @@
 
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>论文级别：</label>
-				<div class="formControls col-xs-6 col-sm-3">
+				<div class="formControls col-xs-6 col-sm-4">
 					<span class="select-box"> <select name="paperinfo_Lev"
 						class="select">
 							<c:forEach items="${dictParas}" var="para">
@@ -71,7 +71,7 @@
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>组织级别：</label>
-				<div class="formControls col-xs-6 col-sm-3">
+				<div class="formControls col-xs-6 col-sm-4">
 					<span class="select-box"> <select name="paperinfo_orglev"
 						class="select">
 							<c:forEach items="${dictRatios}" var="ratio">
@@ -85,7 +85,7 @@
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>CN号：</label>
-				<div class="formControls col-xs-8 col-sm-3">
+				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text" class="input-text" value="" placeholder="" id=""
 						name="paperinfo_CN">
 				</div>
@@ -93,7 +93,7 @@
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>ISSN号：</label>
-				<div class="formControls col-xs-8 col-sm-3">
+				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text" class="input-text" value="" placeholder="" id=""
 						name="paperinfo_ISSN">
 				</div>
@@ -101,7 +101,7 @@
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>发表日期：</label>
-				<div class="formControls col-xs-8 col-sm-3">
+				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text"
 						onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})"
 						id="datemin" class="input-text Wdate" name="paperinfo_Time">
@@ -110,20 +110,20 @@
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>用户组：</label>
-				<div class="formControls col-xs-6 col-sm-3">
-					<span class="select-box"> <select name="userteam" class="select"
-						id="useteam_name" onchange="bangnum()">
+				<div class="formControls col-xs-6 col-sm-4">
+					<span class="select-box"> <select name="userteam_name" class="select"
+						id="useteam_name" onchange="bangnum(this)">
 							<c:forEach items="${userteams}" var="userteam">
-								<option value="${userteam.userteam_num}">${userteam.userteam_name}</option>
+								<option parentcode="${userteam.userteam_num}" value="${userteam.userteam_name}">${userteam.userteam_name}</option>
 							</c:forEach>
 					</select>
 					</span>
 				</div>
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>用户组人数：</label>
-				<div class="formControls col-xs-8 col-sm-3">
+				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text" class="input-text" value="" placeholder=""
-						id="userteamnum" name="">
+						id="userteam_num" name="userteam_num">
 
 				</div>
 			</div>
@@ -139,11 +139,11 @@
 			</div>
 			<div class="row cl">
 				<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-					<button onClick="article_save_submit();"
+					<button onClick="paper_save_submit();"
 						class="btn btn-primary radius" type="submit">
 						<i class="Hui-iconfont">&#xe632;</i> 保存并提交审核
 					</button>
-					<button onClick="article_save();" class="btn btn-secondary radius"
+					<button onClick="paper_save();" class="btn btn-secondary radius"
 						type="button">
 						<i class="Hui-iconfont">&#xe632;</i> 保存草稿
 					</button>
@@ -177,11 +177,9 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
 	<script type="text/javascript">
-		function bangnum() {
-			document.getElementById('userteamnum').value = document
-					.getElementById('useteam_name').value;
+		function bangnum(id) {
+			document.getElementById('userteam_num').value=$(id).find("option:selected").attr("parentcode");
 		}
-
 		$(function() {
 			$('.skin-minimal input').iCheck({
 				checkboxClass : 'icheckbox-blue',

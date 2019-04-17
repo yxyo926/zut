@@ -4,7 +4,6 @@ public class GpaDistr {
 	private String  gpadistr_id;
 	private String  userteam_id;
 	private String  record_id;
-	private String  sci_record_Id;
 	private String   user_Id;
 	private String   userteam_profession;
 	private Double   userteam_getGpa;
@@ -25,12 +24,6 @@ public class GpaDistr {
 	}
 	public void setRecord_id(String record_id) {
 		this.record_id = record_id;
-	}
-	public String getSci_record_Id() {
-		return sci_record_Id;
-	}
-	public void setSci_record_Id(String sci_record_Id) {
-		this.sci_record_Id = sci_record_Id;
 	}
 	public String getUser_Id() {
 		return user_Id;

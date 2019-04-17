@@ -25,7 +25,13 @@ public class UserteamServiceImpl implements IUserteamService {
 	@Override
 	public List<Userteam> getLev(String id) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return userteamDao.getLev(id);
+	}
+
+	@Override
+	public void save(Userteam userteam) {
+		// TODO Auto-generated method stub
+		userteamDao.save(userteam);
 	}
 
 }

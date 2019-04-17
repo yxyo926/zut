@@ -6,21 +6,28 @@
 		<div class="menu_dropdown bk_2">
 			<dl id="menu-article">
 				<dt>
-					<i class="Hui-iconfont">&#xe616;</i>科研项目业绩管理<i
+					<i class="Hui-iconfont">&#xe616;</i>科研业绩<i
 						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
 				</dt>
 				<dd>
 					<ul>
-						<li><a data-href="${pageContext.request.contextPath}/project/findAll.do"
-							data-title="科研项目管理">科研项目立项录入</a></li>
-						<li><a data-href="jsp/keyan/project-list.jsp"
-							data-title="科研项目管理">业绩点分配</a></li>
+						<li><a data-href="${pageContext.request.contextPath}/project/findAllById.do?id=${sessionScope.user.user_Id}"
+							data-title="科研项目管理">科研项目业绩管理</a></li>
+						<li><a data-href="${pageContext.request.contextPath}/paper/findAllById.do?id=${sessionScope.user.user_Id}" data-title="论文业绩管理">论文业绩管理</a></li>
+						<li><a data-href="${pageContext.request.contextPath}/patent/findAll.do" data-title="知识产权业绩管理">知识产权业绩管理</a></li>
+						<li><a data-href="${pageContext.request.contextPath}/writings/findAll.do"
+							data-title="著作业绩管理">著作业绩管理 </a></li>
+							<li><a data-href="${pageContext.request.contextPath}/conclude/findAll.do" data-title="项目结项、评价管理">项目结项管理</a></li>
+						<li><a data-href="${pageContext.request.contextPath}/assess/findAll.do" data-title="项目结项、评价管理">项目评价管理</a></li>
+						<li><a data-href="${pageContext.request.contextPath}/reward/findAll.do" data-title="科研奖励业绩管理">科研奖励业绩管理</a></li>
+						<li><a data-href="${pageContext.request.contextPath}/subject/findAll.do" data-title="学科建设业绩管理">学科建设业绩管理</a></li>
 					</ul>
+				
 				</dd>
 			</dl>
 			<dl id="menu-picture">
 				<dt>
-					<i class="Hui-iconfont">&#xe613;</i> 论文业绩管理<i
+					<i class="Hui-iconfont">&#xe613;</i> 教研业绩<i
 						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
 				</dt>
 				<dd>

@@ -17,7 +17,7 @@
 			<div class="Hui-tabNav-wp">
 				<ul id="min_title_`st" class="acrossTab cl">
 					<li class="active"><span title="我的业绩"
-						data-href="jsp/keyan/welcome.jsp">我的业绩</span> <em></em></li>
+						data-href="jsp/keyan/welcome.jsp">我的业绩${sessionScope.user.user_name}</span> <em></em></li>
 				</ul>
 			</div>
 			<div class="Hui-tabNav-more btn-group">

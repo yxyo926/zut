@@ -19,17 +19,17 @@
 <div class="header"></div>
 <div class="loginWraper">
   <div id="loginform" class="loginBox">
-    <form class="form form-horizontal" action="${pageContext.request.contextPath}/index.jsp" method="post">
+    <form class="form form-horizontal" action="${pageContext.request.contextPath}/login/checkLogin.do" method="post">
       <div class="row cl">
         <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
         <div class="formControls col-xs-8">
-          <input id="" name="" type="text" placeholder="账户" class="input-text size-L">
+          <input id="user_Id" name="user_Id" type="text" placeholder="账户" class="input-text size-L">
         </div>
       </div>
       <div class="row cl">
         <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
         <div class="formControls col-xs-8">
-          <input id="" name="" type="password" placeholder="密码" class="input-text size-L">
+          <input id="user_password" name="user_password" type="password" placeholder="密码" class="input-text size-L">
         </div>
       </div>
       <div class="row cl">
@@ -56,6 +56,5 @@
 <div class="footer">Copyright 中原工学院</div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/lib/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/h-ui/js/H-ui.min.js"></script>
-<!--此乃百度统计代码，请自行删除-->
 </body>
 </html>
