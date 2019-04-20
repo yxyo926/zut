@@ -19,9 +19,9 @@
 			业绩点分配</span> <span class=" step">第三步 提交凭证</span>
 	</div>
 	<article class="page-container">
-		<form class="form form-horizontal" id="form-paper-add"
+		<%-- <form class="form form-horizontal" id="form-paper-add" enctype="multipart/form-data"
 			action="${pageContext.request.contextPath}/paper/gpasave.do"
-			method="post">
+			method="post"> --%>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>用户组：</label> 
@@ -68,19 +68,20 @@
 			</div>
 			<div class="row cl">
 				<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-					<button onClick="deleteText();"
-						class="btn btn-primary radius" type="submit">
+				<button onClick="deleteText()" class="btn btn-secondary radius"
+						type="button">
+						<i class="Hui-iconfont">&#xe632;</i> 保存
+					</button>
+					<button onClick="window.location.href='${pageContext.request.contextPath}/record/show.do'"
+						class="btn btn-primary radius" >
 						<i class="Hui-iconfont">&#xe632;</i> 下一步
 					</button>
-					<button onClick="deleteText()" class="btn btn-secondary radius"
-						type="button">
-						<i class="Hui-iconfont">&#xe632;</i> 保存草稿
-					</button>
+					
 					<button onClick="removeIframe();" class="btn btn-default radius"
 						type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 				</div>
 			</div>
-		</form>
+		<!-- </form> -->
 	</article>
 
 	<jsp:include page="frame/footer.jsp"></jsp:include>
@@ -110,7 +111,7 @@
 	        var div = document.getElementById("div");
 	        var obj=document.getElementById("userteam_num");
 	        var count=obj.value;
-	        for(var i=0;i<count-1;i++){
+	        for(var i=0;i<count;i++){
 	        	div.innerHTML += "<div class='row cl'> <label class='form-label col-xs-3 col-sm-2'>"
 	    	        +"<span class='c-red'>*</span>用户名：</label>"
 	    	        +"<div class='formControls col-xs-4 col-sm-2'> <span class='select-box'> "

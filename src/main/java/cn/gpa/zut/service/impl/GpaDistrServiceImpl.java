@@ -1,5 +1,7 @@
 package cn.gpa.zut.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +20,12 @@ public class GpaDistrServiceImpl implements IGpaDistrService {
 	public void save(GpaDistr gpaDistr) {
 		// TODO Auto-generated method stub
       gpaDistrDao.save(gpaDistr);
+	}
+
+	@Override
+	public List<GpaDistr> findAllById(String paperId) throws Exception {
+		// TODO Auto-generated method stub
+		return gpaDistrDao.findAllById(paperId);
 	}
 
 }

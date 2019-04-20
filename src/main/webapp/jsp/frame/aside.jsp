@@ -14,13 +14,14 @@
 						<li><a data-href="${pageContext.request.contextPath}/project/findAllById.do?id=${sessionScope.user.user_Id}"
 							data-title="科研项目管理">科研项目业绩管理</a></li>
 						<li><a data-href="${pageContext.request.contextPath}/paper/findAllById.do?id=${sessionScope.user.user_Id}" data-title="论文业绩管理">论文业绩管理</a></li>
-						<li><a data-href="${pageContext.request.contextPath}/patent/findAll.do" data-title="知识产权业绩管理">知识产权业绩管理</a></li>
-						<li><a data-href="${pageContext.request.contextPath}/writings/findAll.do"
+						<li><a data-href="${pageContext.request.contextPath}/patent/findAllById.do?id=${sessionScope.user.user_Id}" data-title="知识产权业绩管理">知识产权业绩管理</a></li>
+						<li><a data-href="${pageContext.request.contextPath}/writings/findAllById.do?id=${sessionScope.user.user_Id}"
 							data-title="著作业绩管理">著作业绩管理 </a></li>
-							<li><a data-href="${pageContext.request.contextPath}/conclude/findAll.do" data-title="项目结项、评价管理">项目结项管理</a></li>
-						<li><a data-href="${pageContext.request.contextPath}/assess/findAll.do" data-title="项目结项、评价管理">项目评价管理</a></li>
-						<li><a data-href="${pageContext.request.contextPath}/reward/findAll.do" data-title="科研奖励业绩管理">科研奖励业绩管理</a></li>
-						<li><a data-href="${pageContext.request.contextPath}/subject/findAll.do" data-title="学科建设业绩管理">学科建设业绩管理</a></li>
+							<li><a data-href="${pageContext.request.contextPath}/conclude/findAllById.do?id=${sessionScope.user.user_Id}" data-title="项目结项管理">项目结项管理</a></li>
+						<li><a data-href="${pageContext.request.contextPath}/assess/findAllById.do?id=${sessionScope.user.user_Id}" data-title="项目评价管理">项目评价管理</a></li>
+						<li><a data-href="${pageContext.request.contextPath}/reward/findAllById.do?id=${sessionScope.user.user_Id}" data-title="科研奖励业绩管理">科研奖励业绩管理</a></li>
+						<li><a data-href="${pageContext.request.contextPath}/plateform/findAllById.do?id=${sessionScope.user.user_Id}" data-title="科研、学科平台业绩">科研、学科平台业绩管理</a></li>
+						<li><a data-href="${pageContext.request.contextPath}/subject/findAllById.do?id=${sessionScope.user.user_Id}" data-title="学科建设业绩管理">学科建设业绩管理</a></li>
 					</ul>
 				
 				</dd>

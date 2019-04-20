@@ -19,12 +19,14 @@ import cn.gpa.zut.domain.DictPara;
 import cn.gpa.zut.domain.DictRatio;
 import cn.gpa.zut.domain.GpaDistr;
 import cn.gpa.zut.domain.Paper;
+import cn.gpa.zut.domain.Record;
 import cn.gpa.zut.domain.User;
 import cn.gpa.zut.domain.Userteam;
 import cn.gpa.zut.service.IDictParaService;
 import cn.gpa.zut.service.IDictRatioService;
 import cn.gpa.zut.service.IGpaDistrService;
 import cn.gpa.zut.service.IPaperService;
+import cn.gpa.zut.service.IRecordService;
 import cn.gpa.zut.service.IUserService;
 import cn.gpa.zut.service.IUserteamService;
 import cn.gpa.zut.utils.UUIDUtils;
@@ -53,6 +55,8 @@ public class PaperController {
 	private IUserService userService;
 	@Autowired
 	private IGpaDistrService gpaDistrService;
+	@Autowired
+	private IRecordService recordService;
    
 	// 显示所有论文信息
 	@RequestMapping("/findAll.do")
@@ -80,8 +84,15 @@ public class PaperController {
 	}
 	
 	//信息详情页面
-	
-	
+	@RequestMapping("/findByPaper.do")
+	public ModelAndView findByPaper(ModelMap model, @RequestParam(name = "id", required = true) String paperId)
+			throws Exception {
+		ModelAndView mv = new ModelAndView();
+		List<GpaDistr> gpaDistrs = gpaDistrService.findAllById(paperId);
+		mv.addObject("gpaDistrsList", gpaDistrs);
+		mv.setViewName("paper-details");
+		return mv;
+	}
 	
 	 //获取参数与系数信息并跳转信息添加页面
 		@RequestMapping("/getSort.do")
@@ -121,30 +132,59 @@ public class PaperController {
 		 */
 		List<User> users = userService.findAll();
 		mv.addObject("users", users);
-		System.out.println("nihao");
+		System.out.println("分配页面出现了");
 		mv.setViewName("gpadistribute");
 		return mv;
 	}
-
+	
 	// 保存业绩点分配记录
 	@RequestMapping("/gpasave.do")
 	@ResponseBody
 	public String saveUsers(@RequestBody List<GpaDistr> userList) {
-
+		UUIDUtils uuidUtils = new UUIDUtils();
+		String recordString = uuidUtils.getUUID();
 		for (int i = 0; i < userList.size(); i++) {
+			String uuidString = uuidUtils.getUUID();
 			GpaDistr gpaDistr = userList.get(i);
-			gpaDistr.setGpadistr_id("01" + i);
-			gpaDistr.setRecord_id("111111");
+			gpaDistr.setGpadistr_id(uuidString);
+			gpaDistr.setRecord_id(recordString);
 			gpaDistr.setUserteam_id("003");
 			System.out.println(gpaDistr.getUser_Id());
 			gpaDistrService.save(gpaDistr);
+		}
+		System.out.println("业绩点保存了");
+		return "nihao";
+
+	}
+	//
+	@RequestMapping("/record.do")
+	public ModelAndView record() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		List<DictPara> dictParas = dictParaService.getSort("01");
+		List<DictRatio> dictRatios = dictRatioService.getLev("01");
+		List<Userteam> userteams = userteamService.findAll();
+		mv.addObject("dictRatios", dictRatios);
+		mv.addObject("dictParas", dictParas);
+		mv.addObject("userteams", userteams);
+		mv.setViewName("record");
+		return mv;
+	}
+	//凭证提交
+	@RequestMapping("/recordsave.do")
+	@ResponseBody
+	public String saveRecord(@RequestBody List<Record> userList) {
+
+		for (int i = 0; i < userList.size(); i++) {
+			Record record = userList.get(i);
+			recordService.save(record);
 		}
 		System.out.println("nihao");
 		return null;
 
 	}
 
-	// 计算业绩点并保存
+	
+	// 计算业绩点
 	public Double sumGPA(Paper paper) throws Exception {
 
 		int gpa = 0;

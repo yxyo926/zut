@@ -14,6 +14,9 @@ public interface IDictParaDao {
 	//查询所有参数信息
 	@Select("select * from sci_dictpara")
 	List<DictPara> findAll() throws Exception;
+	//根据id查对象
+	@Select("select * from sci_dictpara where dictpara_id=#{id}")
+	public DictPara findById(String id);
 	
 
 }

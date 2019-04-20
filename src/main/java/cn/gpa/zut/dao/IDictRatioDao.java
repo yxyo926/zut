@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
 
+import cn.gpa.zut.domain.DictPara;
 import cn.gpa.zut.domain.DictRatio;
 
 public interface IDictRatioDao {
@@ -14,4 +15,7 @@ public interface IDictRatioDao {
 		//查询所有参数信息
 		@Select("select * from sci_dictratio")
 		List<DictRatio> findAll() throws Exception;
+		//根据id查对象
+		@Select("select * from sci_dictratio where dictratio_id=#{id}")
+		public DictRatio findById(String id);
 }

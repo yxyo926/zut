@@ -31,5 +31,10 @@ public class PaperServiceImpl implements IPaperService {
 		// TODO Auto-generated method stub
 		return paperDao.findAllById(id);
 	}
+	@Override
+	public Paper findAllByPaper(String paperId) {
+		// TODO Auto-generated method stub
+		return paperDao.findAllByPaper(paperId);
+	}
 	
 }

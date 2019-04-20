@@ -52,12 +52,14 @@
 							<th width="40">信息编号</th>
 							<th width="40">论文作者</th>
 							<th width="40">论文名称</th>
+							<th width="40">期刊名称</th>
+							<th with="70">期刊级别</th>
 							<th width="40">CN号</th>
 							<th width="70">ISSN号</th>
 							<th width="70">发表时间</th>
-							<th with="70">作者级别</th>
 							<th with="70">组织级别</th>
-							<th with="70">业绩点</th>
+							<th with="70">总业绩点</th>
+							<th with="70">我的业绩点</th>
 							<th with="70">操作</th>
 						</tr>
 					</thead>
@@ -66,17 +68,19 @@
 							<tr>
 								<td><input name="ids" type="checkbox"></td>
 								<td>${paper.paperinfo_Id }</td>
-								<td>${paper.paperinfo_Author }</td>
-								<td>${paper.paperinfo_Name }</td>
+								<td>${paper.user.user_name}</td>
+								<td>${paper.paperinfo_Name}</td>
+								<td>${paper.paperinfo_MName}</td>
+								<td>${paper.dictPara.dictpara_lev}</td>
 								<td>${paper.paperinfo_CN }</td>
 								<td>${paper.paperinfo_ISSN }</td>
 								<td class="text-center">${paper.paperinfo_Time }</td>
-								<td>${paper.paperinfo_Lev }</td>
-								<td class="text-center">${paper.paperinfo_orglev }</td>
+								<td class="text-center">${paper.dictRatio.dictratio_lev }</td>
 								<td class="text-center">${paper.paperinfo_getGpa }</td>
+								<td class="text-center">${paper.gpaDistr}</td>
 								<td class="text-center">
 									<button type="button" class="btn bg-olive btn-xs">修改</button>
-									<button type="button" class="btn bg-olive btn-xs">详情</button>
+									<button type="button" onclick="location.href='${pageContext.request.contextPath}/paper/findByPaper.do?id=${paper.paperinfo_Id}'" class="btn bg-olive btn-xs">详情</button>
 								</td>
 							</tr>
 						</c:forEach>

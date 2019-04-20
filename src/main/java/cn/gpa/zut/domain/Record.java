@@ -2,10 +2,13 @@ package cn.gpa.zut.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Record {
 	   private String record_Id;
 	   private String record_infoid;        
-	   private String category_Id;       
+	   private String category_Id;
+	   @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	   private Date record_time;          
 	   private String  record_proof;         
 	   private Integer record_status;
