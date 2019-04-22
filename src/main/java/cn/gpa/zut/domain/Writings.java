@@ -2,17 +2,20 @@ package cn.gpa.zut.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Writings {
 	private String writingsinfo_Id;//信息编码
 	private String writingsinfo_Editor;//申请人
 	private String writingsinfo_Name;//论著名称
 	private String writingsinfo_Press;//出版社
 	private String writingsinfo_ISBN;//ISBN书号
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date writingsinfo_time;//出版 时间
-	private String writingsinfo_wordsnum;//字数
+	private Integer writingsinfo_wordsnum;//字数
 	private String writinginfo_org;//立项单位
 	private String writinginfo_lev;//出版社级别
-	private Double subjectinfo_getGpa;//总业绩点
+	private Double writinginfo_getGpa;//总业绩点
 	private String  gpaDistr;//个人所得业绩点
 	public String getWritingsinfo_Id() {
 		return writingsinfo_Id;
@@ -50,12 +53,6 @@ public class Writings {
 	public void setWritingsinfo_time(Date writingsinfo_time) {
 		this.writingsinfo_time = writingsinfo_time;
 	}
-	public String getWritingsinfo_wordsnum() {
-		return writingsinfo_wordsnum;
-	}
-	public void setWritingsinfo_wordsnum(String writingsinfo_wordsnum) {
-		this.writingsinfo_wordsnum = writingsinfo_wordsnum;
-	}
 	public String getWritinginfo_org() {
 		return writinginfo_org;
 	}
@@ -68,17 +65,23 @@ public class Writings {
 	public void setWritinginfo_lev(String writinginfo_lev) {
 		this.writinginfo_lev = writinginfo_lev;
 	}
-	public Double getSubjectinfo_getGpa() {
-		return subjectinfo_getGpa;
-	}
-	public void setSubjectinfo_getGpa(Double subjectinfo_getGpa) {
-		this.subjectinfo_getGpa = subjectinfo_getGpa;
-	}
 	public String getGpaDistr() {
 		return gpaDistr;
 	}
 	public void setGpaDistr(String gpaDistr) {
 		this.gpaDistr = gpaDistr;
+	}
+	public Double getWritinginfo_getGpa() {
+		return writinginfo_getGpa;
+	}
+	public void setWritinginfo_getGpa(Double writinginfo_getGpa) {
+		this.writinginfo_getGpa = writinginfo_getGpa;
+	}
+	public Integer getWritingsinfo_wordsnum() {
+		return writingsinfo_wordsnum;
+	}
+	public void setWritingsinfo_wordsnum(Integer writingsinfo_wordsnum) {
+		this.writingsinfo_wordsnum = writingsinfo_wordsnum;
 	}
 	
 }

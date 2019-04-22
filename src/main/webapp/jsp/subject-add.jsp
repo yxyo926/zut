@@ -34,21 +34,21 @@
 					class="c-red">*</span>申报人：</label>
 				<div class="formControls col-xs-3 col-sm-4">
 					<input type="text" class="input-text radius size-S" value="${sessionScope.user.user_name}"
-						readonly="true"  placeholder="" id="" name="paperinfo_A">
+						readonly="true"  placeholder="" id="" name="paperinfo_Author">
 						<input type="hidden" class="input-text radius size-S" value="${sessionScope.user.user_Id}"
 						readonly="true"  placeholder="" id="" name="paperinfo_Author">
 				</div>
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>论文名称：</label>
+					class="c-red">*</span>学科建设名称：</label>
 				<div class="formControls col-xs-3 col-sm-4">
 					<input type="text" class="input-text radius size-S" value=""
 						placeholder="" id="" name="paperinfo_Name">
 				</div>
 			</div>
 			<div class="row cl">
-				<label class="form-label col-xs-4 col-sm-2"><span
+				<!-- <label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>论文类别：</label>
 				<div class="formControls col-xs-8 col-sm-3">
 					<span class="select-box"> <select name="paperinfo_sort" class="select">
@@ -56,10 +56,10 @@
 							<option value="2">人文科学</option>
 					</select>
 					</span>
-				</div> 
+				</div> -->
 
 				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>论文级别：</label>
+					class="c-red">*</span>学科项目类别：</label>
 				<div class="formControls col-xs-6 col-sm-4">
 					<span class="select-box"> <select name="paperinfo_Lev"
 						class="select">
@@ -72,7 +72,7 @@
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>组织级别：</label>
+					class="c-red">*</span>学科建设级别：</label>
 				<div class="formControls col-xs-6 col-sm-4">
 					<span class="select-box"> <select name="paperinfo_orglev"
 						class="select">
@@ -83,26 +83,18 @@
 					</span>
 				</div>
 			</div>
-
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>CN号：</label>
+					class="c-red">*</span>开始日期：</label>
 				<div class="formControls col-xs-8 col-sm-4">
-					<input type="text" class="input-text" value="" placeholder="" id=""
-						name="paperinfo_CN">
+					<input type="text"
+						onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})"
+						id="datemin" class="input-text Wdate" name="paperinfo_Time">
 				</div>
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>ISSN号：</label>
-				<div class="formControls col-xs-8 col-sm-4">
-					<input type="text" class="input-text" value="" placeholder="" id=""
-						name="paperinfo_ISSN">
-				</div>
-			</div>
-			<div class="row cl">
-				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>发表日期：</label>
+					class="c-red">*</span>结束时间：</label>
 				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text"
 						onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})"

@@ -7,7 +7,7 @@ import cn.gpa.zut.domain.Subject;
 
 public interface ISubjectService {
 	List<Subject> findAll() throws Exception;
-	void save(Subject paper)throws Exception;
+	void save(Subject subject)throws Exception;
 	List<Subject> findAllById(String id);
 	Subject   findAllByPaper(String paperId);
 }

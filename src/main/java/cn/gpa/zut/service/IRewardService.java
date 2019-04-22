@@ -7,7 +7,7 @@ import cn.gpa.zut.domain.Reward;
 
 public interface IRewardService {
 	List<Reward> findAll() throws Exception;
-	void save(Reward paper)throws Exception;
+	void save(Reward reward)throws Exception;
 	List<Reward> findAllById(String id);
 	Reward   findAllByPaper(String paperId);
 }

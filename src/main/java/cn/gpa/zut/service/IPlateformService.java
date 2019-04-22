@@ -7,7 +7,7 @@ import cn.gpa.zut.domain.Plateform;
 
 public interface IPlateformService {
 	List<Plateform> findAll() throws Exception;
-	void save(Plateform paper)throws Exception;
+	void save(Plateform plateform)throws Exception;
 	List<Plateform> findAllById(String id);
 	Plateform   findAllByPaper(String paperId);
 }

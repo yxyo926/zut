@@ -22,15 +22,15 @@ public class AssessServiceImpl implements IAssessService {
 	}
 
 	@Override
-	public void save(Assess paper) throws Exception {
+	public void save(Assess assess) throws Exception {
 		// TODO Auto-generated method stub
-		
+		assessDao.save(assess);
 	}
 
 	@Override
 	public List<Assess> findAllById(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		return assessDao.findAllById(id);
 	}
 
 	@Override

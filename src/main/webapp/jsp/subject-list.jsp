@@ -37,10 +37,10 @@
 			<span class="l"> <a href="javascript:;" onclick="datadel()"
 				class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i>
 					删除记录</a> <a class="btn btn-primary radius" href="javascript:;"
-				onclick="location.href='${pageContext.request.contextPath}/paper/getSort.do'"><i
+				onclick="location.href='${pageContext.request.contextPath}/subject/getSort.do'"><i
 					class="Hui-iconfont">&#xe600;</i> 添加记录</a>
 			</span> <span class="r">共有数据：<strong><c:out
-						value="${fn:length(paperList)}"></c:out></strong> 条
+						value="${fn:length(projectList)}"></c:out></strong> 条
 			</span>
 		</div>
 		<div class="mt-20">
@@ -50,33 +50,38 @@
 					<tr class="text-c">
 						<th width="25"><input type="checkbox" value="" name=""></th>
 						<th width="40">信息编号</th>
-						<th width="40">项目来源</th>
-						<th width="40">项目名称</th>
-						<th width="40">项目负责人</th>
+						<th width="40">学科建设名称</th>
+						<th width="40">主持人</th>
+						<th with="70">建设类别</th>
+						<th with="70">建设级别</th>
 						<th with="70">开始时间</th>
-						<th width="40">完成时间</th>
-						<th width="70">立项经费</th>
+						<th width="70">结束时间</th>
+						<th width="70">验收等级</th>
 						<th with="70">总业绩点</th>
 						<th with="70">我的业绩点</th>
 						<th with="70">操作</th>
 					</tr>
 				</thead>
 				<tbody>
-						<c:forEach items="${projectList}" var="paper">
+						<c:forEach items="${projectList}" var="subject">
 							<tr>
 								<td><input name="ids" type="checkbox"></td>
-								<td>${paper.subjectinfo_id }</td>
-								<td>${paper.subjectinfo_name}</td>
-								<td>${paper.subjectinfo_uname}</td>
-								<td>${paper.subjectinfo_starttime}</td>
-								<td>${paper.subjectinfo_finishtime}</td>
-								<td>${paper.subjectinfo_checklev }</td>
-								<td>${paper.subjectinfo_getGpa}</td>
-								<td class="text-center">${paper.gpaDistr}</td>
+								<td>${subject.subjectinfo_id }</td>
+								<td>${subject.subjectinfo_name}</td>
+								<td>${subject.subjectinfo_uname}</td>
+								<td>${subject.subjectinfo_sort}</td>
+								<td>${subject.subjectinfo_lev}</td>						
+								<td>${subject.subjectinfo_starttime}</td>
+								<td>${subject.subjectinfo_finishtime}</td>
+								<td>${subject.subjectinfo_checklev }</td>
+								<td>${subject.subjectinfo_getGpa}</td>
+								<td class="text-center">${subject.gpaDistr}</td>
 								<td class="text-center">
 									<button type="button" class="btn bg-olive btn-xs">修改</button>
-									<button type="button" onclick="location.href='${pageContext.request.contextPath}/project/findById.do?id=${paper.subjectinfo_id}'" class="btn bg-olive btn-xs">详情</button>
-								</td>
+									<button type="button"
+									onclick="location.href='${pageContext.request.contextPath}/gpadistr/findAllGpa.do?id=${subject.subjectinfo_id }'"
+									class="btn bg-olive btn-xs">详情</button>
+							</td>
 							</tr>
 						</c:forEach>
 					</tbody>

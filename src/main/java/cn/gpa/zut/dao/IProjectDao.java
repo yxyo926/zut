@@ -14,13 +14,17 @@ import cn.gpa.zut.domain.Project;
 
 public interface IProjectDao {
 	//查询所有信息
-		@Select("select * from sci_paperinfo")
+		@Select("select * from sci_projectinfo")
 		List<Project> findAll() throws Exception;
 		
 		//保存信息
-		@Insert("insert into sci_paperinfo(paperinfo_Id,paperinfo_Author,paperinfo_Name,paperinfo_CN,paperinfo_ISSN,paperinfo_Time,paperinfo_Lev,paperinfo_orglev,paperinfo_getGpa)"
-				+ " values(#{paperinfo_Id},#{paperinfo_Author},#{paperinfo_Name},#{paperinfo_CN},#{paperinfo_ISSN},#{paperinfo_Time},#{paperinfo_Lev},#{paperinfo_orglev},#{paperinfo_getGpa})")
-		void save(Paper paper);
+		@Insert("insert into sci_projectinfo(projectinfo_Id,projectinfo_origin,"
+				+ "projectinfo_Name,projectinfo_Leader,projectinfo_StartTime,"
+				+ "projectinfo_FinishTime,projectinfo_StartMoney,projectinfo_getGpa)"
+				+ " values(#{projectinfo_Id},#{projectinfo_origin},#{projectinfo_Name},"
+				+ "#{projectinfo_Leader},#{projectinfo_StartTime},#{projectinfo_FinishTime},"
+				+ "#{projectinfo_StartMoney},#{projectinfo_getGpa})")
+		void save(Project project);
 		//查询用户名下信息
 		@Select("select projectinfo_Id,projectinfo_origin,projectinfo_Name,projectinfo_Leader,projectinfo_StartTime,projectinfo_FinishTime,projectinfo_StartMoney,projectinfo_getGpa,userteam_getGpa from sci_projectinfo inner join sci_record on sci_projectinfo.projectinfo_Id=sci_record.recordinfo_id INNER JOIN sci_gpadistr on sci_record.record_Id=sci_gpadistr.record_id and sci_gpadistr.user_Id=#{id}")
 	    @Results({
@@ -31,6 +35,7 @@ public interface IProjectDao {
 	        @Result(property = "projectinfo_StartTime", column = "projectinfo_StartTime"),
 	        @Result(property = "projectinfo_FinishTime", column = "projectinfo_FinishTime"),
 	        @Result(property = "projectinfo_StartMoney", column = "projectinfo_StartMoney"),
+	        @Result(property = "projectinfo_getGpa", column = "projectinfo_getGpa"),
 	    	@Result(property = "gpaDistr",column="userteam_getGpa")
 	    })
 		List<Project> findAllById(String id);

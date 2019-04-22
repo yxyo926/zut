@@ -23,15 +23,15 @@ public class ConcludeServiceImpl implements IConcludeService {
 	}
 
 	@Override
-	public void save(Conclude paper) throws Exception {
+	public void save(Conclude conclude) throws Exception {
 		// TODO Auto-generated method stub
-		
+		concludeDao.save(conclude);
 	}
 
 	@Override
 	public List<Conclude> findAllById(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		return concludeDao.findAllById(id);
 	}
 
 	@Override

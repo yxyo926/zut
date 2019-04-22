@@ -8,6 +8,7 @@ public class Plateform {
 	private String plateforminfo_id;//信息编号
 	private String plateforminfo_name;//平台名称
 	private String plateforminfo_organize;//主持人
+	private String plateforminfo_lev;//级别
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date plateforminfo_starttime;//获准时间
 	private Date plateforminfo_finishtime;//结束时间
@@ -61,5 +62,11 @@ public class Plateform {
 	}
 	public void setGpaDistr(String gpaDistr) {
 		this.gpaDistr = gpaDistr;
+	}
+	public String getPlateforminfo_lev() {
+		return plateforminfo_lev;
+	}
+	public void setPlateforminfo_lev(String plateforminfo_lev) {
+		this.plateforminfo_lev = plateforminfo_lev;
 	}
 }

@@ -11,7 +11,7 @@
 <body>
 	<nav class="breadcrumb">
 		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>
-		管理员管理 <span class="c-gray en">&gt;</span> 角色管理 <a
+		科研业绩管理 <span class="c-gray en">&gt;</span> 论文信息管理 <a
 			class="btn btn-success radius r"
 			style="line-height: 1.6em; margin-top: 3px"
 			href="javascript:location.replace(location.href);" title="刷新"><i
@@ -80,8 +80,10 @@
 								<td class="text-center">${paper.gpaDistr}</td>
 								<td class="text-center">
 									<button type="button" class="btn bg-olive btn-xs">修改</button>
-									<button type="button" onclick="location.href='${pageContext.request.contextPath}/paper/findByPaper.do?id=${paper.paperinfo_Id}'" class="btn bg-olive btn-xs">详情</button>
-								</td>
+									<button type="button"
+									onclick="location.href='${pageContext.request.contextPath}/gpadistr/findAllGpa.do?id=${paper.paperinfo_Id}'"
+									class="btn bg-olive btn-xs">详情</button>
+							</td>
 							</tr>
 						</c:forEach>
 					</tbody>

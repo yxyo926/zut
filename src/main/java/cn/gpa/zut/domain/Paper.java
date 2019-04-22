@@ -143,6 +143,14 @@ public class Paper {
 		this.paperinfo_MName = paperinfo_MName;
 	}
 
+	public List<GpaDistr> getGpaDistrs() {
+		return gpaDistrs;
+	}
+
+	public void setGpaDistrs(List<GpaDistr> gpaDistrs) {
+		this.gpaDistrs = gpaDistrs;
+	}
+
 	/*
 	 * public GpaDistr getGpaDistr() { return gpaDistr; }
 	 * 

@@ -23,9 +23,9 @@ public class GpaDistrServiceImpl implements IGpaDistrService {
 	}
 
 	@Override
-	public List<GpaDistr> findAllById(String paperId) throws Exception {
+	public List<GpaDistr> findAllById(String Id) throws Exception {
 		// TODO Auto-generated method stub
-		return gpaDistrDao.findAllById(paperId);
+		return gpaDistrDao.findAllById(Id);
 	}
 
 }

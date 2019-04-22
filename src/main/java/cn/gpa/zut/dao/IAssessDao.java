@@ -11,36 +11,35 @@ import org.apache.ibatis.mapping.FetchType;
 
 import cn.gpa.zut.domain.Assess;
 import cn.gpa.zut.domain.Paper;
+import cn.gpa.zut.domain.Project;
+import cn.gpa.zut.domain.Subject;
 
 public interface IAssessDao {
 	//查询所有论文信息
 		@Select("select * from sci_assessinfo")
 		List<Assess> findAll() throws Exception;
 		
-		//保存论文信息
-		@Insert("insert into sci_paperinfo(paperinfo_Id,paperinfo_Author,paperinfo_Name,paperinfo_CN,paperinfo_ISSN,paperinfo_Time,paperinfo_Lev,paperinfo_orglev,paperinfo_getGpa)"
-				+ " values(#{paperinfo_Id},#{paperinfo_Author},#{paperinfo_Name},#{paperinfo_CN},#{paperinfo_ISSN},#{paperinfo_Time},#{paperinfo_Lev},#{paperinfo_orglev},#{paperinfo_getGpa})")
-		void save(Paper paper);
-		//查询用户名下论文信息
-	    //@Select("SELECT * from sci_paperinfo where paperinfo_id IN(SELECT recordinfo_id from sci_record where record_Id in( SELECT record_id FROM `sci_gpadistr`where user_Id=#{id}));")
-		@Select("select paperinfo_Id,paperinfo_Name,paperinfo_MName,paperinfo_CN,paperinfo_ISSN,paperinfo_Time,paperinfo_Lev,paperinfo_orglev, paperinfo_getGpa,userteam_getGpa from sci_paperinfo inner join sci_record on sci_paperinfo.paperinfo_Id=sci_record.recordinfo_id INNER JOIN sci_gpadistr on sci_record.record_Id=sci_gpadistr.record_id and sci_gpadistr.user_Id=#{id}")
-	    @Results({
-	    	@Result(id = true, property = "paperinfo_Id", column = "paperinfo_Id"),
-	        @Result(property = "paperinfo_Name", column = "paperinfo_Name"),
-	        @Result(property = "paperinfo_MName", column = "paperinfo_MName"),
-	        @Result(property = "paperinfo_Author", column = "paperinfo_Author"),
-	        @Result(property = "paperinfo_CN", column = "paperinfo_CN"),
-	        @Result(property = "paperinfo_ISSN", column = "paperinfo_ISSN"),
-	        @Result(property = "paperinfo_Time", column = "paperinfo_Time"),
-	        @Result(property = "paperinfo_getGpa",column = "paperinfo_getGpa"),
-	        @Result(property = "paperinfo_Lev", column = "paperinfo_Lev"),
-	        @Result(property = "paperinfo_orglev", column = "paperinfo_orglev"),	
-	    	@Result(property = "user",column="paperinfo_Author",one=@One(select = "cn.gpa.zut.dao.IUserDao.findById",fetchType = FetchType.EAGER)),
-	    	@Result(property = "dictPara",column="paperinfo_Lev",one=@One(select = "cn.gpa.zut.dao.IDictParaDao.findById",fetchType = FetchType.EAGER)),
-	    	@Result(property = "dictRatio",column="paperinfo_orglev",one=@One(select = "cn.gpa.zut.dao.IDictRatioDao.findById",fetchType = FetchType.EAGER)),
-	    	@Result(property = "gpaDistr",column="userteam_getGpa")
-	    })
-		List<Paper> findAllById(String id);
+		//保存信息
+				@Insert("insert into sci_subjectinfo(subjectinfo_id,subjectinfo_name,"
+						+ "subjectinfo_uname,subjectinfo_sort,subjectinfo_lev,"
+						+ "subjectinfo_starttime,subjectinfo_finishtime,"
+						+ "subjectinfo_checklev,subjectinfo_getGpa)"
+						+ " values(#{subjectinfo_id},#{subjectinfo_name},"
+						+ "#{subjectinfo_uname},#{subjectinfo_sort},#{subjectinfo_lev},"
+						+ "#{subjectinfo_starttime},#{subjectinfo_finishtime},#{subjectinfo_getGpa})")
+				void save(Assess assess);
+		//查询用户名下信息
+				@Select("select assessinfo_id,assessinfo_aname,assessinfo_rname,assessinfo_person,assessinfo_getGpa,userteam_getGpa  from sci_assessinfo inner join sci_record on" + 
+						" sci_assessinfo.assessinfo_id=sci_record.recordinfo_id INNER JOIN sci_gpadistr on sci_record.record_Id=sci_gpadistr.record_id and sci_gpadistr.user_Id=#{id}")
+			    @Results({
+			    	@Result(id = true, property = "assessinfo_id", column = "assessinfo_id"),
+			        @Result(property = "assessinfo_aname", column = "assessinfo_aname"),
+			        @Result(property = "assessinfo_rname", column = "assessinfo_rname"),
+			        @Result(property = "assessinfo_person", column = "assessinfo_person"),
+			        @Result(property = "assessinfo_getGpa", column = "assessinfo_getGpa"),
+			    	@Result(property = "gpaDistr",column="userteam_getGpa")
+			    })
+				List<Assess> findAllById(String id);
 	    //查找论文详情
-		 public  Paper findAllByPaper(String paperId);
+		 public  Assess findAllGpa(String paperId);
 }

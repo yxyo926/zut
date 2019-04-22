@@ -7,7 +7,7 @@ import cn.gpa.zut.domain.Conclude;
 
 public interface IConcludeService {
 	List<Conclude> findAll() throws Exception;
-	void save(Conclude paper)throws Exception;
+	void save(Conclude conclude)throws Exception;
 	List<Conclude> findAllById(String id);
 	Conclude   findAllByPaper(String paperId);
 }

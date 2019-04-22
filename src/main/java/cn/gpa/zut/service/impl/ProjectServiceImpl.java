@@ -22,9 +22,9 @@ public IProjectDao projectDao;
 	}
 
 	@Override
-	public void save(Project paper) throws Exception {
+	public void save(Project project) throws Exception {
 		// TODO Auto-generated method stub
-		
+		projectDao.save(project);
 	}
 
 	@Override

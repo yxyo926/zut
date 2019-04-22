@@ -22,15 +22,15 @@ public IPatentDao patentDao;
 	}
 
 	@Override
-	public void save(Patent paper) throws Exception {
+	public void save(Patent patent) throws Exception {
 		// TODO Auto-generated method stub
-		
+		patentDao.save(patent);
 	}
 
 	@Override
 	public List<Patent> findAllById(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		return patentDao.findAllById(id);
 	}
 
 	@Override

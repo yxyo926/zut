@@ -6,11 +6,13 @@ public class Subject {
 	private String subjectinfo_id;//信息编号
 	private String subjectinfo_name;//学科建设名称
 	private String subjectinfo_uname;//主持人
+	private String subjectinfo_sort;//学科建设类别
+	private String subjectinfo_lev;//建设级别
 	private Date subjectinfo_starttime;//开始时间
 	private Date subjectinfo_finishtime;//结束时间
 	private String subjectinfo_checklev;//验收等级
 	private Double subjectinfo_getGpa;//总业绩点
-	private String  gpaDistr;//个人野鸡店
+	private String  gpaDistr;//个人业绩点
 	public String getSubjectinfo_id() {
 		return subjectinfo_id;
 	}
@@ -58,6 +60,18 @@ public class Subject {
 	}
 	public void setGpaDistr(String gpaDistr) {
 		this.gpaDistr = gpaDistr;
+	}
+	public String getSubjectinfo_sort() {
+		return subjectinfo_sort;
+	}
+	public void setSubjectinfo_sort(String subjectinfo_sort) {
+		this.subjectinfo_sort = subjectinfo_sort;
+	}
+	public String getSubjectinfo_lev() {
+		return subjectinfo_lev;
+	}
+	public void setSubjectinfo_lev(String subjectinfo_lev) {
+		this.subjectinfo_lev = subjectinfo_lev;
 	}
 
 }

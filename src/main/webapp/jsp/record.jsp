@@ -20,22 +20,22 @@
 	</div>
 	<article class="page-container">
 		<form class="form form-horizontal" id="form-paper-add"
-			action="${pageContext.request.contextPath}/paper/record.do"
+			action="${pageContext.request.contextPath}/${sessionScope.sort}/recordsave.do"
 			method="post">
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>记录编号：</label>
 				<div class="formControls col-xs-4 col-sm-2">
-					<input type="text" class="input-text" name="record_id"
+					<input type="text" class="input-text" name="record_Id"
 						id="record_id" readonly="true"
-						value="${sessionScope.Userteam.userteam_name}">
+						value="${sessionScope.recordId}">
 				</div>
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>信息编号：</label>
 				<div class="formControls col-xs-4 col-sm-2">
 					<input type="text" class="input-text"
-						value="${sessionScope.Userteam.userteam_num}" placeholder=""
-						id="info_id" readonly="true" name="userteam_num">
+						value="${sessionScope.infoId}" placeholder=""
+						id="info_id" readonly="true" name="recordinfo_id">
 				</div>
 			</div>
 			<div class="row cl " id="input_conatiner"></div>
@@ -45,8 +45,8 @@
 				<div class="formControls col-xs-4 col-sm-2">
 					<input type="text" class="input-text radius size-S"
 						value="${sessionScope.user.user_name}" placeholder="" id=""
-						name="paperinfo_N"> <input type="hidden"
-						value="${sessionScope.user.user_Id}" name="paperinfo_Name">
+						name="paperinfo_N"> 
+						<input type="hidden" value="${sessionScope.user.user_Id}" name="ni">
 					<%-- <span class="select-box"> <select name="paperinfo_Lev"
 						class="select">
 								<option value="${sessionScope.user.user_Id}">${sessionScope.user.user_name}</option>
@@ -56,10 +56,10 @@
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>身份：</label>
+					class="c-red">*</span>类别：</label>
 				<div class="formControls col-xs-4 col-sm-2">
-					<input type="text" class="input-text radius size-S" value=""
-						placeholder="" id="" name="paperinfo_Author">
+					<input type="text" class="input-text radius size-S" value="sci_${sessionScope.sort}info"
+						placeholder="" id="" name="category_Id">
 				</div>
 			</div>
 			<div class="row cl">
@@ -67,7 +67,7 @@
 					class="c-red">*</span>上传凭证：</label>
 				<div class="formControls col-xs-4 col-sm-2">
 					<input type="text" class="input-text radius size-S" value=""
-						placeholder="" id="proof" name="proof">
+						placeholder="" id="proof" name="record_proof">
 				</div>
 
 			</div>
@@ -76,7 +76,7 @@
 				<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
 					<button onClick="deleteText();" class="btn btn-primary radius"
 						type="submit">
-						<i class="Hui-iconfont">&#xe632;</i> 下一步
+						<i class="Hui-iconfont">&#xe632;</i>保存
 					</button>
 					<button onClick="deleteText()" class="btn btn-secondary radius"
 						type="button">

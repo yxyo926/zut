@@ -37,10 +37,10 @@
 			<span class="l"> <a href="javascript:;" onclick="datadel()"
 				class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i>
 					删除记录</a> <a class="btn btn-primary radius" href="javascript:;"
-				onclick="location.href='${pageContext.request.contextPath}/paper/getSort.do'"><i
+				onclick="location.href='${pageContext.request.contextPath}/project/getSort.do'"><i
 					class="Hui-iconfont">&#xe600;</i> 添加记录</a>
 			</span> <span class="r">共有数据：<strong><c:out
-						value="${fn:length(paperList)}"></c:out></strong> 条
+						value="${fn:length(projectList)}"></c:out></strong> 条
 			</span>
 		</div>
 		<div class="mt-20">
@@ -77,7 +77,7 @@
 							<td class="text-center">
 								<button type="button" class="btn bg-olive btn-xs">修改</button>
 								<button type="button"
-									onclick="location.href='${pageContext.request.contextPath}/project/findById.do?id=${project.projectinfo_Id}'"
+									onclick="location.href='${pageContext.request.contextPath}/gpadistr/findAllGpa.do?id=${project.projectinfo_Id}'"
 									class="btn bg-olive btn-xs">详情</button>
 							</td>
 						</tr>

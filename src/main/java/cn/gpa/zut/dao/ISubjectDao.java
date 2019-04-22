@@ -14,18 +14,23 @@ import cn.gpa.zut.domain.Plateform;
 import cn.gpa.zut.domain.Subject;
 
 public interface ISubjectDao {
-	//查询所有论文信息
-		@Select("select * from sci_paperinfo")
+	//查询所有信息
+		@Select("select * from sci_subjectinfo")
 		List<Subject> findAll() throws Exception;
 		
-		//保存论文信息
-		@Insert("insert into sci_paperinfo(paperinfo_Id,paperinfo_Author,paperinfo_Name,paperinfo_CN,paperinfo_ISSN,paperinfo_Time,paperinfo_Lev,paperinfo_orglev,paperinfo_getGpa)"
-				+ " values(#{paperinfo_Id},#{paperinfo_Author},#{paperinfo_Name},#{paperinfo_CN},#{paperinfo_ISSN},#{paperinfo_Time},#{paperinfo_Lev},#{paperinfo_orglev},#{paperinfo_getGpa})")
-		void save(Paper paper);
+		//保存信息
+		@Insert("insert into sci_subjectinfo(subjectinfo_id,subjectinfo_name,"
+				+ "subjectinfo_uname,subjectinfo_sort,subjectinfo_lev,"
+				+ "subjectinfo_starttime,subjectinfo_finishtime,"
+				+ "subjectinfo_checklev,subjectinfo_getGpa)"
+				+ " values(#{subjectinfo_id},#{subjectinfo_name},"
+				+ "#{subjectinfo_uname},#{subjectinfo_sort},#{subjectinfo_lev},"
+				+ "#{subjectinfo_starttime},#{subjectinfo_finishtime},#{subjectinfo_getGpa})")
+		void save(Subject subject);
 		//查询用户名下论文信息
 	    //@Select("SELECT * from sci_paperinfo where paperinfo_id IN(SELECT recordinfo_id from sci_record where record_Id in( SELECT record_id FROM `sci_gpadistr`where user_Id=#{id}));")
 		//查询用户名下信息
-		@Select("select subjectinfo_id,subjectinfo_name,subjectinfo_uname,subjectinfo_starttime,"
+		@Select("select subjectinfo_id,subjectinfo_name,subjectinfo_uname,subjectinfo_sort,subjectinfo_lev,subjectinfo_starttime,"
 				+ "subjectinfo_finishtime,subjectinfo_checklev,subjectinfo_getGpa,"
 				+ "userteam_getGpa from sci_subjectinfo inner join sci_record on "
 				+ "sci_subjectinfo.subjectinfo_id=sci_record.recordinfo_id INNER JOIN sci_gpadistr on sci_record.record_Id=sci_gpadistr.record_id and sci_gpadistr.user_Id=#{id}")
@@ -33,6 +38,8 @@ public interface ISubjectDao {
 	    	@Result(id = true, property = "subjectinfo_id", column = "subjectinfo_id"),
 	        @Result(property = "subjectinfo_name", column = "subjectinfo_name"),
 	        @Result(property = "subjectinfo_uname", column = "subjectinfo_uname"),
+	        @Result(property = "subjectinfo_sort", column = "subjectinfo_sort"),
+	        @Result(property = "subjectinfo_lev", column = "subjectinfo_lev"),
 	        @Result(property = "subjectinfo_starttime", column = "subjectinfo_starttime"),
 	        @Result(property = "subjectinfo_finishtime", column = "subjectinfo_finishtime"),
 	        @Result(property = "subjectinfo_checklev", column = "subjectinfo_checklev"),

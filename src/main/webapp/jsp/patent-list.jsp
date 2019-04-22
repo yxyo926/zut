@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -37,10 +37,10 @@
 				<span class="l"> <a href="javascript:;" onclick="datadel()"
 					class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i>
 						删除记录</a> <a class="btn btn-primary radius" href="javascript:;"
-					onclick="location.href='${pageContext.request.contextPath}/paper/getSort.do'"><i
+					onclick="location.href='${pageContext.request.contextPath}/patent/getSort.do'"><i
 						class="Hui-iconfont">&#xe600;</i> 添加记录</a>
 				</span> <span class="r">共有数据：<strong><c:out
-							value="${fn:length(paperList)}"></c:out></strong> 条
+							value="${fn:length(patentList)}"></c:out></strong> 条
 				</span>
 			</div>
 	<div class="mt-20">
@@ -50,38 +50,36 @@
 						<tr class="text-c">
 							<th width="25"><input type="checkbox" value="" name=""></th>
 							<th width="40">信息编号</th>
-							<th width="40">论文作者</th>
-							<th width="40">论文名称</th>
-							<th width="40">期刊名称</th>
-							<th with="70">期刊级别</th>
-							<th width="40">CN号</th>
-							<th width="70">ISSN号</th>
-							<th width="70">发表时间</th>
-							<th with="70">组织级别</th>
+							<th width="40">发明人</th>
+							<th width="40">专利名称</th>
+							<th width="40">专利类别</th>
+							<th with="70">专利状态</th>
+							<th width="40">授权号</th>
+							<th width="70">专利权人数</th>
 							<th with="70">总业绩点</th>
 							<th with="70">我的业绩点</th>
 							<th with="70">操作</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${paperList}" var="paper">
+						<c:forEach items="${patentList}" var="patent">
 							<tr>
 								<td><input name="ids" type="checkbox"></td>
-								<td>${paper.paperinfo_Id }</td>
-								<td>${paper.user.user_name}</td>
-								<td>${paper.paperinfo_Name}</td>
-								<td>${paper.paperinfo_MName}</td>
-								<td>${paper.dictPara.dictpara_lev}</td>
-								<td>${paper.paperinfo_CN }</td>
-								<td>${paper.paperinfo_ISSN }</td>
-								<td class="text-center">${paper.paperinfo_Time }</td>
-								<td class="text-center">${paper.dictRatio.dictratio_lev }</td>
-								<td class="text-center">${paper.paperinfo_getGpa }</td>
-								<td class="text-center">${paper.gpaDistr}</td>
+								<td>${patent.patentinfo_Id }</td>
+								<td>${patent.patentinfo_Inventor}</td>
+								<td>${patent.patentinfo_name}</td>
+								<td>${patent.patentinfo_sort}</td>
+								<td>${patent.patentinfo_status}</td>
+								<td>${patent.patentinfo_authorization }</td>
+								<td>${patent.patentinfo_num }</td>
+								<td class="text-center">${patent.patentinfoinfo_getGpa }</td>
+								<td class="text-center">${patent.gpaDistr}</td>
 								<td class="text-center">
 									<button type="button" class="btn bg-olive btn-xs">修改</button>
-									<button type="button" onclick="location.href='${pageContext.request.contextPath}/paper/findByPaper.do?id=${paper.paperinfo_Id}'" class="btn bg-olive btn-xs">详情</button>
-								</td>
+								<button type="button"
+									onclick="location.href='${pageContext.request.contextPath}/gpadistr/findAllGpa.do?id=${patent.patentinfo_Id}'"
+									class="btn bg-olive btn-xs">详情</button>
+							</td>
 							</tr>
 						</c:forEach>
 					</tbody>

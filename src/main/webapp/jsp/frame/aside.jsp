@@ -50,71 +50,7 @@
 					</ul>
 				</dd>
 			</dl>
-			<dl id="menu-comments">
-				<dt>
-					<i class="Hui-iconfont">&#xe622;</i> 著作业绩管理<i
-						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
-				</dt>
-				<dd>
-					<ul>
-						<li><a data-href="${pageContext.request.contextPath}/writings/findAll.do"
-							data-title="著作业绩管理">著作业绩录入 </a></li>
-						<li><a data-href="product-category.html" data-title="业绩点分配">业绩点分配</a></li>
-					</ul>
-				</dd>
-			</dl>
-			<dl id="menu-member">
-				<dt>
-					<i class="Hui-iconfont">&#xe60d;</i> 项目结项、评价管理<i
-						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
-				</dt>
-				<dd>
-					<ul>
-						<li><a data-href="${pageContext.request.contextPath}/conclude/findAll.do" data-title="项目结项、评价管理">项目结项录入</a></li>
-						<li><a data-href="${pageContext.request.contextPath}/assess/findAll.do" data-title="项目结项、评价管理">项目评价录入</a></li>
-						<li><a data-href="product-category.html" data-title="业绩点分配">业绩点分配</a></li>
-
-					</ul>
-				</dd>
-			</dl>
-			<dl id="menu-admin">
-				<dt>
-					<i class="Hui-iconfont">&#xe62d;</i> 科研奖励业绩管理<i
-						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
-				</dt>
-				<dd>
-					<ul>
-						<li><a data-href="${pageContext.request.contextPath}/reward/findAll.do" data-title="科研奖励业绩管理">科研奖励业绩录入</a></li>
-						<li><a data-href="product-category.html" data-title="业绩点分配">业绩点分配</a></li>
-					</ul>
-				</dd>
-			</dl>
-			<dl id="menu-tongji">
-				<dt>
-					<i class="Hui-iconfont">&#xe61a;</i> 科研、学科平台业绩管理<i
-						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
-				</dt>
-				<dd>
-					<ul>
-						<li><a data-href="${pageContext.request.contextPath}/plateform/findAll.do" data-title="科研、学科平台业绩">科研平台业绩录入</a></li>
-						<li><a data-href="charts-2.html" title="时间轴折线图">学科平台业绩录入</a></li>
-						<li><a data-href="product-category.html" data-title="业绩点分配">业绩点分配</a></li>
-
-					</ul>
-				</dd>
-			</dl>
-			<dl id="menu-system">
-				<dt>
-					<i class="Hui-iconfont">&#xe62e;</i> 学科建设业绩管理<i
-						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
-				</dt>
-				<dd>
-					<ul>
-						<li><a data-href="${pageContext.request.contextPath}/subject/findAll.do" data-title="学科建设业绩管理">学科建设业绩录</a></li>
-						<li><a data-href="product-category.html" data-title="业绩点分配">业绩点分配</a></li>
-					</ul>
-				</dd>
-			</dl>
+			
 		</div>
 	</aside>
 	<div class="dislpayArrow hidden-xs">

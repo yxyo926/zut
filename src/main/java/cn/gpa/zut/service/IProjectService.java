@@ -7,7 +7,7 @@ import cn.gpa.zut.domain.Project;
 
 public interface IProjectService {
 	List<Project> findAll() throws Exception;
-	void save(Project paper)throws Exception;
+	void save(Project project)throws Exception;
 	List<Project> findAllById(String id);
 	Project   findAllByPaper(String paperId);
 }

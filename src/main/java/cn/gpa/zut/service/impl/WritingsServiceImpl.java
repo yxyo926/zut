@@ -23,15 +23,15 @@ public class WritingsServiceImpl implements IWritingsService{
 	}
 
 	@Override
-	public void save(Writings paper) throws Exception {
+	public void save(Writings writings) throws Exception {
 		// TODO Auto-generated method stub
-		
+		writingsDao.save(writings);
 	}
 
 	@Override
 	public List<Writings> findAllById(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		return writingsDao.findAllById(id);
 	}
 
 	@Override

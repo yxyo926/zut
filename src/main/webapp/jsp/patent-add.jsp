@@ -19,36 +19,36 @@
 	</div>
 	<article class="page-container">
 		<form class="form form-horizontal" id="form-paper-add"
-			action="${pageContext.request.contextPath}/paper/save.do"
+			action="${pageContext.request.contextPath}/patent/save.do"
 			method="post">
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>信息编号：</label>
 				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text" class="input-text" value="${sessionScope.infoId}" placeholder=""
-						readonly="true" id="" name="paperinfo_Id">
+						readonly="true" id="" name="patentinfo_Id">
 				</div>
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>申报人：</label>
+					class="c-red">*</span>发明人：</label>
 				<div class="formControls col-xs-3 col-sm-4">
 					<input type="text" class="input-text radius size-S" value="${sessionScope.user.user_name}"
-						readonly="true"  placeholder="" id="" name="paperinfo_A">
-						<input type="hidden" class="input-text radius size-S" value="${sessionScope.user.user_Id}"
 						readonly="true"  placeholder="" id="" name="paperinfo_Author">
+						<input type="hidden" class="input-text radius size-S" value="${sessionScope.user.user_Id}"
+						readonly="true"  placeholder="" id="" name="patentinfo_Inventor">
 				</div>
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>论文名称：</label>
+					class="c-red">*</span>专利名称：</label>
 				<div class="formControls col-xs-3 col-sm-4">
 					<input type="text" class="input-text radius size-S" value=""
-						placeholder="" id="" name="paperinfo_Name">
+						placeholder="" id="" name="patentinfo_name">
 				</div>
 			</div>
 			<div class="row cl">
-				<label class="form-label col-xs-4 col-sm-2"><span
+				<!-- <label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>论文类别：</label>
 				<div class="formControls col-xs-8 col-sm-3">
 					<span class="select-box"> <select name="paperinfo_sort" class="select">
@@ -56,12 +56,12 @@
 							<option value="2">人文科学</option>
 					</select>
 					</span>
-				</div> 
+				</div> -->
 
 				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>论文级别：</label>
+					class="c-red">*</span>专利类别：</label>
 				<div class="formControls col-xs-6 col-sm-4">
-					<span class="select-box"> <select name="paperinfo_Lev"
+					<span class="select-box"> <select name="patentinfo_sort"
 						class="select">
 							<c:forEach items="${dictParas}" var="para">
 								<option value="${para.dictpara_id}">${para.dictpara_lev}</option>
@@ -72,13 +72,13 @@
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>组织级别：</label>
+					class="c-red">*</span>专利人数：</label>
 				<div class="formControls col-xs-6 col-sm-4">
-					<span class="select-box"> <select name="paperinfo_orglev"
+					<span class="select-box"> <select name="patentinfo_num"
 						class="select">
-							<c:forEach items="${dictRatios}" var="ratio">
-								<option value="${ratio.dictratio_id}">${ratio.dictratio_lev}</option>
-							</c:forEach>
+							
+								<option value="1">1</option>
+								<option value="2">2</option>
 					</select>
 					</span>
 				</div>
@@ -86,29 +86,20 @@
 
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>CN号：</label>
+					class="c-red">*</span>授权号：</label>
 				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text" class="input-text" value="" placeholder="" id=""
-						name="paperinfo_CN">
+						name="patentinfo_authorization">
 				</div>
 			</div>
-			<div class="row cl">
+			<!-- <div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>ISSN号：</label>
+					class="c-red">*</span>专利状态：</label>
 				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text" class="input-text" value="" placeholder="" id=""
-						name="paperinfo_ISSN">
+						name="patentinfo_status">
 				</div>
-			</div>
-			<div class="row cl">
-				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>发表日期：</label>
-				<div class="formControls col-xs-8 col-sm-4">
-					<input type="text"
-						onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})"
-						id="datemin" class="input-text Wdate" name="paperinfo_Time">
-				</div>
-			</div>
+			</div> -->
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>用户组：</label>
@@ -127,16 +118,6 @@
 					<input type="text" class="input-text" value="" placeholder=""
 						id="userteam_num" name="userteam_num">
 
-				</div>
-			</div>
-
-
-			</div>
-			<div class="row cl">
-				<label class="form-label col-xs-4 col-sm-2">凭证：</label>
-				<div class="formControls col-xs-8 col-sm-9">
-					<script id="editor" type="text/plain"
-						style="width: 100%; height: 200px;"></script>
 				</div>
 			</div>
 			<div class="row cl">
@@ -266,7 +247,6 @@
 				$('#' + file.id).addClass('upload-state-error').find(".state")
 						.text("上传出错");
 			});
-
 			// 完成上传完了，成功或者失败，先删除进度条。
 			uploader.on('uploadComplete', function(file) {
 				$('#' + file.id).find('.progress-box').fadeOut();
@@ -279,7 +259,6 @@
 				} else if (type === 'uploadFinished') {
 					state = 'done';
 				}
-
 				if (state === 'uploading') {
 					$btn.text('暂停上传');
 				} else {

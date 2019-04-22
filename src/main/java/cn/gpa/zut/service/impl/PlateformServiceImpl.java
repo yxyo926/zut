@@ -20,9 +20,9 @@ public class PlateformServiceImpl  implements IPlateformService{
 public IPlateformDao plateformDao;
 
 	@Override
-	public void save(Plateform paper) throws Exception {
+	public void save(Plateform plateform) throws Exception {
 		// TODO Auto-generated method stub
-		
+		plateformDao.save(plateform);
 	}
 
 	@Override

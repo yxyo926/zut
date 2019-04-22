@@ -3,6 +3,9 @@ package cn.gpa.zut.controller;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.gpa.zut.domain.DictPara;
@@ -33,7 +37,7 @@ import cn.gpa.zut.utils.UUIDUtils;
 
 @Controller
 @RequestMapping("/paper")
-@SessionAttributes(value = { "infoId", "Userteam" })
+@SessionAttributes(value = { "infoId", "Userteam","totalGpa","recordId","sort"})
 // ①将ModelMap中属性名为的属性
 //放到Session属性列表中，以便这个属性可以跨请求访问
 public class PaperController {
@@ -98,8 +102,8 @@ public class PaperController {
 		@RequestMapping("/getSort.do")
 		public ModelAndView getSort() throws Exception {
 			ModelAndView mv = new ModelAndView();
-			List<DictPara> dictParas = dictParaService.getSort("01");
-			List<DictRatio> dictRatios = dictRatioService.getLev("01");
+			List<DictPara> dictParas = dictParaService.getSort("02");
+			List<DictRatio> dictRatios = dictRatioService.getLev("02");
 			List<Userteam> userteams = userteamService.findAll();
 			mv.addObject("dictRatios", dictRatios);
 			mv.addObject("dictParas", dictParas);
@@ -116,8 +120,12 @@ public class PaperController {
 		Double sumGpa = sumGPA(paper);
 		paper.setPaperinfo_getGpa(sumGpa);
 		paperService.save(paper);
+		
 		Userteam userteam = isExist(userteam_name, userteam_num);
 		model.addAttribute("Userteam", userteam);
+		model.addAttribute("totalGpa", sumGpa);
+		String sort="paper";
+		model.addAttribute("sort", sort);
 		return "redirect:gpadistribute.do";
 	}
 
@@ -136,50 +144,65 @@ public class PaperController {
 		mv.setViewName("gpadistribute");
 		return mv;
 	}
-	
 	// 保存业绩点分配记录
-	@RequestMapping("/gpasave.do")
-	@ResponseBody
-	public String saveUsers(@RequestBody List<GpaDistr> userList) {
-		UUIDUtils uuidUtils = new UUIDUtils();
-		String recordString = uuidUtils.getUUID();
-		for (int i = 0; i < userList.size(); i++) {
-			String uuidString = uuidUtils.getUUID();
-			GpaDistr gpaDistr = userList.get(i);
-			gpaDistr.setGpadistr_id(uuidString);
-			gpaDistr.setRecord_id(recordString);
-			gpaDistr.setUserteam_id("003");
-			System.out.println(gpaDistr.getUser_Id());
-			gpaDistrService.save(gpaDistr);
-		}
-		System.out.println("业绩点保存了");
-		return "nihao";
+		@RequestMapping("/gpasave.do")
+		public String saveUsers(ModelMap model,@ModelAttribute("Userteam") Userteam uerUserteam, 
+				SessionStatus sessionStatus,@ModelAttribute("form") Paper paper) {
+			UUIDUtils uuidUtils = new UUIDUtils();
+			String recordString = uuidUtils.getUUID();
+			List<GpaDistr> gpaDistrs=paper.getGpaDistrs();
+			for (int i = 0; i < gpaDistrs.size(); i++) {
+				String uuidString = uuidUtils.getUUID();
+				GpaDistr gpaDistr = paper.getGpaDistrs().get(i);
+				gpaDistr.setGpadistr_id(uuidString);
+				gpaDistr.setRecord_id(recordString);
+				gpaDistr.setUserteam_id(uerUserteam.getUserteam_id());
+				System.out.println(gpaDistr.getUser_Id());
+				gpaDistrService.save(gpaDistr);
+			}
+			model.addAttribute("recordId", recordString);
+			System.out.println("业绩点保存了");
+			
+			return "record";
 
-	}
+		}
+	
+	/*
+	 * // 保存业绩点分配记录
+	 * 
+	 * @RequestMapping("/gpasave.do")
+	 * 
+	 * @ResponseBody public String saveUsers(ModelMap model,@RequestBody Paper
+	 * paper) { UUIDUtils uuidUtils = new UUIDUtils(); String recordString =
+	 * uuidUtils.getUUID(); for (int i = 0; i < paper.getGpaDistrs().size(); i++) {
+	 * String uuidString = uuidUtils.getUUID(); GpaDistr gpaDistr =
+	 * paper.getGpaDistrs().get(i); gpaDistr.setGpadistr_id(uuidString);
+	 * gpaDistr.setRecord_id(recordString); gpaDistr.setUserteam_id("003");
+	 * System.out.println(gpaDistr.getUser_Id()); gpaDistrService.save(gpaDistr); }
+	 * model.addAttribute("recordId", recordString); System.out.println("业绩点保存了");
+	 * 
+	 * return "nihao";
+	 * 
+	 * }
+	 */
 	//
 	@RequestMapping("/record.do")
 	public ModelAndView record() throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<DictPara> dictParas = dictParaService.getSort("01");
-		List<DictRatio> dictRatios = dictRatioService.getLev("01");
-		List<Userteam> userteams = userteamService.findAll();
-		mv.addObject("dictRatios", dictRatios);
-		mv.addObject("dictParas", dictParas);
-		mv.addObject("userteams", userteams);
 		mv.setViewName("record");
 		return mv;
 	}
 	//凭证提交
 	@RequestMapping("/recordsave.do")
-	@ResponseBody
-	public String saveRecord(@RequestBody List<Record> userList) {
-
-		for (int i = 0; i < userList.size(); i++) {
-			Record record = userList.get(i);
-			recordService.save(record);
-		}
+	public String saveRecord( Record record, HttpServletRequest request) {
+		HttpSession session = request.getSession(true); 
+        recordService.save(record);
 		System.out.println("nihao");
-		return null;
+		session.removeAttribute("Userteam");
+		session.removeAttribute("infoId");
+		session.removeAttribute("totalGpa");
+		session.removeAttribute("recordId");
+		return "redirect:findAll.do";
 
 	}
 
@@ -190,8 +213,8 @@ public class PaperController {
 		int gpa = 0;
 		Double ratio = 0.0;
 		Double sumgpa = 0.0;
-		List<DictPara> dictParas = dictParaService.getSort("01");
-		List<DictRatio> dictRatios = dictRatioService.getLev("01");
+		List<DictPara> dictParas = dictParaService.getSort("02");
+		List<DictRatio> dictRatios = dictRatioService.getLev("02");
 		paper.getPaperinfo_Lev();
 		paper.getPaperinfo_orglev();
 		for (Iterator iterators = dictParas.iterator(); iterators.hasNext();) {

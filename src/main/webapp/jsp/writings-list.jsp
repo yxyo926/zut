@@ -37,10 +37,10 @@
 				<span class="l"> <a href="javascript:;" onclick="datadel()"
 					class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i>
 						删除记录</a> <a class="btn btn-primary radius" href="javascript:;"
-					onclick="location.href='${pageContext.request.contextPath}/paper/getSort.do'"><i
+					onclick="location.href='${pageContext.request.contextPath}/writings/getSort.do'"><i
 						class="Hui-iconfont">&#xe600;</i> 添加记录</a>
 				</span> <span class="r">共有数据：<strong><c:out
-							value="${fn:length(paperList)}"></c:out></strong> 条
+							value="${fn:length(writingsList)}"></c:out></strong> 条
 				</span>
 			</div>
 	<div class="mt-20">
@@ -64,24 +64,26 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${paperList}" var="paper">
+						<c:forEach items="${writingsList}" var="writings">
 							<tr>
 								<td><input name="ids" type="checkbox"></td>
-								<td>${paper.paperinfo_Id }</td>
-								<td>${paper.user.user_name}</td>
-								<td>${paper.paperinfo_Name}</td>
-								<td>${paper.paperinfo_MName}</td>
-								<td>${paper.dictPara.dictpara_lev}</td>
-								<td>${paper.paperinfo_CN }</td>
-								<td>${paper.paperinfo_ISSN }</td>
-								<td class="text-center">${paper.paperinfo_Time }</td>
-								<td class="text-center">${paper.dictRatio.dictratio_lev }</td>
-								<td class="text-center">${paper.paperinfo_getGpa }</td>
-								<td class="text-center">${paper.gpaDistr}</td>
+								<td>${writings.writingsinfo_Id }</td>
+								<td>${writings.writingsinfo_Editor}</td>
+								<td>${writings.writingsinfo_Name}</td>
+								<td>${writings.writingsinfo_Press}</td>
+								<td>${writings.writingsinfo_ISBN}</td>
+								<td>${writings.writingsinfo_time}</td>
+								<td>${writings.writingsinfo_wordsnum }</td>
+								<td class="text-center">${writings.writinginfo_org }</td>
+								<td class="text-center">${writings.writinginfo_lev}</td>
+								<td class="text-center">${writings.writinginfo_getGpa }</td>
+								<td class="text-center">${writings.gpaDistr}</td>
 								<td class="text-center">
 									<button type="button" class="btn bg-olive btn-xs">修改</button>
-									<button type="button" onclick="location.href='${pageContext.request.contextPath}/paper/findByPaper.do?id=${paper.paperinfo_Id}'" class="btn bg-olive btn-xs">详情</button>
-								</td>
+									<button type="button"
+									onclick="location.href='${pageContext.request.contextPath}/gpadistr/findAllGpa.do?id=${writings.writingsinfo_Id }'"
+									class="btn bg-olive btn-xs">详情</button>
+							</td>
 							</tr>
 						</c:forEach>
 					</tbody>

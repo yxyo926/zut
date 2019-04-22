@@ -12,6 +12,7 @@ public class Project {
 	private String projectinfo_Leader;//项目负责人
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date projectinfo_StartTime;//开始时间
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date projectinfo_FinishTime;//完成时间
 	private Double projectinfo_StartMoney;//立项经费
 	private Double projectinfo_getGpa;//总业绩点

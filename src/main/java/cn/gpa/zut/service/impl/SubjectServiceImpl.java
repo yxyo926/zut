@@ -23,9 +23,9 @@ public ISubjectDao subjectDao;
 	}
 
 	@Override
-	public void save(Subject paper) throws Exception {
+	public void save(Subject subject) throws Exception {
 		// TODO Auto-generated method stub
-		
+		subjectDao.save(subject);
 	}
 
 	@Override

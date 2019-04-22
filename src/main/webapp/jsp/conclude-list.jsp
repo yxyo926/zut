@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+-<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -18,79 +18,73 @@
 			class="Hui-iconfont">&#xe68f;</i></a>
 	</nav>
 	<div class="page-container">
-			<div class="text-c">
-				日期范围： <input type="text"
-					onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})"
-					id="datemin" class="input-text Wdate" style="width: 120px;">
-				- <input type="text"
-					onfocus="WdatePicker({minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d'})"
-					id="datemax" class="input-text Wdate" style="width: 120px;">
-				<input type="text" class="input-text" style="width: 250px"
-					placeholder="输入会员名称、电话、邮箱" id="" name="">
-				<button type="submit" class="btn btn-success" id="" name="">
-					<i class="icon-search"></i> 搜用户
-				</button>
+		<div class="text-c">
+			日期范围： <input type="text"
+				onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})"
+				id="datemin" class="input-text Wdate" style="width: 120px;">
+			- <input type="text"
+				onfocus="WdatePicker({minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d'})"
+				id="datemax" class="input-text Wdate" style="width: 120px;">
+			<input type="text" class="input-text" style="width: 250px"
+				placeholder="输入会员名称、电话、邮箱" id="" name="">
+			<button type="submit" class="btn btn-success" id="" name="">
+				<i class="icon-search"></i> 搜用户
+			</button>
 
-			</div>
+		</div>
 
-			<div class="cl pd-5 bg-1 bk-gray mt-20">		
-				<span class="l"> <a href="javascript:;" onclick="datadel()"
-					class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i>
-						删除记录</a> <a class="btn btn-primary radius" href="javascript:;"
-					onclick="location.href='${pageContext.request.contextPath}/paper/getSort.do'"><i
-						class="Hui-iconfont">&#xe600;</i> 添加记录</a>
-				</span> <span class="r">共有数据：<strong><c:out
-							value="${fn:length(paperList)}"></c:out></strong> 条
-				</span>
-			</div>
-	<div class="mt-20">
-				<table
-					class="table table-border table-bordered table-hover table-bg table-sort">
-					<thead>
-						<tr class="text-c">
-							<th width="25"><input type="checkbox" value="" name=""></th>
-							<th width="40">信息编号</th>
-							<th width="40">论文作者</th>
-							<th width="40">论文名称</th>
-							<th width="40">期刊名称</th>
-							<th with="70">期刊级别</th>
-							<th width="40">CN号</th>
-							<th width="70">ISSN号</th>
-							<th width="70">发表时间</th>
-							<th with="70">组织级别</th>
-							<th with="70">总业绩点</th>
-							<th with="70">我的业绩点</th>
-							<th with="70">操作</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${paperList}" var="paper">
+		<div class="cl pd-5 bg-1 bk-gray mt-20">
+			<span class="l"> <a href="javascript:;" onclick="datadel()"
+				class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i>
+					删除记录</a> <a class="btn btn-primary radius" href="javascript:;"
+				onclick="location.href='${pageContext.request.contextPath}/conclude/getSort.do'"><i
+					class="Hui-iconfont">&#xe600;</i> 添加记录</a>
+			</span> <span class="r">共有数据：<strong><c:out
+						value="${fn:length(concludetList)}"></c:out></strong> 条
+			</span>
+		</div>
+		<div class="mt-20">
+			<table
+				class="table table-border table-bordered table-hover table-bg table-sort">
+				<thead>
+					<tr class="text-c">
+						<th width="25"><input type="checkbox" value="" name=""></th>
+						<th width="40">信息编号</th>
+						<th width="40">项目名称</th>
+						<th width="40">申报人</th>
+						<th width="40">组织单位级别</th>
+						<th with="70">结项级别</th>
+						<th with="70">总业绩点</th>
+						<th with="70">我的业绩点</th>
+						<th with="70">操作</th>
+					</tr>
+				</thead>
+				<tbody>
+						<c:forEach items="${concludetList}" var="conclude">
 							<tr>
 								<td><input name="ids" type="checkbox"></td>
-								<td>${paper.paperinfo_Id }</td>
-								<td>${paper.user.user_name}</td>
-								<td>${paper.paperinfo_Name}</td>
-								<td>${paper.paperinfo_MName}</td>
-								<td>${paper.dictPara.dictpara_lev}</td>
-								<td>${paper.paperinfo_CN }</td>
-								<td>${paper.paperinfo_ISSN }</td>
-								<td class="text-center">${paper.paperinfo_Time }</td>
-								<td class="text-center">${paper.dictRatio.dictratio_lev }</td>
-								<td class="text-center">${paper.paperinfo_getGpa }</td>
-								<td class="text-center">${paper.gpaDistr}</td>
+								<td>${conclude.concludeinfo_id }</td>
+								<td>${conclude.concludeinfo_name}</td>
+								<td>${conclude.concludeinfo_person}</td>
+								<td>${conclude.concludeinfo_olev}</td>
+								<td>${conclude.concludeinfo_lev}</td>
+								<td>${conclude.concludetinfo_getGpa}</td>
+								<td class="text-center">${conclude.gpaDistr}</td>
 								<td class="text-center">
 									<button type="button" class="btn bg-olive btn-xs">修改</button>
-									<button type="button" onclick="location.href='${pageContext.request.contextPath}/paper/findByPaper.do?id=${paper.paperinfo_Id}'" class="btn bg-olive btn-xs">详情</button>
-								</td>
+									<button type="button"
+									onclick="location.href='${pageContext.request.contextPath}/gpadistr/findAllGpa.do?id=${conclude.concludeinfo_id}'"
+									class="btn bg-olive btn-xs">详情</button>
+							</td>
 							</tr>
 						</c:forEach>
 					</tbody>
-				</table>
-			</div>
-			<jsp:include page="frame/footer.jsp"></jsp:include>
+			</table>
+		</div>
+		<jsp:include page="frame/footer.jsp"></jsp:include>
 
-			<!--请在下方写此页面业务相关的脚本-->
-			<script type="text/javascript">
+		<!--请在下方写此页面业务相关的脚本-->
+		<script type="text/javascript">
 			$(function(){
 				$('.table-sort').dataTable({
 					"aaSorting": [[ 1, "desc" ]],//默认第几个排序

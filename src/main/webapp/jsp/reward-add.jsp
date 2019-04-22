@@ -14,8 +14,8 @@
 </head>
 <body onload="bangnum(this)">
 	<div class="four steps">
-		<span class="active step">第一步 填写信息</span> <span class="step">第二步 业绩点分配</span> <span
-			class="disabled step">第三步 提交凭证</span> 
+		<span class="active step">第一步 填写信息</span> <span class="step">第二步
+			业绩点分配</span> <span class=" step">第三步 提交凭证</span>
 	</div>
 	<article class="page-container">
 		<form class="form form-horizontal" id="form-paper-add"
@@ -25,30 +25,32 @@
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>信息编号：</label>
 				<div class="formControls col-xs-8 col-sm-4">
-					<input type="text" class="input-text" value="${sessionScope.infoId}" placeholder=""
-						readonly="true" id="" name="paperinfo_Id">
+					<input type="text" class="input-text"
+						value="${sessionScope.infoId}" placeholder="" readonly="true"
+						id="" name="paperinfo_Id">
 				</div>
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>申报人：</label>
 				<div class="formControls col-xs-3 col-sm-4">
-					<input type="text" class="input-text radius size-S" value="${sessionScope.user.user_name}"
-						readonly="true"  placeholder="" id="" name="paperinfo_A">
+					<input type="text" class="input-text radius size-S"
+						value="${sessionScope.user.user_name}" readonly="true"
+						placeholder="" id="" name="paperinfo_Author">
 						<input type="hidden" class="input-text radius size-S" value="${sessionScope.user.user_Id}"
 						readonly="true"  placeholder="" id="" name="paperinfo_Author">
 				</div>
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>论文名称：</label>
+					class="c-red">*</span>成果名称：</label>
 				<div class="formControls col-xs-3 col-sm-4">
 					<input type="text" class="input-text radius size-S" value=""
 						placeholder="" id="" name="paperinfo_Name">
 				</div>
 			</div>
 			<div class="row cl">
-				<label class="form-label col-xs-4 col-sm-2"><span
+				<!-- <label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>论文类别：</label>
 				<div class="formControls col-xs-8 col-sm-3">
 					<span class="select-box"> <select name="paperinfo_sort" class="select">
@@ -56,10 +58,10 @@
 							<option value="2">人文科学</option>
 					</select>
 					</span>
-				</div> 
+				</div> -->
 
 				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>论文级别：</label>
+					class="c-red">*</span>奖项级别：</label>
 				<div class="formControls col-xs-6 col-sm-4">
 					<span class="select-box"> <select name="paperinfo_Lev"
 						class="select">
@@ -72,7 +74,15 @@
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>组织级别：</label>
+					class="c-red">*</span>奖项名称：</label>
+				<div class="formControls col-xs-8 col-sm-4">
+					<input type="text" class="input-text" value="" placeholder="" id=""
+						name="paperinfo_CN">
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2"><span
+					class="c-red">*</span>合作单位排名：</label>
 				<div class="formControls col-xs-6 col-sm-4">
 					<span class="select-box"> <select name="paperinfo_orglev"
 						class="select">
@@ -83,26 +93,9 @@
 					</span>
 				</div>
 			</div>
-
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>CN号：</label>
-				<div class="formControls col-xs-8 col-sm-4">
-					<input type="text" class="input-text" value="" placeholder="" id=""
-						name="paperinfo_CN">
-				</div>
-			</div>
-			<div class="row cl">
-				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>ISSN号：</label>
-				<div class="formControls col-xs-8 col-sm-4">
-					<input type="text" class="input-text" value="" placeholder="" id=""
-						name="paperinfo_ISSN">
-				</div>
-			</div>
-			<div class="row cl">
-				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>发表日期：</label>
+					class="c-red">*</span>获奖日期：</label>
 				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text"
 						onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})"
@@ -113,10 +106,11 @@
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>用户组：</label>
 				<div class="formControls col-xs-6 col-sm-4">
-					<span class="select-box"> <select name="userteam_name" class="select"
-						id="useteam_name" onchange="bangnum(this)">
+					<span class="select-box"> <select name="userteam_name"
+						class="select" id="useteam_name" onchange="bangnum(this)">
 							<c:forEach items="${userteams}" var="userteam">
-								<option parentcode="${userteam.userteam_num}" value="${userteam.userteam_name}">${userteam.userteam_name}</option>
+								<option parentcode="${userteam.userteam_num}"
+									value="${userteam.userteam_name}">${userteam.userteam_name}</option>
 							</c:forEach>
 					</select>
 					</span>
@@ -127,16 +121,6 @@
 					<input type="text" class="input-text" value="" placeholder=""
 						id="userteam_num" name="userteam_num">
 
-				</div>
-			</div>
-
-
-			</div>
-			<div class="row cl">
-				<label class="form-label col-xs-4 col-sm-2">凭证：</label>
-				<div class="formControls col-xs-8 col-sm-9">
-					<script id="editor" type="text/plain"
-						style="width: 100%; height: 200px;"></script>
 				</div>
 			</div>
 			<div class="row cl">
@@ -180,7 +164,8 @@
 		src="${pageContext.request.contextPath}/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
 	<script type="text/javascript">
 		function bangnum(id) {
-			document.getElementById('userteam_num').value=$(id).find("option:selected").attr("parentcode");
+			document.getElementById('userteam_num').value = $(id).find(
+					"option:selected").attr("parentcode");
 		}
 		$(function() {
 			$('.skin-minimal input').iCheck({

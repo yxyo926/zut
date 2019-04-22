@@ -19,14 +19,14 @@
 	</div>
 	<article class="page-container">
 		<form class="form form-horizontal" id="form-paper-add"
-			action="${pageContext.request.contextPath}/paper/save.do"
+			action="${pageContext.request.contextPath}/writings/save.do"
 			method="post">
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>信息编号：</label>
 				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text" class="input-text" value="${sessionScope.infoId}" placeholder=""
-						readonly="true" id="" name="paperinfo_Id">
+						readonly="true" id="" name="writingsinfo_Id">
 				</div>
 			</div>
 			<div class="row cl">
@@ -34,21 +34,21 @@
 					class="c-red">*</span>申报人：</label>
 				<div class="formControls col-xs-3 col-sm-4">
 					<input type="text" class="input-text radius size-S" value="${sessionScope.user.user_name}"
-						readonly="true"  placeholder="" id="" name="paperinfo_A">
-						<input type="hidden" class="input-text radius size-S" value="${sessionScope.user.user_Id}"
 						readonly="true"  placeholder="" id="" name="paperinfo_Author">
+						<input type="hidden" class="input-text radius size-S" value="${sessionScope.user.user_Id}"
+						readonly="true"  placeholder="" id="" name="writingsinfo_Editor">
 				</div>
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>论文名称：</label>
+					class="c-red">*</span>论著名称：</label>
 				<div class="formControls col-xs-3 col-sm-4">
 					<input type="text" class="input-text radius size-S" value=""
-						placeholder="" id="" name="paperinfo_Name">
+						placeholder="" id="" name="writingsinfo_Name">
 				</div>
 			</div>
 			<div class="row cl">
-				<label class="form-label col-xs-4 col-sm-2"><span
+				<!-- <label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>论文类别：</label>
 				<div class="formControls col-xs-8 col-sm-3">
 					<span class="select-box"> <select name="paperinfo_sort" class="select">
@@ -56,12 +56,12 @@
 							<option value="2">人文科学</option>
 					</select>
 					</span>
-				</div> 
+				</div> -->
 
 				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>论文级别：</label>
+					class="c-red">*</span>作者类别：</label>
 				<div class="formControls col-xs-6 col-sm-4">
-					<span class="select-box"> <select name="paperinfo_Lev"
+					<span class="select-box"> <select name="writinginfo_lev"
 						class="select">
 							<c:forEach items="${dictParas}" var="para">
 								<option value="${para.dictpara_id}">${para.dictpara_lev}</option>
@@ -72,9 +72,17 @@
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>组织级别：</label>
+					class="c-red">*</span>字数：</label>
+				<div class="formControls col-xs-3 col-sm-4">
+					<input type="text" class="input-text radius size-S" value=""
+						placeholder="单位为万字" id="" name="writingsinfo_wordsnum">
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2"><span
+					class="c-red">*</span>出版社级别：</label>
 				<div class="formControls col-xs-6 col-sm-4">
-					<span class="select-box"> <select name="paperinfo_orglev"
+					<span class="select-box"> <select name="writinginfo_org"
 						class="select">
 							<c:forEach items="${dictRatios}" var="ratio">
 								<option value="${ratio.dictratio_id}">${ratio.dictratio_lev}</option>
@@ -86,27 +94,27 @@
 
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>CN号：</label>
+					class="c-red">*</span>出版社名称：</label>
 				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text" class="input-text" value="" placeholder="" id=""
-						name="paperinfo_CN">
+						name="writingsinfo_Press">
 				</div>
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>ISSN号：</label>
+					class="c-red">*</span>ISBN：</label>
 				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text" class="input-text" value="" placeholder="" id=""
-						name="paperinfo_ISSN">
+						name="writingsinfo_ISBN">
 				</div>
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>发表日期：</label>
+					class="c-red">*</span>出版时间：</label>
 				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text"
 						onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})"
-						id="datemin" class="input-text Wdate" name="paperinfo_Time">
+						id="datemin" class="input-text Wdate" name="writingsinfo_time">
 				</div>
 			</div>
 			<div class="row cl">
@@ -127,16 +135,6 @@
 					<input type="text" class="input-text" value="" placeholder=""
 						id="userteam_num" name="userteam_num">
 
-				</div>
-			</div>
-
-
-			</div>
-			<div class="row cl">
-				<label class="form-label col-xs-4 col-sm-2">凭证：</label>
-				<div class="formControls col-xs-8 col-sm-9">
-					<script id="editor" type="text/plain"
-						style="width: 100%; height: 200px;"></script>
 				</div>
 			</div>
 			<div class="row cl">

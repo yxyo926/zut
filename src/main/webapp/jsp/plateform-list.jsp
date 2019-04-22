@@ -11,7 +11,7 @@
 <body>
 	<nav class="breadcrumb">
 		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>
-		管理员管理 <span class="c-gray en">&gt;</span> 角色管理 <a
+		科研业绩管理 <span class="c-gray en">&gt;</span> 科研、学科平台管理 <a
 			class="btn btn-success radius r"
 			style="line-height: 1.6em; margin-top: 3px"
 			href="javascript:location.replace(location.href);" title="刷新"><i
@@ -37,7 +37,7 @@
 			<span class="l"> <a href="javascript:;" onclick="datadel()"
 				class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i>
 					删除记录</a> <a class="btn btn-primary radius" href="javascript:;"
-				onclick="location.href='${pageContext.request.contextPath}/paper/getSort.do'"><i
+				onclick="location.href='${pageContext.request.contextPath}/plateform/getSort.do'"><i
 					class="Hui-iconfont">&#xe600;</i> 添加记录</a>
 			</span> <span class="r">共有数据：<strong><c:out
 						value="${fn:length(projectList)}"></c:out></strong> 条
@@ -50,33 +50,35 @@
 					<tr class="text-c">
 						<th width="25"><input type="checkbox" value="" name=""></th>
 						<th width="40">信息编号</th>
-						<th width="40">项目来源</th>
-						<th width="40">项目名称</th>
-						<th width="40">项目负责人</th>
-						<th with="70">开始时间</th>
-						<th width="40">完成时间</th>
-						<th width="70">立项经费</th>
+						<th width="40">平台名称</th>
+						<th width="40">获准级别</th>
+						<th width="40">主持人</th>
+						<th width="40">获准时间</th>
+						<th with="70">结束时间</th>
+						<th width="40">考核等级</th>
 						<th with="70">总业绩点</th>
 						<th with="70">我的业绩点</th>
 						<th with="70">操作</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${projectList}" var="project">
+					<c:forEach items="${projectList}" var="plateform">
 						<tr>
 							<td><input name="ids" type="checkbox"></td>
-							<td>${project.plateforminfo_id }</td>
-							<td>${project.plateforminfo_name}</td>
-							<td>${project.plateforminfo_organize}</td>
-							<td>${project.plateforminfo_starttime}</td>
-							<td>${project.plateforminfo_finishtime}</td>
-							<td class="text-center">${project.plateforninfo_checklev}</td>
-							<td class="text-center">${project.plateforminfo_getGpa}</td>
-							<td class="text-center">${project.gpaDistr}</td>
+							<td>${plateform.plateforminfo_id }</td>
+							<td>${plateform.plateforminfo_name}</td>
+							<td>${plateform.plateforminfo_lev}</td>
+							<td>${plateform.plateforminfo_organize}</td>
+							<td>${plateform.plateforminfo_starttime}</td>
+							<td>${plateform.plateforminfo_finishtime}</td>
+							
+							<td class="text-center">${plateform.plateforninfo_checklev}</td>
+							<td class="text-center">${plateform.plateforminfo_getGpa}</td>
+							<td class="text-center">${plateform.gpaDistr}</td>
 							<td class="text-center">
 								<button type="button" class="btn bg-olive btn-xs">修改</button>
 								<button type="button"
-									onclick="location.href='${pageContext.request.contextPath}/project/findById.do?id'"
+									onclick="location.href='${pageContext.request.contextPath}/gpadistr/findAllGpa.do?id=${plateform.plateforminfo_id}'"
 									class="btn bg-olive btn-xs">详情</button>
 							</td>
 						</tr>

@@ -22,15 +22,15 @@ public IRewardDao rewardDao;
 	}
 
 	@Override
-	public void save(Reward paper) throws Exception {
+	public void save(Reward reward) throws Exception {
 		// TODO Auto-generated method stub
-		
+		rewardDao.save(reward);
 	}
 
 	@Override
 	public List<Reward> findAllById(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		return rewardDao.findAllById(id);
 	}
 
 	@Override

@@ -11,7 +11,7 @@
 <body>
 	<nav class="breadcrumb">
 		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>
-		管理员管理 <span class="c-gray en">&gt;</span> 角色管理 <a
+		业绩管理 <span class="c-gray en">&gt;</span> 奖励信息管理 <a
 			class="btn btn-success radius r"
 			style="line-height: 1.6em; margin-top: 3px"
 			href="javascript:location.replace(location.href);" title="刷新"><i
@@ -37,10 +37,10 @@
 				<span class="l"> <a href="javascript:;" onclick="datadel()"
 					class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i>
 						删除记录</a> <a class="btn btn-primary radius" href="javascript:;"
-					onclick="location.href='${pageContext.request.contextPath}/paper/getSort.do'"><i
+					onclick="location.href='${pageContext.request.contextPath}/reward/getSort.do'"><i
 						class="Hui-iconfont">&#xe600;</i> 添加记录</a>
 				</span> <span class="r">共有数据：<strong><c:out
-							value="${fn:length(paperList)}"></c:out></strong> 条
+							value="${fn:length(rewardList)}"></c:out></strong> 条
 				</span>
 			</div>
 	<div class="mt-20">
@@ -50,38 +50,38 @@
 						<tr class="text-c">
 							<th width="25"><input type="checkbox" value="" name=""></th>
 							<th width="40">信息编号</th>
-							<th width="40">论文作者</th>
-							<th width="40">论文名称</th>
-							<th width="40">期刊名称</th>
-							<th with="70">期刊级别</th>
-							<th width="40">CN号</th>
-							<th width="70">ISSN号</th>
-							<th width="70">发表时间</th>
-							<th with="70">组织级别</th>
+							<th width="40">成果名称</th>
+							<th width="40">申报人</th>
+							<th width="40">奖项名称</th>
+							<th with="70">颁奖单位</th>
+							<th width="40">获奖时间</th>
+							<th width="70">合作单位排名</th>
+							<th width="70">合作单位数量</th>
 							<th with="70">总业绩点</th>
 							<th with="70">我的业绩点</th>
 							<th with="70">操作</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${paperList}" var="paper">
+						<c:forEach items="${rewardList}" var="reward">
 							<tr>
 								<td><input name="ids" type="checkbox"></td>
-								<td>${paper.paperinfo_Id }</td>
-								<td>${paper.user.user_name}</td>
-								<td>${paper.paperinfo_Name}</td>
-								<td>${paper.paperinfo_MName}</td>
-								<td>${paper.dictPara.dictpara_lev}</td>
-								<td>${paper.paperinfo_CN }</td>
-								<td>${paper.paperinfo_ISSN }</td>
-								<td class="text-center">${paper.paperinfo_Time }</td>
-								<td class="text-center">${paper.dictRatio.dictratio_lev }</td>
-								<td class="text-center">${paper.paperinfo_getGpa }</td>
-								<td class="text-center">${paper.gpaDistr}</td>
+								<td>${reward.reward_Id }</td>
+								<td>${reward.reward_infoID}</td>
+								<td>${reward.reward_person}</td>
+								<td>${reward.reward_name}</td>
+								<td>${reward.reward_Organization}</td>
+								<td>${reward.reward_Time }</td>
+								<td>${reward.reward_rank }</td>
+								<td class="text-center">${reward.reward_num }</td>
+								<td class="text-center">${reward.reward_getGpa}</td>
+								<td class="text-center">${reward.gpaDistr}</td>
 								<td class="text-center">
 									<button type="button" class="btn bg-olive btn-xs">修改</button>
-									<button type="button" onclick="location.href='${pageContext.request.contextPath}/paper/findByPaper.do?id=${paper.paperinfo_Id}'" class="btn bg-olive btn-xs">详情</button>
-								</td>
+									<button type="button"
+									onclick="location.href='${pageContext.request.contextPath}/gpadistr/findAllGpa.do?id=${reward.reward_Id}'"
+									class="btn bg-olive btn-xs">详情</button>
+							</td>
 							</tr>
 						</c:forEach>
 					</tbody>
