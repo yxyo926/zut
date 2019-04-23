@@ -22,12 +22,14 @@ import cn.gpa.zut.domain.DictRatio;
 import cn.gpa.zut.domain.GpaDistr;
 import cn.gpa.zut.domain.Paper;
 import cn.gpa.zut.domain.Project;
+import cn.gpa.zut.domain.ProjectPara;
 import cn.gpa.zut.domain.Record;
 import cn.gpa.zut.domain.User;
 import cn.gpa.zut.domain.Userteam;
 import cn.gpa.zut.service.IDictParaService;
 import cn.gpa.zut.service.IDictRatioService;
 import cn.gpa.zut.service.IGpaDistrService;
+import cn.gpa.zut.service.IProjectParaService;
 import cn.gpa.zut.service.IProjectService;
 import cn.gpa.zut.service.IRecordService;
 import cn.gpa.zut.service.IUserService;
@@ -42,9 +44,7 @@ public class ProjectController {
 	@Autowired
 	public IProjectService projectService;
 	@Autowired
-	private IDictParaService dictParaService;
-	@Autowired
-	private IDictRatioService dictRatioService;
+	private IProjectParaService projectParaService;
 	@Autowired
 	private IUserteamService userteamService;
 	@Autowired
@@ -84,11 +84,9 @@ public class ProjectController {
 	@RequestMapping("/getSort.do")
 	public ModelAndView getSort() throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<DictPara> dictParas = dictParaService.getSort("01");
-		List<DictRatio> dictRatios = dictRatioService.getLev("01");
+		List<ProjectPara> projectParas = projectParaService.findAll();
 		List<Userteam> userteams = userteamService.findAll();
-		mv.addObject("dictRatios", dictRatios);
-		mv.addObject("dictParas", dictParas);
+		mv.addObject("projectParas", projectParas);
 		mv.addObject("userteams", userteams);
 		mv.setViewName("project-add");
 		return mv;
@@ -175,27 +173,29 @@ public class ProjectController {
 		int gpa = 0;
 		Double ratio = 0.0;
 		Double sumgpa = 0.0;
-		String levString = null;
-		List<DictPara> dictParas = dictParaService.getSort("01");
-		List<DictRatio> dictRatios = dictRatioService.getLev("01");
-		project.getProjectinfo_Leader();
-		for (Iterator iterators = dictParas.iterator(); iterators.hasNext();) {
-			DictPara dictPara = (DictPara) iterators.next();// 获取当前遍历的元素，指定为Example对象
-			String name = dictPara.getDictpara_id();
+		Double M=0.0;
+		Double startMoneyDouble=0.0;
+		if(project.getProjectinfo_StartMoney()!=null) {
+		 startMoneyDouble = project.getProjectinfo_StartMoney();
+		}
+		
+		List<ProjectPara> projectParas = projectParaService.findAll();
+		for (Iterator iterators = projectParas.iterator(); iterators.hasNext();) {
+			ProjectPara projectPara = (ProjectPara) iterators.next();// 获取当前遍历的元素，指定为Example对象
+			String name = projectPara.getResearchlevel_Id();
 			if (project.getProjectinfo_origin().equals(name)) {
-				gpa = dictPara.getDictpara_gpa();
-				levString = dictPara.getDictpara_lev();
+				gpa = projectPara.getResearchlevel_Gpa();
+				ratio=projectPara.getResearchlevel_Ratio();
+				M=projectPara.getResearchlevel_M();
+				System.out.println(M);
+				System.out.println(ratio);
+				System.out.println(gpa);
 
 			}
 		}
-		for (Iterator iterators = dictRatios.iterator(); iterators.hasNext();) {
-			DictRatio dictRatio = (DictRatio) iterators.next();// 获取当前遍历的元素，指定为Example对象
-			String name = dictRatio.getDictratio_lev();
-			if (levString.equals(name)) {
-				ratio = dictRatio.getDictratio_ratio();
-			}
-		}
-		sumgpa = gpa * ratio;
+		Double mgpa= startMoneyDouble/M;
+		System.out.println(mgpa);
+		sumgpa = gpa+(mgpa*ratio);
 		return sumgpa;
 	}
 

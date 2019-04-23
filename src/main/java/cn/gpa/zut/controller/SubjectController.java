@@ -85,8 +85,8 @@ public class SubjectController {
 	@RequestMapping("/getSort.do")
 	public ModelAndView getSort() throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<DictPara> dictParas = dictParaService.getSort("09");
-		List<DictRatio> dictRatios = dictRatioService.getLev("02");
+		List<DictPara> dictParas = dictParaService.getSort("10");
+		List<DictRatio> dictRatios = dictRatioService.getLev("");
 		List<Userteam> userteams = userteamService.findAll();
 		mv.addObject("dictRatios", dictRatios);
 		mv.addObject("dictParas", dictParas);

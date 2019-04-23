@@ -1,5 +1,6 @@
 package cn.gpa.zut.controller;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -33,6 +34,7 @@ import cn.gpa.zut.service.IDictRatioService;
 import cn.gpa.zut.service.IGpaDistrService;
 import cn.gpa.zut.service.IRecordService;
 import cn.gpa.zut.service.IRewardService;
+import cn.gpa.zut.service.ITeamRatioService;
 import cn.gpa.zut.service.IUserService;
 import cn.gpa.zut.service.IUserteamService;
 import cn.gpa.zut.utils.UUIDUtils;
@@ -55,13 +57,15 @@ public class RewardController {
 	private IGpaDistrService gpaDistrService;
 	@Autowired
 	private IRecordService recordService;
+	@Autowired
+	private ITeamRatioService teamRatioService;
 
 	// 显示所有论文信息
 	@RequestMapping("/findAll.do")
 	public ModelAndView findAll() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<Reward> papers = rewardService.findAll();
-		mv.addObject("paperList", papers);
+		mv.addObject("rewardList", papers);
 		mv.setViewName("reward-list");
 		return mv;
 	}
@@ -87,9 +91,10 @@ public class RewardController {
 	public ModelAndView getSort() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<DictPara> dictParas = dictParaService.getSort("07");
-		List<DictRatio> dictRatios = dictRatioService.getLev("02");
+		List<TeamRatio> teamRatios=teamRatioService.findAll();
+		List<String>    teamRatiosRank=removeDuplicate(teamRatios);
 		List<Userteam> userteams = userteamService.findAll();
-		mv.addObject("dictRatios", dictRatios);
+		mv.addObject("teamRatios", teamRatiosRank);
 		mv.addObject("dictParas", dictParas);
 		mv.addObject("userteams", userteams);
 		mv.setViewName("reward-add");
@@ -177,17 +182,30 @@ public class RewardController {
 		int gpa = 0;
 		Double ratio = 0.0;
 		Double sumgpa = 0.0;
-		List<DictPara> dictParas = dictParaService.getSort("05");
-		List<DictRatio> dictRatios = dictRatioService.getLev("01");
-		reward.getReward_Organization();
+		List<TeamRatio> teamRatios=teamRatioService.findAll();
+		List<DictPara> dictParas = dictParaService.getSort("07");
+		reward.getReward_rank();
+		reward.getReward_num();
 		for (Iterator iterators = dictParas.iterator(); iterators.hasNext();) {
 			DictPara dictPara = (DictPara) iterators.next();// 获取当前遍历的元素，指定为Example对象
 			String name = dictPara.getDictpara_id();
-			if (reward.getReward_Organization().equals(name)) {
+			if (reward.getReward_lev().equals(name)) {
 				gpa = dictPara.getDictpara_gpa();
+				System.out.println(gpa);
+				break;
+				
 			}
 		}
-		sumgpa = (double) gpa;
+		for (Iterator iterators = teamRatios.iterator(); iterators.hasNext();) {
+			TeamRatio teamRatio  = (TeamRatio) iterators.next();// 获取当前遍历的元素，指定为Example对象
+			String name = teamRatio.getTeamratio_rank();
+			Integer num=teamRatio.getTeamratio_onum();
+			if (reward.getReward_rank().equals(name)&&reward.getReward_num()==num) {
+				ratio=teamRatio.getTeamratio_ratio();
+				break;
+			}
+		}
+		sumgpa = gpa*ratio;
 		return sumgpa;
 	}
 
@@ -209,5 +227,14 @@ public class RewardController {
 		userteamService.save(userteam);
 		return userteam;
 	}
+	public static List removeDuplicate(List<TeamRatio> list){  
+        List listTemp = new ArrayList();  
+        for(int i=0;i<list.size();i++){  
+            if(!listTemp.contains(list.get(i).getTeamratio_rank())){  
+                listTemp.add(list.get(i).getTeamratio_rank());  
+            }  
+        }  
+        return listTemp;  
+    }
 
 }

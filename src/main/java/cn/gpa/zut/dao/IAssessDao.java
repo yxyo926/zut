@@ -20,16 +20,16 @@ public interface IAssessDao {
 		List<Assess> findAll() throws Exception;
 		
 		//保存信息
-				@Insert("insert into sci_subjectinfo(subjectinfo_id,subjectinfo_name,"
-						+ "subjectinfo_uname,subjectinfo_sort,subjectinfo_lev,"
-						+ "subjectinfo_starttime,subjectinfo_finishtime,"
-						+ "subjectinfo_checklev,subjectinfo_getGpa)"
-						+ " values(#{subjectinfo_id},#{subjectinfo_name},"
-						+ "#{subjectinfo_uname},#{subjectinfo_sort},#{subjectinfo_lev},"
-						+ "#{subjectinfo_starttime},#{subjectinfo_finishtime},#{subjectinfo_getGpa})")
+				@Insert("insert into sci_assessinfo(assessinfo_id,assessinfo_aname,"
+						+ "assessinfo_rname,assessinfo_person,assessinfo_getGpa,"
+						+ "assessinfo_time)"
+						+ " values(#{assessinfo_id},#{assessinfo_aname},"
+						+ "#{assessinfo_rname},#{assessinfo_person},#{assessinfo_getGpa},"
+						+ "#{assessinfo_time})")
 				void save(Assess assess);
 		//查询用户名下信息
-				@Select("select assessinfo_id,assessinfo_aname,assessinfo_rname,assessinfo_person,assessinfo_getGpa,userteam_getGpa  from sci_assessinfo inner join sci_record on" + 
+				@Select("select assessinfo_id,assessinfo_aname,assessinfo_rname,assessinfo_person,"
+						+ "assessinfo_getGpa,assessinfo_time,userteam_getGpa  from sci_assessinfo inner join sci_record on" + 
 						" sci_assessinfo.assessinfo_id=sci_record.recordinfo_id INNER JOIN sci_gpadistr on sci_record.record_Id=sci_gpadistr.record_id and sci_gpadistr.user_Id=#{id}")
 			    @Results({
 			    	@Result(id = true, property = "assessinfo_id", column = "assessinfo_id"),

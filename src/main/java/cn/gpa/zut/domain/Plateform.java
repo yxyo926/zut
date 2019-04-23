@@ -11,6 +11,7 @@ public class Plateform {
 	private String plateforminfo_lev;//级别
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date plateforminfo_starttime;//获准时间
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date plateforminfo_finishtime;//结束时间
 	private String plateforninfo_checklev;//考核等级
 	private Double plateforminfo_getGpa;//总业绩点

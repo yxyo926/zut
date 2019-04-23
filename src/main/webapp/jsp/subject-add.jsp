@@ -19,7 +19,7 @@
 	</div>
 	<article class="page-container">
 		<form class="form form-horizontal" id="form-paper-add"
-			action="${pageContext.request.contextPath}/paper/save.do"
+			action="${pageContext.request.contextPath}/subject/save.do"
 			method="post">
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span

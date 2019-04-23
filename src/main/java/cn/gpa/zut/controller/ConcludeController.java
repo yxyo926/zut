@@ -58,8 +58,8 @@ public class ConcludeController {
 		@RequestMapping("/findAll.do")
 		public ModelAndView findAll() throws Exception {
 			ModelAndView mv = new ModelAndView();
-			List<Conclude> papers = concludeService.findAll();
-			mv.addObject("paperList", papers);
+			List<Conclude> concludes = concludeService.findAll();
+			mv.addObject("concludetList", concludes);
 			mv.setViewName("conclude-list");
 			return mv;
 		}
@@ -83,9 +83,7 @@ public class ConcludeController {
 				public ModelAndView getSort() throws Exception {
 					ModelAndView mv = new ModelAndView();
 					List<DictPara> dictParas = dictParaService.getSort("05");
-					List<DictRatio> dictRatios = dictRatioService.getLev("02");
 					List<Userteam> userteams = userteamService.findAll();
-					mv.addObject("dictRatios", dictRatios);
 					mv.addObject("dictParas", dictParas);
 					mv.addObject("userteams", userteams);
 					mv.setViewName("conclude-add");
@@ -107,24 +105,7 @@ public class ConcludeController {
 					return "redirect:gpadistribute.do";
 				}
 
-				public Double sumGPA(Conclude conclude) throws Exception {
-
-					int gpa = 0;
-					Double ratio = 0.0;
-					Double sumgpa = 0.0;
-					List<DictPara> dictParas = dictParaService.getSort("05");
-					List<DictRatio> dictRatios = dictRatioService.getLev("01");
-					conclude.getConcludeinfo_lev();
-					for (Iterator iterators = dictParas.iterator(); iterators.hasNext();) {
-						DictPara dictPara = (DictPara) iterators.next();// 获取当前遍历的元素，指定为Example对象
-						String name = dictPara.getDictpara_id();
-						if (conclude.getConcludeinfo_lev().equals(name)) {
-							gpa = dictPara.getDictpara_gpa();
-						}
-					}
-					sumgpa = (double) gpa ;
-					return sumgpa ;
-				}
+				
 				
 				// 分配业绩点
 				@RequestMapping("/gpadistribute.do")
@@ -199,5 +180,22 @@ public class ConcludeController {
 					userteam.setUserteam_num(userteam_num);
 					userteamService.save(userteam);
 					return userteam;
+				}
+				
+				public Double sumGPA(Conclude conclude) throws Exception {
+
+					int gpa = 0;
+					Double ratio = 0.0;
+					Double sumgpa = 0.0;
+					List<DictPara> dictParas = dictParaService.getSort("05");
+					for (Iterator iterators = dictParas.iterator(); iterators.hasNext();) {
+						DictPara dictPara = (DictPara) iterators.next();// 获取当前遍历的元素，指定为Example对象
+						String name = dictPara.getDictpara_id();
+						if (conclude.getConcludeinfo_lev().equals(name)) {
+							gpa = dictPara.getDictpara_gpa();
+						}
+					}
+					sumgpa = (double) gpa ;
+					return sumgpa ;
 				}
 }

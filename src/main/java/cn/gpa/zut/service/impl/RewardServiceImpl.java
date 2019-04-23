@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.gpa.zut.dao.IRewardDao;
 import cn.gpa.zut.domain.Reward;
-import cn.gpa.zut.service.IProductService;
+
 import cn.gpa.zut.service.IRewardService;
 
 @Service

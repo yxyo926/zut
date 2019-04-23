@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.gpa.zut.dao.ISubjectDao;
 import cn.gpa.zut.domain.Subject;
-import cn.gpa.zut.service.IProductService;
 import cn.gpa.zut.service.ISubjectService;
 
 @Service

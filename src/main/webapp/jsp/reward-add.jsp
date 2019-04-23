@@ -19,7 +19,7 @@
 	</div>
 	<article class="page-container">
 		<form class="form form-horizontal" id="form-paper-add"
-			action="${pageContext.request.contextPath}/paper/save.do"
+			action="${pageContext.request.contextPath}/reward/save.do"
 			method="post">
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
@@ -27,7 +27,7 @@
 				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text" class="input-text"
 						value="${sessionScope.infoId}" placeholder="" readonly="true"
-						id="" name="paperinfo_Id">
+						id="" name="reward_Id">
 				</div>
 			</div>
 			<div class="row cl">
@@ -38,7 +38,7 @@
 						value="${sessionScope.user.user_name}" readonly="true"
 						placeholder="" id="" name="paperinfo_Author">
 						<input type="hidden" class="input-text radius size-S" value="${sessionScope.user.user_Id}"
-						readonly="true"  placeholder="" id="" name="paperinfo_Author">
+						readonly="true"  placeholder="" id="" name="reward_person">
 				</div>
 			</div>
 			<div class="row cl">
@@ -46,7 +46,7 @@
 					class="c-red">*</span>成果名称：</label>
 				<div class="formControls col-xs-3 col-sm-4">
 					<input type="text" class="input-text radius size-S" value=""
-						placeholder="" id="" name="paperinfo_Name">
+						placeholder="" id="" name="reward_infoID">
 				</div>
 			</div>
 			<div class="row cl">
@@ -63,7 +63,7 @@
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>奖项级别：</label>
 				<div class="formControls col-xs-6 col-sm-4">
-					<span class="select-box"> <select name="paperinfo_Lev"
+					<span class="select-box"> <select name="reward_lev"
 						class="select">
 							<c:forEach items="${dictParas}" var="para">
 								<option value="${para.dictpara_id}">${para.dictpara_lev}</option>
@@ -77,17 +77,33 @@
 					class="c-red">*</span>奖项名称：</label>
 				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text" class="input-text" value="" placeholder="" id=""
-						name="paperinfo_CN">
+						name="reward_name">
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2"><span
+					class="c-red">*</span>颁奖单位：</label>
+				<div class="formControls col-xs-8 col-sm-4">
+					<input type="text" class="input-text" value="" placeholder="" id=""
+						name="reward_Organization">
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2"><span
+					class="c-red">*</span>合作单位人数：</label>
+				<div class="formControls col-xs-8 col-sm-4">
+					<input type="text" class="input-text" value="" placeholder="" id=""
+						name="reward_num">
 				</div>
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>合作单位排名：</label>
 				<div class="formControls col-xs-6 col-sm-4">
-					<span class="select-box"> <select name="paperinfo_orglev"
+					<span class="select-box"> <select name="reward_rank"
 						class="select">
-							<c:forEach items="${dictRatios}" var="ratio">
-								<option value="${ratio.dictratio_id}">${ratio.dictratio_lev}</option>
+							<c:forEach items="${teamRatios}" var="ratio">
+								<option value="${ratio}">${ratio}</option>
 							</c:forEach>
 					</select>
 					</span>
@@ -99,7 +115,7 @@
 				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text"
 						onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})"
-						id="datemin" class="input-text Wdate" name="paperinfo_Time">
+						id="datemin" class="input-text Wdate" name="reward_Time">
 				</div>
 			</div>
 			<div class="row cl">

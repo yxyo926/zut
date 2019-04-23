@@ -19,7 +19,7 @@
 	</div>
 	<article class="page-container">
 		<form class="form form-horizontal" id="form-paper-add"
-			action="${pageContext.request.contextPath}/paper/save.do"
+			action="${pageContext.request.contextPath}/assess/save.do"
 			method="post">
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
@@ -27,7 +27,7 @@
 				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text" class="input-text"
 						value="${sessionScope.infoId}" placeholder="" readonly="true"
-						id="" name="paperinfo_Id">
+						id="" name="assessinfo_id">
 				</div>
 			</div>
 			<div class="row cl">
@@ -38,7 +38,7 @@
 						value="${sessionScope.user.user_name}" readonly="true"
 						placeholder="" id="" name="paperinfo_Author">
 						<input type="hidden" class="input-text radius size-S" value="${sessionScope.user.user_Id}"
-						readonly="true"  placeholder="" id="" name="paperinfo_Author">
+						readonly="true"  placeholder="" id="" name="assessinfo_person">
 				</div>
 			</div>
 			<div class="row cl">
@@ -55,7 +55,7 @@
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>项目名称：</label>
 				<div class="formControls col-xs-6 col-sm-4">
-					<span class="select-box"> <select name="paperinfo_Lev"
+					<span class="select-box"> <select name="assessinfo_rname"
 						class="select">
 							
 					</select>
@@ -66,7 +66,7 @@
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>评价级别：</label>
 				<div class="formControls col-xs-6 col-sm-4">
-					<span class="select-box"> <select name="paperinfo_orglev"
+					<span class="select-box"> <select name="assessinfo_aname"
 						class="select">
 							<c:forEach items="${dictParas}" var="para">
 								<option value="${para.dictpara_id}">${para.dictpara_lev}</option>
@@ -81,7 +81,7 @@
 				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text"
 						onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})"
-						id="datemin" class="input-text Wdate" name="paperinfo_Time">
+						id="datemin" class="input-text Wdate" name="assessinfo_time">
 				</div>
 			</div>
 			<div class="row cl">

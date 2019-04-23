@@ -1,4 +1,4 @@
--<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -11,7 +11,7 @@
 <body>
 	<nav class="breadcrumb">
 		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>
-		管理员管理 <span class="c-gray en">&gt;</span> 角色管理 <a
+		科研业绩管理 <span class="c-gray en">&gt;</span> 论文信息管理 <a
 			class="btn btn-success radius r"
 			style="line-height: 1.6em; margin-top: 3px"
 			href="javascript:location.replace(location.href);" title="刷新"><i
@@ -60,25 +60,25 @@
 					</tr>
 				</thead>
 				<tbody>
-						<c:forEach items="${concludetList}" var="conclude">
-							<tr>
-								<td><input name="ids" type="checkbox"></td>
-								<td>${conclude.concludeinfo_id }</td>
-								<td>${conclude.concludeinfo_name}</td>
-								<td>${conclude.concludeinfo_person}</td>
-								<td>${conclude.concludeinfo_olev}</td>
-								<td>${conclude.concludeinfo_lev}</td>
-								<td>${conclude.concludetinfo_getGpa}</td>
-								<td class="text-center">${conclude.gpaDistr}</td>
-								<td class="text-center">
-									<button type="button" class="btn bg-olive btn-xs">修改</button>
-									<button type="button"
+					<c:forEach items="${concludetList}" var="conclude">
+						<tr>
+							<td><input name="ids" type="checkbox"></td>
+							<td>${conclude.concludeinfo_id }</td>
+							<td>${conclude.concludeinfo_name}</td>
+							<td>${conclude.concludeinfo_person}</td>
+							<td>${conclude.concludeinfo_olev}</td>
+							<td>${conclude.concludeinfo_lev}</td>
+							<td>${conclude.concludetinfo_getGpa}</td>
+							<td class="text-center">${conclude.gpaDistr}</td>
+							<td class="text-center">
+								<button type="button" class="btn bg-olive btn-xs">修改</button>
+								<button type="button"
 									onclick="location.href='${pageContext.request.contextPath}/gpadistr/findAllGpa.do?id=${conclude.concludeinfo_id}'"
 									class="btn bg-olive btn-xs">详情</button>
 							</td>
-							</tr>
-						</c:forEach>
-					</tbody>
+						</tr>
+					</c:forEach>
+				</tbody>
 			</table>
 		</div>
 		<jsp:include page="frame/footer.jsp"></jsp:include>
@@ -91,7 +91,7 @@
 					"bStateSave": true,//状态保存
 					"aoColumnDefs": [
 					  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-					  {"orderable":false,"aTargets":[0,8,9]}// 制定列不参与排序
+					  {"orderable":false,"aTargets":[0,8]}// 制定列不参与排序
 					]
 				});
 				

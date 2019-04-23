@@ -65,8 +65,8 @@
 				<div class="formControls col-xs-6 col-sm-4">
 					<span class="select-box"> <select name="projectinfo_origin"
 						class="select">
-							<c:forEach items="${dictParas}" var="para">
-								<option value="${para.dictpara_id}">${para.dictpara_lev}</option>
+							<c:forEach items="${projectParas}" var="para">
+								<option value="${para.researchlevel_Id}">${para.researchlevel_sort}</option>
 							</c:forEach>
 					</select>
 					</span>

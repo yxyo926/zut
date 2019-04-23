@@ -26,7 +26,7 @@
 					class="c-red">*</span>信息编号：</label>
 				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text" class="input-text" value="${sessionScope.infoId}" placeholder=""
-						readonly="true" id="" name="paperinfo_Id">
+						readonly="true" id="" name="plateforminfo_id">
 				</div>
 			</div>
 			<div class="row cl">
@@ -37,7 +37,7 @@
 						readonly="true"  placeholder="" id="" name="paperinfo_Author">
 				
 				<input type="hidden" class="input-text radius size-S" value="${sessionScope.user.user_Id}"
-						readonly="true"  placeholder="" id="" name="paperinfo_Author">
+						readonly="true"  placeholder="" id="" name="plateforminfo_organize">
 						</div>
 			</div>
 			<div class="row cl">
@@ -45,7 +45,7 @@
 					class="c-red">*</span>平台名称：</label>
 				<div class="formControls col-xs-3 col-sm-4">
 					<input type="text" class="input-text radius size-S" value=""
-						placeholder="" id="" name="paperinfo_Name">
+						placeholder="" id="" name="plateforminfo_name">
 				</div>
 			</div>
 			<div class="row cl">
@@ -62,23 +62,10 @@
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>平台级别：</label>
 				<div class="formControls col-xs-6 col-sm-4">
-					<span class="select-box"> <select name="paperinfo_Lev"
+					<span class="select-box"> <select name="plateforminfo_lev"
 						class="select">
 							<c:forEach items="${dictParas}" var="para">
 								<option value="${para.dictpara_id}">${para.dictpara_lev}</option>
-							</c:forEach>
-					</select>
-					</span>
-				</div>
-			</div>
-			<div class="row cl">
-				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>组织级别：</label>
-				<div class="formControls col-xs-6 col-sm-4">
-					<span class="select-box"> <select name="paperinfo_orglev"
-						class="select">
-							<c:forEach items="${dictRatios}" var="ratio">
-								<option value="${ratio.dictratio_id}">${ratio.dictratio_lev}</option>
 							</c:forEach>
 					</select>
 					</span>
@@ -90,7 +77,7 @@
 				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text"
 						onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})"
-						id="datemin" class="input-text Wdate" name="paperinfo_Time">
+						id="datemin" class="input-text Wdate" name="plateforminfo_starttime">
 				</div>
 			</div>
 			<div class="row cl">
@@ -99,7 +86,7 @@
 				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text"
 						onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})"
-						id="datemin" class="input-text Wdate" name="paperinfo_Time">
+						id="datemin" class="input-text Wdate" name="plateforminfo_finishtime">
 				</div>
 			</div>
 			<div class="row cl">

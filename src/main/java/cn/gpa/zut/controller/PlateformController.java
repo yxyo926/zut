@@ -13,14 +13,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.gpa.zut.domain.Assess;
 import cn.gpa.zut.domain.DictPara;
 import cn.gpa.zut.domain.DictRatio;
+import cn.gpa.zut.domain.GpaDistr;
+import cn.gpa.zut.domain.Paper;
 import cn.gpa.zut.domain.Plateform;
 import cn.gpa.zut.domain.Project;
 import cn.gpa.zut.domain.Record;
+import cn.gpa.zut.domain.User;
 import cn.gpa.zut.domain.Userteam;
 import cn.gpa.zut.service.IDictParaService;
 import cn.gpa.zut.service.IDictRatioService;
@@ -55,7 +59,7 @@ public class PlateformController {
 	public ModelAndView findAll() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<Plateform> papers = plateformService.findAll();
-		mv.addObject("paperList", papers);
+		mv.addObject("projectList", papers);
 		mv.setViewName("plateform-list");
 		return mv;
 	}
@@ -81,9 +85,7 @@ public class PlateformController {
 	public ModelAndView getSort() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<DictPara> dictParas = dictParaService.getSort("08");
-		List<DictRatio> dictRatios = dictRatioService.getLev("02");
 		List<Userteam> userteams = userteamService.findAll();
-		mv.addObject("dictRatios", dictRatios);
 		mv.addObject("dictParas", dictParas);
 		mv.addObject("userteams", userteams);
 		mv.setViewName("plateform-add");
@@ -105,10 +107,49 @@ public class PlateformController {
 		model.addAttribute("sort", sort);
 		return "redirect:gpadistribute.do";
 	}
+	// 分配业绩点
+		@RequestMapping("/gpadistribute.do")
+		public ModelAndView gpaDistribute(Userteam userteam) throws Exception {
+			ModelAndView mv = new ModelAndView();
+			// mv.addObject("userteam", userteam);
+			/*
+			 * request.setAttribute("userteam_name", "zfy");
+			 * request.setAttribute("userteam_num", "10");
+			 */
+			List<User> users = userService.findAll();
+			mv.addObject("users", users);
+			System.out.println("分配页面出现了");
+			mv.setViewName("gpadistribute");
+			return mv;
+		}
+
+		// 保存业绩点分配记录
+		@RequestMapping("/gpasave.do")
+		public String saveUsers(ModelMap model, @ModelAttribute("Userteam") Userteam uerUserteam,
+				SessionStatus sessionStatus, @ModelAttribute("form") Paper paper) {
+			UUIDUtils uuidUtils = new UUIDUtils();
+			String recordString = uuidUtils.getUUID();
+			List<GpaDistr> gpaDistrs = paper.getGpaDistrs();
+			for (int i = 0; i < gpaDistrs.size(); i++) {
+				String uuidString = uuidUtils.getUUID();
+				GpaDistr gpaDistr = paper.getGpaDistrs().get(i);
+				gpaDistr.setGpadistr_id(uuidString);
+				gpaDistr.setRecord_id(recordString);
+				gpaDistr.setUserteam_id(uerUserteam.getUserteam_id());
+				System.out.println(gpaDistr.getUser_Id());
+				gpaDistrService.save(gpaDistr);
+			}
+			model.addAttribute("recordId", recordString);
+			System.out.println("业绩点保存了");
+
+			return "record";
+
+		}
 	@RequestMapping("/record.do")
 	public ModelAndView record() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("record");
+		//redirect:gpadistribute.do
 		return mv;
 	}
 	//凭证提交
@@ -130,9 +171,7 @@ public class PlateformController {
 		int gpa = 0;
 		Double ratio = 0.0;
 		Double sumgpa = 0.0;
-		List<DictPara> dictParas = dictParaService.getSort("05");
-		List<DictRatio> dictRatios = dictRatioService.getLev("01");
-		plateform.getPlateforminfo_lev();
+		List<DictPara> dictParas = dictParaService.getSort("08");
 		for (Iterator iterators = dictParas.iterator(); iterators.hasNext();) {
 			DictPara dictPara = (DictPara) iterators.next();// 获取当前遍历的元素，指定为Example对象
 			String name = dictPara.getDictpara_id();

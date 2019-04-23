@@ -4,6 +4,17 @@
 	<aside class="Hui-aside">
 
 		<div class="menu_dropdown bk_2">
+		<dl id="">
+				<dt>
+					<i class="Hui-iconfont"></i>创建小组<i
+						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
+				</dt>
+				<dd>
+					<ul>
+						<li><a data-href="${pageContext.request.contextPath}/team/findAll_user.do" data-title="创建小组">创建小组</a></li>
+					</ul>
+				</dd>
+			</dl>
 			<dl id="menu-article">
 				<dt>
 					<i class="Hui-iconfont">&#xe616;</i>科研业绩<i
@@ -33,8 +44,11 @@
 				</dt>
 				<dd>
 					<ul>
-						<li><a data-href="${pageContext.request.contextPath}/paper/findAll.do" data-title="论文业绩录入">论文业绩录入</a></li>
-						<li><a data-href="article-list.html" data-title="业绩点分配">业绩点分配</a></li>
+						<li><a data-href="${pageContext.request.contextPath}/jy_project/findAll_category.do" data-title="教研项目管理">教研项目申报</a></li>
+				<li><a data-href="article-list.html" data-title="业绩点分配">业绩点分配</a></li>
+					<li><a data-href="../jsp/jy_book.jsp"data-title="教材业绩管理">教材项目申报 </a></li>
+					<li><a data-href="${pageContext.request.contextPath}/jy_pingtai/FindAll_lev.do" data-title="教研平台业绩申报">教研平台业绩录入</a></li>
+		
 					</ul>
 				</dd>
 			</dl>

@@ -2,12 +2,16 @@ package cn.gpa.zut.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Reward {
 	private String reward_Id;//奖励编号
 	private String reward_infoID;//信息编号
 	private String reward_person;//申报人
 	private String reward_name;//奖项名称
+	private String  reward_lev;
 	private String reward_Organization;//颁奖单位
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date reward_Time;//获奖时间
 	private String reward_rank;//合作单位排名
 	private Integer reward_num;//合作单位数量
@@ -72,6 +76,12 @@ public class Reward {
 	}
 	public void setGpaDistr(Double gpaDistr) {
 		this.gpaDistr = gpaDistr;
+	}
+	public String getReward_lev() {
+		return reward_lev;
+	}
+	public void setReward_lev(String reward_lev) {
+		this.reward_lev = reward_lev;
 	}
 
 }

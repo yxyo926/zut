@@ -40,7 +40,7 @@
 			<div class="formControls col-xs-4 col-sm-2">
 				<input type="text" class="input-text"
 					value="${sessionScope.totalGpa}" placeholder=""
-					id="totalgpa" readonly="true" name="userteam_num">
+					id="totalgpa" readonly="true" name="userteam">
 			</div>
 			</div>
 			<%-- <div class="row cl " id="input_conatiner"></div>

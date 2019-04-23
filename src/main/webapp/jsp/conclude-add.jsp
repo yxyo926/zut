@@ -19,14 +19,14 @@
 	</div>
 	<article class="page-container">
 		<form class="form form-horizontal" id="form-paper-add"
-			action="${pageContext.request.contextPath}/paper/save.do"
+			action="${pageContext.request.contextPath}/conclude/save.do"
 			method="post">
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>信息编号：</label>
 				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text" class="input-text" value="${sessionScope.infoId}" placeholder=""
-						readonly="true" id="" name="paperinfo_Id">
+						readonly="true" id="" name="concludeinfo_id">
 				</div>
 			</div>
 			<div class="row cl">
@@ -36,7 +36,7 @@
 					<input type="text" class="input-text radius size-S" value="${sessionScope.user.user_name}"
 						readonly="true"  placeholder="" id="" name="paperinfo_Author">
 						<input type="hidden" class="input-text radius size-S" value="${sessionScope.user.user_Id}"
-						readonly="true"  placeholder="" id="" name="paperinfo_Author">
+						readonly="true"  placeholder="" id="" name="concludeinfo_person">
 				</div>
 			</div>
 			<div class="row cl">
@@ -44,7 +44,7 @@
 					class="c-red">*</span>项目名称：</label>
 				<div class="formControls col-xs-3 col-sm-4">
 					<input type="text" class="input-text radius size-S" value=""
-						placeholder="" id="" name="paperinfo_Name">
+						placeholder="" id="" name="concludeinfo_name">
 				</div>
 			</div>
 			<div class="row cl">
@@ -61,7 +61,7 @@
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>结项级别：</label>
 				<div class="formControls col-xs-6 col-sm-4">
-					<span class="select-box"> <select name="paperinfo_Lev"
+					<span class="select-box"> <select name="concludeinfo_lev"
 						class="select">
 							<c:forEach items="${dictParas}" var="para">
 								<option value="${para.dictpara_id}">${para.dictpara_lev}</option>

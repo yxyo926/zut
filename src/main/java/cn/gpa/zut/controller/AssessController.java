@@ -21,7 +21,6 @@ import cn.gpa.zut.domain.DictPara;
 import cn.gpa.zut.domain.DictRatio;
 import cn.gpa.zut.domain.GpaDistr;
 import cn.gpa.zut.domain.Paper;
-import cn.gpa.zut.domain.Project;
 import cn.gpa.zut.domain.Record;
 import cn.gpa.zut.domain.User;
 import cn.gpa.zut.domain.Userteam;
@@ -57,7 +56,7 @@ public class AssessController {
 		public ModelAndView findAll() throws Exception {
 			ModelAndView mv = new ModelAndView();
 			List<Assess> papers = assessService.findAll();
-			mv.addObject("paperList", papers);
+			mv.addObject("assessList", papers);
 			mv.setViewName("assess-list");
 			return mv;
 		}
@@ -82,9 +81,7 @@ public class AssessController {
 				public ModelAndView getSort() throws Exception {
 					ModelAndView mv = new ModelAndView();
 					List<DictPara> dictParas = dictParaService.getSort("06");
-					List<DictRatio> dictRatios = dictRatioService.getLev("02");
 					List<Userteam> userteams = userteamService.findAll();
-					mv.addObject("dictRatios", dictRatios);
 					mv.addObject("dictParas", dictParas);
 					mv.addObject("userteams", userteams);
 					mv.setViewName("assess-add");
@@ -169,8 +166,7 @@ public class AssessController {
 					int gpa = 0;
 					Double ratio = 0.0;
 					Double sumgpa = 0.0;
-					List<DictPara> dictParas = dictParaService.getSort("05");
-					List<DictRatio> dictRatios = dictRatioService.getLev("01");
+					List<DictPara> dictParas = dictParaService.getSort("06");
 					assess.getAssessinfo_aname();
 					for (Iterator iterators = dictParas.iterator(); iterators.hasNext();) {
 						DictPara dictPara = (DictPara) iterators.next();// 获取当前遍历的元素，指定为Example对象

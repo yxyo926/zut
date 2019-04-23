@@ -12,6 +12,8 @@ public class Assess {
 	private String assessinfo_person;//申报人
 	private Double assessinfo_getGpa;//总业绩点
 	private String  gpaDistr;//个人业绩点
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+	private Date   assessinfo_time;//评价时间
 	public String getAssessinfo_id() {
 		return assessinfo_id;
 	}
@@ -47,5 +49,11 @@ public class Assess {
 	}
 	public void setGpaDistr(String gpaDistr) {
 		this.gpaDistr = gpaDistr;
+	}
+	public Date getAssessinfo_time() {
+		return assessinfo_time;
+	}
+	public void setAssessinfo_time(Date assessinfo_time) {
+		this.assessinfo_time = assessinfo_time;
 	}
 }

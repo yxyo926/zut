@@ -20,17 +20,17 @@ public interface IRewardDao {
 		
 		//保存论文信息
 		@Insert("insert into sci_rewardinfo(reward_Id,reward_infoID,reward_person,"
-				+"reward_name,reward_Organization,reward_Time,"
+				+"reward_name,reward_lev,reward_Organization,reward_Time,"
 			    + "reward_rank,reward_num,reward_getGpa)"
 				+ " values(#{reward_Id},#{reward_infoID},"
-				+ "#{reward_person},#{reward_name},#{reward_Organization},"
+				+ "#{reward_person},#{reward_name},#{reward_lev},#{reward_Organization},"
 				+ "#{reward_Time},#{reward_rank},#{reward_num},"
 				+ "#{reward_getGpa})")
 		void save(Reward reward);
 		//查询名下信息
 		@Select("select reward_Id,reward_infoID,reward_person,"
 				+ "reward_name,reward_Organization,reward_Time,"
-				+ "reward_rank,reward_num,reward_getGpa,userteam_getGpa "
+				+ "reward_rank,reward_lev,reward_num,reward_getGpa,userteam_getGpa "
 				+ "from sci_rewardinfo inner join sci_record on"
 				+ " sci_rewardinfo.reward_Id=sci_record.recordinfo_id"
 				+ " INNER JOIN sci_gpadistr on sci_record.record_Id=sci_gpadistr.record_id "
@@ -40,6 +40,7 @@ public interface IRewardDao {
 	        @Result(property = "reward_infoID", column = "reward_infoID"),
 	        @Result(property = "reward_person", column = "reward_person"),
 	        @Result(property = "reward_name", column = "reward_name"),
+	        @Result(property = "reward_lev", column = "reward_lev"),
 	        @Result(property = "reward_Organization", column = "reward_Organization"),
 	        @Result(property = "reward_Time", column = "reward_Time"),
 	        @Result(property = "reward_rank", column = "reward_rank"),
