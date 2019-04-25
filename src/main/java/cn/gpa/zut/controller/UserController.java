@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import cn.gpa.zut.domain.User;
@@ -31,6 +32,22 @@ public class UserController {
     @RequestMapping("/checkLogin.do")
     public String checkLogin(User user,Model model){
         //调用service方法
+        user = userServivce.checkLogin(user.getUser_Id(), user.getUser_password());
+        System.out.println(user.getUser_Id());
+        System.out.println(user.getUser_password());
+        //若有user则添加到model里并且跳转到成功页面
+        if(user != null){
+            model.addAttribute("user",user);
+            return "/frame/main";
+        }
+        return "fail";
+    }
+    @RequestMapping("/checklogin.do")
+    public String Login(@RequestParam(name = "id", required = true) String userId,@RequestParam(name = "ps", required = true) String ps,
+    		User user,Model model){
+        //调用service方法
+    	user.setUser_Id(userId);
+    	user.setUser_password(ps);
         user = userServivce.checkLogin(user.getUser_Id(), user.getUser_password());
         System.out.println(user.getUser_Id());
         System.out.println(user.getUser_password());

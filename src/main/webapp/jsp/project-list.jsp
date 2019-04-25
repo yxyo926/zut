@@ -49,16 +49,16 @@
 				<thead>
 					<tr class="text-c">
 						<th width="25"><input type="checkbox" value="" name=""></th>
-						<th width="40">信息编号</th>
-						<th width="40">项目来源</th>
-						<th width="40">项目名称</th>
-						<th width="40">项目负责人</th>
-						<th with="70">开始时间</th>
-						<th width="40">完成时间</th>
-						<th width="70">立项经费</th>
-						<th with="70">总业绩点</th>
-						<th with="70">我的业绩点</th>
-						<th with="70">操作</th>
+						<th width="auto">信息编号</th>
+						<th width="auto">项目来源</th>
+						<th width="auto">项目名称</th>
+						<th width="auto">项目负责人</th>
+						<th with="auto">开始时间</th>
+						<th width="auto">完成时间</th>
+						<th width="auto">立项经费</th>
+						<th with="auto">总业绩点</th>
+						<th with="auto">我的业绩点</th>
+						<th with="auto">操作</th>
 					</tr>
 				</thead>
 				<tbody>

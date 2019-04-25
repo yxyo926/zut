@@ -49,17 +49,17 @@
 					<thead>
 						<tr class="text-c">
 							<th width="25"><input type="checkbox" value="" name=""></th>
-							<th width="40">信息编号</th>
-							<th width="40">成果名称</th>
-							<th width="40">申报人</th>
-							<th width="40">奖项名称</th>
-							<th with="70">颁奖单位</th>
-							<th width="40">获奖时间</th>
-							<th width="70">合作单位排名</th>
-							<th width="70">合作单位数量</th>
-							<th with="70">总业绩点</th>
-							<th with="70">我的业绩点</th>
-							<th with="70">操作</th>
+							<th width="auto">信息编号</th>
+							<th width="auto">成果名称</th>
+							<th width="auto">申报人</th>
+							<th width="auto">奖项名称</th>
+							<th with="auto">颁奖单位</th>
+							<th width="auto">获奖时间</th>
+							<th width="auto">合作单位排名</th>
+							<th width="auto">合作单位数量</th>
+							<th with="auto">总业绩点</th>
+							<th with="auto">我的业绩点</th>
+							<th with="auto">操作</th>
 						</tr>
 					</thead>
 					<tbody>

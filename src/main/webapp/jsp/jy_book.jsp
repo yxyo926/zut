@@ -29,38 +29,56 @@
 		</div>
 
 	<article class="page-container">
-	<form class="form form-horizontal" id="">
+	<form class="form form-horizontal" id="" action="${pageContext.request.contextPath}/jy_book/Add_book.do" method="post">
 		
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span
 				class="c-red">*</span>教材名称：</label>
 			<div class="formControls col-xs-8 col-sm-3">
-				<input type="text" class="input-text radius size-S"id="book_name">
+				<input type="text" class="input-text radius size-S"name="book_name">
 			</div>
 		</div>
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span
+				class="c-red">*</span>专业名称：</label>
+			<div class="formControls col-xs-8 col-sm-3">
+				<input type="text" class="input-text radius size-S" value="" name="book_object">
+			</div>
+		</div>
+		
 		<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-2"><span
 				class="c-red">*</span>教材级别：</label>
 			<div class="formControls col-xs-6 col-sm-3">
-				<span class="select-box"> <select name="" class="select">
-							<option value="国家级教育教学重点项目立项">国家级教育教学重点项目立项</option>
-							<option value="国家级教育教学重点项目立项">国家级教育教学重点项目立项</option>
-							<option value="国家级教育教学重点项目立项">国家级教育教学重点项目立项</option>
+				<span class="select-box"> <select name="book_lev" class="select">
+				<option value="">---请选择---</option>
+				<c:forEach items="${book_lev}" var="book_lev">
+					<option value="${book_lev.project_id} ">${book_lev.projectlev_name}</option>		
+				</c:forEach>
+						
 				</select>
 				</span>
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span
-				class="c-red">*</span>主编：</label>
-			<div class="formControls col-xs-8 col-sm-3">
-				<input type="text" class="input-text radius size-S" value=""
-					 id="">
+				class="c-red">*</span>主编身份：</label>
+			<div class="formControls col-xs-6 col-sm-3">
+				<span class="select-box"> <select name="T_name" class="select">
+							<option value="">---请选择---</option>
+				<c:forEach items="${zhubian}" var="zhubian">
+					<option value="${zhubian.project_id} ">${zhubian.projectlev_name}</option>		
+				</c:forEach>
+				</select>
+				</span>
 			</div>
+		</div>
+		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span
-				class="c-red">*</span>主编字数：</label>
+				class="c-red">*</span>总字数：</label>
 			<div class="formControls col-xs-8 col-sm-3">
-				<input type="text" class="input-text radius size-S" value=""
+				<input type="text" class="input-text radius size-S" value="" name="book_Enum"
 					id="" >
 			</div>
 		</div>
@@ -72,38 +90,43 @@
 						<th width="25">序号</th>
 						<th width="80">执笔人</th>
 						<th width="80">执笔字数</th>
-						<th width="80">操作</th>
 					</tr>
 				</thead>
 				<tbody  id="UserTableBody">
-					<%-- <c:forEach items="${list_user}" var="list_user" varStatus="x" begin="0">
-						<tr>
-							<td class="td">${x.index+1}</td>
-							<td>${list_user.user_Id }</td>
-							<td>${list_user.user_name }</td>
-							<td class="text-center">
-								<button  type="button" class="btn bg-olive btn-xs" onclick="Add_Zudui(this)" id="${x.index+1}">字数</button>
-							</td>
-						</tr>
-					</c:forEach> --%>
 					<tr>
 							<td class="td">1</td>
 							<td>张三</td>
-							<td>1000</td>
 							<td class="text-center">
-								<button  type="button" class="btn bg-olive btn-xs" onclick="" id="${x.index+1}">字数</button>
+								<%-- <button  type="button" class="btn bg-olive btn-xs" onclick="" id="${x.index+1}">字数</button> --%>
+								<input type="text" class="input-text radius size-S" id="" >
 							</td>
 						</tr>
 				</tbody>
 			</table>
 		</div>
+		<input type="hidden" name="book_Pname">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span
 				class="c-red">*</span>语言类型：</label>
 			<div class="formControls col-xs-6 col-sm-3">
-				<span class="select-box"> <select name="" class="select">
-							<option value="中文">中文</option>
-							<option value="外文">外文</option>
+				<span class="select-box"> <select name="language" class="select">
+							<option value="">---请选择---</option>
+				<c:forEach items="${language}" var="language">
+					<option value="${language.project_id} ">${language.projectlev_name}</option>		
+				</c:forEach>
+				</select>
+				</span>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span
+				class="c-red">*</span>是否立项：</label>
+			<div class="formControls col-xs-8 col-sm-3">
+				<span class="select-box"> <select name="builed" class="select">
+							<option value="">---请选择---</option>
+				<c:forEach items="${builed}" var="builed">
+					<option value="${builed.project_id} ">${builed.projectlev_name}</option>		
+				</c:forEach>
 				</select>
 				</span>
 			</div>
@@ -113,12 +136,8 @@
 			<label class="form-label col-xs-4 col-sm-2"><span
 				class="c-red">*</span>是否再版：</label>
 			<div class="formControls col-xs-8 col-sm-3" style="width: 20px;">
-				<input type="checkbox" value="" name="" style="width: 18px;height: 18px;margin-top: 6px;" >
-			</div>
-			<label class="form-label col-xs-4 col-sm-2"><span
-				class="c-red">*</span>是否立项：</label>
-			<div class="formControls col-xs-8 col-sm-3">
-				<input type="checkbox" value="" name="" style="width: 18px;height: 18px;margin-top: 6px;" >
+				<input type="checkbox" value=""  style="width: 18px;height: 18px;margin-top: 6px;" >
+				<input type="hidden" name="repiblic" value="">
 			</div>
 		</div>
 		
@@ -126,17 +145,25 @@
 			<label class="form-label col-xs-4 col-sm-2"><span
 				class="c-red">*</span>出版社：</label>
 			<div class="formControls col-xs-8 col-sm-3">
-				<input type="text" class="input-text radius size-S" value="">
+				<input type="text" class="input-text radius size-S" value="" name="book_press">
 			</div>
 		</div>
 		
-
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">
-			<span class="c-red">*</span>文件上传：</label> 
-				<input type="file"  name="pictureFile" id="local_up"/> 
+			<label class="form-label col-xs-4 col-sm-2"><span
+					class="c-red">*</span>用户组：</label>
+			<div class="formControls col-xs-6 col-sm-4">
+					<input type="text" class="input-text" value="" placeholder=""
+					   id="userteam_name" name="userteam_name">
+			</div>
+			<label class="form-label col-xs-4 col-sm-2"><span
+					class="c-red">*</span>用户组人数：</label>
+			<div class="formControls col-xs-8 col-sm-4">
+				<input type="text" class="input-text" value="" placeholder=""
+					   id="userteam_num" name="userteam_num">
+
+			</div>
 		</div>
-		
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
 				<button	class="btn btn-primary radius" type="submit">下一步</button>

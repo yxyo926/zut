@@ -4,7 +4,10 @@
 	<aside class="Hui-aside">
 
 		<div class="menu_dropdown bk_2">
-		<dl id="">
+			
+	
+	
+				<dl id="menu-article">
 				<dt>
 					<i class="Hui-iconfont"></i>创建小组<i
 						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
@@ -14,8 +17,10 @@
 						<li><a data-href="${pageContext.request.contextPath}/team/findAll_user.do" data-title="创建小组">创建小组</a></li>
 					</ul>
 				</dd>
-			</dl>
+			</dl>		
+			
 			<dl id="menu-article">
+			
 				<dt>
 					<i class="Hui-iconfont">&#xe616;</i>科研业绩<i
 						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
@@ -44,27 +49,72 @@
 				</dt>
 				<dd>
 					<ul>
-						<li><a data-href="${pageContext.request.contextPath}/jy_project/findAll_category.do" data-title="教研项目管理">教研项目申报</a></li>
-				<li><a data-href="article-list.html" data-title="业绩点分配">业绩点分配</a></li>
-					<li><a data-href="../jsp/jy_book.jsp"data-title="教材业绩管理">教材项目申报 </a></li>
-					<li><a data-href="${pageContext.request.contextPath}/jy_pingtai/FindAll_lev.do" data-title="教研平台业绩申报">教研平台业绩录入</a></li>
-		
+					<%-- 	<li><a data-href="${pageContext.request.contextPath}/jy_project/findAll_category.do" data-title="教研项目管理">教研项目申报</a></li>
+						 --%>
+						<li><a data-href="${pageContext.request.contextPath}/jy_project/Jiaogai_Lev.do" data-title="教改项目管理">教改项目申报</a></li>
+						<li><a data-href="${pageContext.request.contextPath}/jy_project/Zhuanye_Lev.do" data-title="专业项目管理">专业项目申报</a></li>
+						<li><a data-href="${pageContext.request.contextPath}/jy_project/Kecheng_Lev.do" data-title="课程项目管理">课程项目申报</a></li>
+						<li><a data-href="${pageContext.request.contextPath}/jy_project/Huojiang_Lev.do" data-title="获奖项目管理">获奖项目申报</a></li>
+						
+						<li><a data-href="${pageContext.request.contextPath}/jy_book/FindBookLev.do" data-title="教材业绩管理">教材项目申报 </a></li>
+						<li><a data-href="${pageContext.request.contextPath}/jy_project/lunwen_Lev.do" data-title="论文业绩录入">论文业绩录入</a></li>
+						<li><a data-href="${pageContext.request.contextPath}/jy_pingtai/FindAll_lev.do" data-title="教研平台业绩申报">教研平台业绩录入</a></li>
 					</ul>
 				</dd>
 			</dl>
-			<dl id="menu-product">
-				<dt>
-					<i class="Hui-iconfont">&#xe620;</i> 知识产权业绩管理<i
-						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
-				</dt>
-				<dd>
-					<ul>
-						<li><a data-href="${pageContext.request.contextPath}/patent/findAll.do" data-title="知识产权业绩管理">知识产权业绩录入</a></li>
-						<li><a data-href="product-category.html" data-title="业绩点分配">业绩点分配</a></li>
+			<dl >
+			<dt>
+				<i class="Hui-iconfont"></i>文艺项目业绩管理<i
+					class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
+			</dt>
+			<dd>
+				<ul>
+					<li><a data-href="../jsp/wy_chuban.jsp" data-title="作品出版和发表申报">作品出版和发表申报</a></li>
+					<li><a data-href="../jsp/wy_biaoyan.jsp" data-title="艺术展览与文艺演出业绩申报">艺术展览与演出业绩申报</a></li>
+						
+				</ul>
+			</dd>
+		</dl>
+			<dl>
+			<dt>
+				<i class="Hui-iconfont"></i>申报记录<i
+					class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
+			</dt>
+			<dd>
+				<ul>
+					<li><a
+						data-href="../jsp/jy_record.jsp"
+						data-title="查看申报记录">查看申报记录</a></li>
+				</ul>
+					
+			</dd>
+		</dl>
+			<dl>
+			<dt>
+				<i class="Hui-iconfont"></i>个人业绩浏览<i
+					class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
+			</dt>
+			<dd>
+				<ul>
+					<li><a
+						data-href="${pageContext.request.contextPath}/reward/findAll.do"
+						data-title="图表查看">图表查看</a></li>
 					</ul>
-				</dd>
+			</dd>
 			</dl>
-			
+			<dl>
+			<dt>
+				<i class="Hui-iconfont"></i>参数管理<i
+					class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
+			</dt>
+			<dd>
+				<ul>
+					<li><a
+						data-href="${pageContext.request.contextPath}/dictpara/findAll.do"
+						data-title="图表查看">参数管理</a></li>
+					</ul>
+			</dd>
+			</dl>
 		</div>
 	</aside>
 	<div class="dislpayArrow hidden-xs">

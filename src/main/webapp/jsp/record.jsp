@@ -21,7 +21,7 @@
 	<article class="page-container">
 		<form class="form form-horizontal" id="form-paper-add"
 			action="${pageContext.request.contextPath}/${sessionScope.sort}/recordsave.do"
-			method="post">
+			method="post" enctype="multipart/form-data">
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>记录编号：</label>
@@ -70,15 +70,15 @@
 						placeholder="" id="proof" name="record_proof">
 				</div> -->
 
-
 				<span class="btn-upload form-group"> <input
 					class="input-text upload-url radius" type="text"
 					name="uploadfile-1" id="uploadfile-1" readonly><a
 					href="javascript:void();" class="btn btn-primary radius"><i
-						class="iconfont"></i> 浏览文件</a> <input type="file" multiple
-					name="record_proof" class="input-file">
+						class="iconfont"></i> 浏览文件</a> <input type="file" multiple name="file"
+					class="input-file">
 				</span>
 			</div>
+			
 			<div id="div"></div>
 			<div class="row cl">
 				<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
@@ -95,6 +95,7 @@
 				</div>
 			</div>
 		</form>
+		
 	</article>
 
 	<jsp:include page="frame/footer.jsp"></jsp:include>

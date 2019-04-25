@@ -49,18 +49,18 @@
 					<thead>
 						<tr class="text-c">
 							<th width="25"><input type="checkbox" value="" name=""></th>
-							<th width="40">信息编号</th>
-							<th width="40">论文作者</th>
-							<th width="40">论文名称</th>
-							<th width="40">期刊名称</th>
-							<th with="70">期刊级别</th>
-							<th width="40">CN号</th>
-							<th width="70">ISSN号</th>
-							<th width="70">发表时间</th>
-							<th with="70">组织级别</th>
-							<th with="70">总业绩点</th>
-							<th with="70">我的业绩点</th>
-							<th with="70">操作</th>
+							<th width="auto">信息编号</th>
+							<th width="auto">论文作者</th>
+							<th width="auto">论文名称</th>
+							<th width="auto">期刊名称</th>
+							<th with="auto">期刊级别</th>
+							<th width="auto">CN号</th>
+							<th width="auto">ISSN号</th>
+							<th width="auto">发表时间</th>
+							<th with="auto">组织级别</th>
+							<th with="auto">总业绩点</th>
+							<th with="auto">我的业绩点</th>
+							<th with="auto">操作</th>
 						</tr>
 					</thead>
 					<tbody>

@@ -49,16 +49,16 @@
 					<thead>
 						<tr class="text-c">
 							<th width="25"><input type="checkbox" value="" name=""></th>
-							<th width="40">信息编号</th>
-							<th width="40">发明人</th>
-							<th width="40">专利名称</th>
-							<th width="40">专利类别</th>
-							<th with="70">专利状态</th>
-							<th width="40">授权号</th>
-							<th width="70">专利权人数</th>
-							<th with="70">总业绩点</th>
-							<th with="70">我的业绩点</th>
-							<th with="70">操作</th>
+							<th width="auto">信息编号</th>
+							<th width="auto">发明人</th>
+							<th width="auto">专利名称</th>
+							<th width="auto">专利类别</th>
+							<th with="auto">专利状态</th>
+							<th width="auto">授权号</th>
+							<th width="auto">专利权人数</th>
+							<th with="auto">总业绩点</th>
+							<th with="auto">我的业绩点</th>
+							<th with="auto">操作</th>
 						</tr>
 					</thead>
 					<tbody>

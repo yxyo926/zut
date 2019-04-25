@@ -22,13 +22,13 @@
 
 <body>
 	<article class="page-container">
-	<form class="form form-horizontal" >
+	<form class="form form-horizontal" action="${pageContext.request.contextPath}/team/AddTeam.do" method="post">
 		
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span
 				class="c-red">*</span>小组名称：</label>
 			<div class="formControls col-xs-8 col-sm-3">
-				<input id="team_name" type="text" class="input-text radius size-S" value="">
+				<input name="team_name" type="text" class="input-text radius size-S" value="">
 			</div>
 		</div>
 	
@@ -94,7 +94,7 @@
 						<th width="100">操作</th>
 					</tr>
 				</thead>
-				<tbody id="Teambody" varStatus="x" begin="0">
+				<tbody name="Teambody" varStatus="x" begin="0">
 						<tr>
 							<td class="td">${x.index+1}</td>
 							<td>123</td>
@@ -115,7 +115,7 @@
 		<div class="row cl" style="margin:0;auto">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
 				<button id="commit"
-					class="btn btn-primary radius" onclick="Add_Team()" type="button">创建小组</button>
+					class="btn btn-primary radius" onclick="Add_Team()" type="submit">创建小组</button>
 				
 				<button onClick="removeIframe();" class="btn btn-default radius"
 					type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>

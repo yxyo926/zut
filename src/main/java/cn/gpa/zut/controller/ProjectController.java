@@ -1,9 +1,20 @@
 package cn.gpa.zut.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.gpa.zut.domain.Assess;
@@ -147,6 +159,9 @@ public class ProjectController {
 
 	}
 
+	private  String fileUrl=null;
+	private  String rfilename=null;
+
 	@RequestMapping("/record.do")
 	public ModelAndView record() throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -156,20 +171,81 @@ public class ProjectController {
 
 	// 凭证提交
 	@RequestMapping("/recordsave.do")
-	public String saveRecord(Record record, HttpServletRequest request) {
+	//@ResponseBody
+	public String saveRecord(MultipartFile file, Record record, HttpServletRequest request) throws IllegalStateException, IOException {
 		HttpSession session = request.getSession(true);
-		recordService.save(record);
-		System.out.println("nihao");
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSS");
+		String res = sdf.format(new Date());
+		// uploads文件夹位置
+		String rootPath = request.getSession().getServletContext().getRealPath("resource/uploads/");
+		// 原始名称
+		String originalFileName = file.getOriginalFilename();
+		// 新文件名
+		String newFileName = "sliver" + res + originalFileName.substring(originalFileName.lastIndexOf("."));
+		// 创建年月文件夹
+		Calendar date = Calendar.getInstance();
+		File dateDirs = new File(date.get(Calendar.YEAR) + File.separator + (date.get(Calendar.MONTH) + 1));
+		// 新文件
+		File newFile = new File(rootPath + File.separator + dateDirs + File.separator + newFileName);
+		// 判断目标文件所在目录是否存在
+		if (!newFile.getParentFile().exists()) {
+			// 如果目标文件所在的目录不存在，则创建父目录
+			newFile.getParentFile().mkdirs();
+		}
+		System.out.println(newFile);
+		// 将内存中的数据写入磁盘
+		file.transferTo(newFile);
+		//文件名
+		rfilename=newFileName;
+		// 完整的url
+		
+		fileUrl = date.get(Calendar.YEAR) + "/" + (date.get(Calendar.MONTH) + 1) + "/" + newFileName;
+		System.out.println(fileUrl);
 		session.removeAttribute("Userteam");
 		session.removeAttribute("infoId");
 		session.removeAttribute("totalGpa");
 		session.removeAttribute("recordId");
-		return "redirect:findAll.do";
+		System.out.println(fileUrl);
+		record.setRecord_proof(fileUrl);
+		recordService.save(record);
+		//return "redirect:findAll.do";
+		return "redirect:downshow.do";
 
 	}
+	
+	@RequestMapping("/downshow.do")
+	public ModelAndView down() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("fail");
+		return mv;
+	}
+	
+	 @RequestMapping("/down.do")  
+     public void down(HttpServletRequest request,HttpServletResponse response) throws Exception{  
+        
+         String fileName = request.getSession().getServletContext().getRealPath("resource/uploads/")+fileUrl;  
+         
+         InputStream bis = new BufferedInputStream(new FileInputStream(new File(fileName)));  
+           
+         String filename = rfilename ;  
+         
+         filename = URLEncoder.encode(rfilename,"UTF-8");  
+         
+         response.addHeader("Content-Disposition", "attachment;filename=" + filename);    
+             
+         response.setContentType("multipart/form-data");   
+         
+         BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());  
+         int len = 0;  
+         while((len = bis.read()) != -1){  
+             out.write(len);  
+             out.flush();  
+         }  
+         out.close();  
+     }  
 
 	public Double sumGPA(Project project) throws Exception {
-
 		int gpa = 0;
 		Double ratio = 0.0;
 		Double sumgpa = 0.0;
@@ -179,18 +255,19 @@ public class ProjectController {
 		 startMoneyDouble = project.getProjectinfo_StartMoney();
 		}
 		
+		//获取数据库中参数集合
 		List<ProjectPara> projectParas = projectParaService.findAll();
+		//遍历
 		for (Iterator iterators = projectParas.iterator(); iterators.hasNext();) {
 			ProjectPara projectPara = (ProjectPara) iterators.next();// 获取当前遍历的元素，指定为Example对象
 			String name = projectPara.getResearchlevel_Id();
 			if (project.getProjectinfo_origin().equals(name)) {
+				//取业绩点
 				gpa = projectPara.getResearchlevel_Gpa();
+				//取系数
 				ratio=projectPara.getResearchlevel_Ratio();
+				//取M值
 				M=projectPara.getResearchlevel_M();
-				System.out.println(M);
-				System.out.println(ratio);
-				System.out.println(gpa);
-
 			}
 		}
 		Double mgpa= startMoneyDouble/M;

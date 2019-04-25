@@ -26,28 +26,57 @@
 			<span id="buzou2" class="step">第二步 绩点分配</a></span>
 			<span id="buzou3" class="step">第三步 提交审核</a></span> 
 		</div>
-
 	<article class="page-container">
-	<form class="form form-horizontal" id="">
+	<form class="form form-horizontal" id="" action="${pageContext.request.contextPath}/jy_pingtai/Add_pingtai.do" method="post">
 		
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span
 				class="c-red">*</span>平台名称：</label>
 			<div class="formControls col-xs-8 col-sm-3">
-				<input type="text" class="input-text radius size-S" id="pt_name">
+				<input type="text" class="input-text radius size-S" name="pt_name">
 			</div>
 			
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span
+				class="c-red">*</span>平台类型：</label>
+			<div class="formControls col-xs-8 col-sm-3">
+				<input type="text" class="input-text radius size-S" name="pt_type">
+			</div>
+			
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span
+				class="c-red">*</span>主持单位：</label>
+			<div class="formControls col-xs-8 col-sm-3">
+				<input type="text" class="input-text radius size-S" name="pt_place">
+			</div>
+		</div>
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span
 				class="c-red">*</span>教研平台级别：</label>
 			<div class="formControls col-xs-8 col-sm-3">
-				<span class="select-box"> <select id="select_lev" class="select">
+				<span class="select-box"> <select id="select_lev" name="pingtai_lev" class="select">
 				<option value="">---请选择---</option>
 				<c:forEach items="${list_lev}" var="list">
-					<option value="${list.tch_category_Id} ">${list.projectlev_name}</option>		
+					<option value="${list.project_id} ">${list.projectlev_name}</option>		
 				</c:forEach>
-						
+				</select>
+				</span>
+				
+			</div>
+			</div>
+				<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span
+				class="c-red">*</span>考核等级：</label>
+			<div class="formControls col-xs-8 col-sm-3">
+				<span class="select-box"> <select id="select_lev2" name="kaohe_lev" class="select" onchange="gpa()">
+					<option value="1">合格</option>
+					<option value="1.5">优秀</option>
+					<option value="1.2">良好</option>
+					<option value="0.5">基本合格</option>
+					<option value="0">不合格</option>		
 				</select>
 				</span>
 			</div>
@@ -58,21 +87,30 @@
 			<label class="form-label col-xs-4 col-sm-2"><span
 				class="c-red">*</span>时间范围：</label> 
 				<input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}' })"
-				id="logmin" class="input-text Wdate" style="width: 120px;">
+				id="logmin" name="logmin" class="input-text Wdate" style="width: 120px;">
 			- <input type="text"
 				onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d' })"
-				id="logmax" class="input-text Wdate" style="width: 120px;">
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">
-			<span class="c-red">*</span>文件上传：</label> 
-				<input type="file"  name="pictureFile" id="local_up"/> 
+				id="logmax" name="logmax" class="input-text Wdate" style="width: 120px;">
 		</div>
 		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span
+					class="c-red">*</span>用户组：</label>
+			<div class="formControls col-xs-6 col-sm-4">
+						<input type="text" class="input-text" value="" placeholder=""
+					   id="userteam_name" name="userteam_name">
+			</div>
+			<label class="form-label col-xs-4 col-sm-2"><span
+					class="c-red">*</span>用户组人数：</label>
+			<div class="formControls col-xs-8 col-sm-4">
+				<input type="text" class="input-text" value="" placeholder=""
+					   id="userteam_num" name="userteam_num">
 
+			</div>
+		</div>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-				<button	class="btn btn-primary radius" type="button" onclick="Add_PingTai()">下一步</button>
+				<button	class="btn btn-primary radius" type="submit" onclick="Add_PingTai()">下一步</button>
 
 				<button onClick="removeIframe();" class="btn btn-default radius"
 					type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
@@ -93,20 +131,16 @@
 	<script type="text/javascript"src="${pageContext.request.contextPath}/lib/My97DatePicker/4.8/WdatePicker.js"></script>
 
 	<script type="text/javascript">
-	function Add_PingTai(){
-		var pt_name=document.getElementById("pt_name").value;
-		var select_lev=document.getElementById("select_lev").value;
-		var logmin=document.getElementById("logmin").value;
-		var logmax=document.getElementById("logmax").value;
-		var  local_up=document.getElementById("local_up").value;
-		
-		alert(pt_name+","+select_lev+","+logmin+","+logmax+","+local_up);
-		
-		
+	
+	function gpa(){
+		var pt_levgpa=document.getElementById("select_lev").value;
+		var pt_khgpa=document.getElementById("select_lev2").value;
+		document.getElementsByName("pingtai_lev").value=pt_levgpa;
+		document.getElementsByName("kaohe_lev").value=pt_khgpa;
 		
 	}
-
 	</script>
+	
 	
 </body>
 </html>

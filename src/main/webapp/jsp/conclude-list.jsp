@@ -48,15 +48,15 @@
 				class="table table-border table-bordered table-hover table-bg table-sort">
 				<thead>
 					<tr class="text-c">
-						<th width="25"><input type="checkbox" value="" name=""></th>
-						<th width="40">信息编号</th>
-						<th width="40">项目名称</th>
-						<th width="40">申报人</th>
-						<th width="40">组织单位级别</th>
-						<th with="70">结项级别</th>
-						<th with="70">总业绩点</th>
-						<th with="70">我的业绩点</th>
-						<th with="70">操作</th>
+						<th width="auto"><input type="checkbox" value="" name=""></th>
+						<th width="auto">信息编号</th>
+						<th width="auto">项目名称</th>
+						<th width="auto">申报人</th>
+						<th width="auto">组织单位级别</th>
+						<th with="auto">结项级别</th>
+						<th with="auto">总业绩点</th>
+						<th with="auto">我的业绩点</th>
+						<th with="auto">操作</th>
 					</tr>
 				</thead>
 				<tbody>

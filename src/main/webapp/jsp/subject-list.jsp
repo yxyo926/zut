@@ -49,17 +49,17 @@
 				<thead>
 					<tr class="text-c">
 						<th width="25"><input type="checkbox" value="" name=""></th>
-						<th width="40">信息编号</th>
-						<th width="40">学科建设名称</th>
-						<th width="40">主持人</th>
-						<th with="70">建设类别</th>
-						<th with="70">建设级别</th>
-						<th with="70">开始时间</th>
-						<th width="70">结束时间</th>
-						<th width="70">验收等级</th>
-						<th with="70">总业绩点</th>
-						<th with="70">我的业绩点</th>
-						<th with="70">操作</th>
+						<th width="auto">信息编号</th>
+						<th width="auto">学科建设名称</th>
+						<th width="auto">主持人</th>
+						<th with="auto">建设类别</th>
+						<th with="auto">建设级别</th>
+						<th with="auto">开始时间</th>
+						<th width="auto">结束时间</th>
+						<th width="auto">验收等级</th>
+						<th with="auto">总业绩点</th>
+						<th with="auto">我的业绩点</th>
+						<th with="auto">操作</th>
 					</tr>
 				</thead>
 				<tbody>
