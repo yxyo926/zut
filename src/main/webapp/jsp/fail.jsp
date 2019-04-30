@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-        u are loser,this is a fail page!
+        <form action="${pageContext.request.contextPath }/${sessionScope.sort}/down.do"
+				method="get">
+				<input type="submit" value="下载">
+			</form>
 </body>
 </html>

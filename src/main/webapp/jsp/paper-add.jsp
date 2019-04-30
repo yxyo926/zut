@@ -12,13 +12,13 @@
 <meta name="keywords" content="中原工学院业绩管理系统V1.0">
 <meta name="description" content="中原工学院业绩管理系统V1.0">
 </head>
-<body onload="bangnum(this)">
+<body onload="bangnum()">
 	<div class="four steps">
 		<span class="active step">第一步 填写信息</span> <span class="step">第二步 业绩点分配</span> <span
 			class="disabled step">第三步 提交凭证</span> 
 	</div>
 	<article class="page-container">
-		<form class="form form-horizontal" id="form-paper-add"
+		<form class="form form-horizontal" id="paperaddform"
 			action="${pageContext.request.contextPath}/paper/save.do"
 			method="post">
 			<div class="row cl">
@@ -34,6 +34,8 @@
 					class="c-red">*</span>申报人：</label>
 				<div class="formControls col-xs-3 col-sm-4">
 					<input type="text" class="input-text radius size-S" value="${sessionScope.user.user_name}"
+						readonly="true"  placeholder="" id="" name="paperinfo_A">
+						<input type="hidden" class="input-text radius size-S" value="${sessionScope.user.user_Id}"
 						readonly="true"  placeholder="" id="" name="paperinfo_Author">
 				</div>
 			</div>
@@ -46,7 +48,7 @@
 				</div>
 			</div>
 			<div class="row cl">
-				<!-- <label class="form-label col-xs-4 col-sm-2"><span
+				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>论文类别：</label>
 				<div class="formControls col-xs-8 col-sm-3">
 					<span class="select-box"> <select name="paperinfo_sort" class="select">
@@ -54,7 +56,7 @@
 							<option value="2">人文科学</option>
 					</select>
 					</span>
-				</div> -->
+				</div> 
 
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>论文级别：</label>
@@ -86,16 +88,16 @@
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>CN号：</label>
 				<div class="formControls col-xs-8 col-sm-4">
-					<input type="text" class="input-text" value="" placeholder="" id=""
-						name="paperinfo_CN">
+					<input type="text" class="input-text" value="" placeholder="" id="paperinfo_CN"
+							 required="true" name="paperinfo_CN">
 				</div>
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>ISSN号：</label>
 				<div class="formControls col-xs-8 col-sm-4">
-					<input type="text" class="input-text" value="" placeholder="" id=""
-						name="paperinfo_ISSN">
+					<input type="text" class="input-text" value="" placeholder="" id="paperinfo_ISSN"
+						required="true" name="paperinfo_ISSN">
 				</div>
 			</div>
 			<div class="row cl">
@@ -123,7 +125,7 @@
 					class="c-red">*</span>用户组人数：</label>
 				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text" class="input-text" value="" placeholder=""
-						id="userteam_num" name="userteam_num">
+						id="userteam_num" required="true" name="userteam_num">
 
 				</div>
 			</div>
@@ -171,13 +173,12 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/lib/ueditor/1.4.3/ueditor.config.js"></script>
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/lib/ueditor/1.4.3/ueditor.all.min.js">
-		
-	</script>
+		src="${pageContext.request.contextPath}/lib/ueditor/1.4.3/ueditor.all.min.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
 	<script type="text/javascript">
-		function bangnum(id) {
+	
+		function bangnum() {
 			document.getElementById('userteam_num').value=$(id).find("option:selected").attr("parentcode");
 		}
 		$(function() {
@@ -296,6 +297,101 @@
 			var ue = UE.getEditor('editor');
 
 		});
+		
+		jQuery.validator.addMethod("isCN", function(value, element,params) {
+			var cn = /CN\d{2}-\d{4}/;
+			return this.optional(element) || /^CN\d{2}-\d{4}+$/.test(value); 
+		    },"请输入正确的CN号");
+		
+		$(function(){
+		      $("#menu-jquery dt").addClass("selected");
+		      $("#menu-jquery dd").show();
+
+		      $(".input-text,.textarea").Huifocusblur();
+		      $('.skin-minimal input').iCheck({
+		        checkboxClass: 'icheckbox-blue',
+		        radioClass: 'iradio-blue',
+		        increaseArea: '20%'
+		      });
+		      $("#datetimepicker").datetimepicker({
+		        language: 'zh-cn',
+		        format: 'yyyy-mm-dd',
+		        minView: "month",
+		        todayBtn:  1,
+		        autoclose: 1,
+		        endDate : new Date()
+		      }).on('hide',function(e) {
+		        //此处可以触发日期校验。
+		      });
+
+		      $("#spinner-demo").Huispinner({
+		        value:1,
+		        minValue:1,
+		        maxValue:99,
+		        dis:1
+		      });
+
+		      $(".textarea").Huitextarealength({
+		        minlength:10,
+		        maxlength:200.
+		      });
+		      
+		      
+		      $("#paperaddform").validate({
+		    	  debug:true,
+		        rules: {
+		        	paperinfo_Name: {
+		            required: true,
+		          },
+		          paperinfo_CN:{
+			            required: true,
+			            isCN: true,
+			          },
+		          userteam_num:{
+		        	  required: true,
+		        	  digits:true,
+		          },
+		          paperinfo_ISSN:{
+		            required: true,
+		            ip: true,
+		          },
+		          password:{
+		            required: true,
+		            isPwd: true,
+		          },
+		          password2:{
+		            required: true,
+		            equalTo: "#password"
+		          },
+		          sex:{
+		            required: true,
+		          },
+		          datetimepicker:{
+		            required: true,
+		          },
+		          checkbox2:{
+		            required: true,
+		          },
+		          city:{
+		            required: true,
+		          },
+		          website:{
+		            required: true,
+		            url: true,
+		          },
+		          beizhu:{
+		            maxlength: 500,
+		          }
+		        },
+		        onkeyup:false,
+		        focusCleanup:true,
+		        success:"valid",
+		        submitHandler:function(form){
+		          $("#modal-shenqing-success").modal("show");
+		          $(form).ajaxSubmit();
+		        }
+		      });
+		    });
 	</script>
 	<!--/请在上方写此页面业务相关的脚本-->
 </body>

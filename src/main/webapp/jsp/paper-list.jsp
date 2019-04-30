@@ -11,7 +11,7 @@
 <body>
 	<nav class="breadcrumb">
 		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>
-		管理员管理 <span class="c-gray en">&gt;</span> 角色管理 <a
+		科研业绩管理 <span class="c-gray en">&gt;</span> 论文信息管理 <a
 			class="btn btn-success radius r"
 			style="line-height: 1.6em; margin-top: 3px"
 			href="javascript:location.replace(location.href);" title="刷新"><i
@@ -45,20 +45,22 @@
 			</div>
 	<div class="mt-20">
 				<table
-					class="table table-border table-bordered table-hover table-bg table-sort">
+					class="table table-border table-bordered radius table-striped table-hover table-bg table-sort">
 					<thead>
 						<tr class="text-c">
 							<th width="25"><input type="checkbox" value="" name=""></th>
-							<th width="40">信息编号</th>
-							<th width="40">论文作者</th>
-							<th width="40">论文名称</th>
-							<th width="40">CN号</th>
-							<th width="70">ISSN号</th>
-							<th width="70">发表时间</th>
-							<th with="70">作者级别</th>
-							<th with="70">组织级别</th>
-							<th with="70">业绩点</th>
-							<th with="70">操作</th>
+							<th width="auto">信息编号</th>
+							<th width="auto">论文作者</th>
+							<th width="auto">论文名称</th>
+							<th width="auto">期刊名称</th>
+							<th with="auto">期刊级别</th>
+							<th width="auto">CN号</th>
+							<th width="auto">ISSN号</th>
+							<th width="auto">发表时间</th>
+							<th with="auto">组织级别</th>
+							<th with="auto">总业绩点</th>
+							<th with="auto">我的业绩点</th>
+							<th with="auto">操作</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -66,18 +68,22 @@
 							<tr>
 								<td><input name="ids" type="checkbox"></td>
 								<td>${paper.paperinfo_Id }</td>
-								<td>${paper.paperinfo_Author }</td>
-								<td>${paper.paperinfo_Name }</td>
+								<td>${paper.user.user_name}</td>
+								<td>${paper.paperinfo_Name}</td>
+								<td>${paper.paperinfo_MName}</td>
+								<td>${paper.dictPara.dictpara_lev}</td>
 								<td>${paper.paperinfo_CN }</td>
 								<td>${paper.paperinfo_ISSN }</td>
 								<td class="text-center">${paper.paperinfo_Time }</td>
-								<td>${paper.paperinfo_Lev }</td>
-								<td class="text-center">${paper.paperinfo_orglev }</td>
+								<td class="text-center">${paper.dictRatio.dictratio_lev }</td>
 								<td class="text-center">${paper.paperinfo_getGpa }</td>
+								<td class="text-center">${paper.gpaDistr}</td>
 								<td class="text-center">
 									<button type="button" class="btn bg-olive btn-xs">修改</button>
-									<button type="button" class="btn bg-olive btn-xs">详情</button>
-								</td>
+									<button type="button"
+									onclick="location.href='${pageContext.request.contextPath}/gpadistr/findAllGpa.do?id=${paper.paperinfo_Id}'"
+									class="btn bg-olive btn-xs">详情</button>
+							</td>
 							</tr>
 						</c:forEach>
 					</tbody>
