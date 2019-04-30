@@ -3,25 +3,20 @@ import java.util.Date;
 
 public class JY_Record {
 	
-		private String Record_id;
-		private String team_id;
+		private String record_id;
 		private String record_project_id;
 		private String record_sort;
-		private double point;
+		private double record_point;
 		private Date record_sbtime;
 		private String Record_local;
 		private int state;
+		private Double  record_piont;
+	    private Double  gpaDistr;
 		public String getRecord_id() {
-			return Record_id;
+			return record_id;
 		}
 		public void setRecord_id(String record_id) {
-			Record_id = record_id;
-		}
-		public String getTeam_id() {
-			return team_id;
-		}
-		public void setTeam_id(String team_id) {
-			this.team_id = team_id;
+			this.record_id = record_id;
 		}
 		public String getRecord_project_id() {
 			return record_project_id;
@@ -35,11 +30,11 @@ public class JY_Record {
 		public void setRecord_sort(String record_sort) {
 			this.record_sort = record_sort;
 		}
-		public double getPoint() {
-			return point;
+		public double getRecord_point() {
+			return record_point;
 		}
-		public void setPoint(double point) {
-			this.point = point;
+		public void setRecord_point(double record_point) {
+			this.record_point = record_point;
 		}
 		public Date getRecord_sbtime() {
 			return record_sbtime;
@@ -59,6 +54,20 @@ public class JY_Record {
 		public void setState(int state) {
 			this.state = state;
 		}
+		public Double getRecord_piont() {
+			return record_piont;
+		}
+		public void setRecord_piont(Double record_piont) {
+			this.record_piont = record_piont;
+		}
+		public Double getGpaDistr() {
+			return gpaDistr;
+		}
+		public void setGpaDistr(Double gpaDistr) {
+			this.gpaDistr = gpaDistr;
+		}
+		
+		
 		
 		
 

@@ -50,34 +50,36 @@
 					<tr class="text-c">
 						<th width="25"><input type="checkbox" value="" name=""></th>
 						<th width="auto">信息编号</th>
-						<th width="auto">项目来源</th>
-						<th width="auto">项目名称</th>
+						<th width="auto">专业级别</th>
 						<th width="auto">项目负责人</th>
-						<th with="auto">开始时间</th>
-						<th width="auto">完成时间</th>
-						<th width="auto">立项经费</th>
+						<th with="auto">专业名称</th>
+						<th width="auto">专业类别</th>
+						<th width="auto">学院</th>
+						<th width="auto">开始时间</th>
+						<th width="auto">结束时间</th>
 						<th with="auto">总业绩点</th>
 						<th with="auto">我的业绩点</th>
 						<th with="auto">操作</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${projectList}" var="project">
+					<c:forEach items="${zhuanyeList}" var="major">
 						<tr>
 							<td><input name="ids" type="checkbox"></td>
-							<td>${project.projectinfo_Id }</td>
-							<td>${project.projectinfo_origin}</td>
-							<td>${project.projectinfo_Name}</td>
-							<td>${project.projectinfo_Leader}</td>
-							<td>${project.projectinfo_StartTime}</td>
-							<td class="text-center">${project.projectinfo_FinishTime}</td>
-							<td class="text-center">${project.projectinfo_StartMoney}</td>
-							<td class="text-center">${project.projectinfo_getGpa}</td>
-							<td class="text-center">${project.gpaDistr}</td>
+							<td>${major.project_id }</td>
+							<td>${major.projectlev_id}</td>
+							<td>${major.majorinfo_name}</td>
+							<td>${major.majorinfo_mname}</td>
+							<td>${major.majorinfo_person}</td>
+							<td>${major.majorinfo_college}</td>
+							<td class="text-center">${major.majorinfo_starttime}</td>
+							<td class="text-center">${major.majorinfo_endtime}</td>
+							<td class="text-center">${major.record_piont}</td>
+							<td class="text-center">${major.gpaDistr}</td>
 							<td class="text-center">
 								<button type="button" class="btn bg-olive btn-xs">修改</button>
 								<button type="button"
-									onclick="location.href='${pageContext.request.contextPath}/gpadistr/findAllGpa.do?id=${project.projectinfo_Id}'"
+									onclick="location.href='${pageContext.request.contextPath}/gpadistr/findAllGpa.do?id=${major.project_id}'"
 									class="btn bg-olive btn-xs">详情</button>
 							</td>
 						</tr>

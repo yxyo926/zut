@@ -13,6 +13,9 @@ public class JY_Book {
 	private String build_id; //是否立项
 	private String language;//语言
 	private String book_press;
+	private String bookinfo_author;
+	private Double  record_piont;
+	private Double  gpaDistr;
 	public String getBook_id() {
 		return book_id;
 	}
@@ -90,6 +93,24 @@ public class JY_Book {
 	}
 	public void setBook_press(String book_press) {
 		this.book_press = book_press;
+	}
+	public Double getRecord_piont() {
+		return record_piont;
+	}
+	public void setRecord_piont(Double record_piont) {
+		this.record_piont = record_piont;
+	}
+	public Double getGpaDistr() {
+		return gpaDistr;
+	}
+	public void setGpaDistr(Double gpaDistr) {
+		this.gpaDistr = gpaDistr;
+	}
+	public String getBookinfo_author() {
+		return bookinfo_author;
+	}
+	public void setBookinfo_author(String bookinfo_author) {
+		this.bookinfo_author = bookinfo_author;
 	}
 	
 	

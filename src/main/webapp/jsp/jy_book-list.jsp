@@ -49,31 +49,36 @@
 				<thead>
 					<tr class="text-c">
 						<th width="25"><input type="checkbox" value="" name=""></th>
-						<th width="auto">信息编号</th>
-						<th width="auto">项目来源</th>
-						<th width="auto">项目名称</th>
-						<th width="auto">项目负责人</th>
-						<th with="auto">开始时间</th>
-						<th width="auto">完成时间</th>
-						<th width="auto">立项经费</th>
-						<th with="auto">总业绩点</th>
-						<th with="auto">我的业绩点</th>
-						<th with="auto">操作</th>
+						<th width="auto">教材编号</th>
+						<th width="auto">教材名称</th>
+						<th width="auto">专业</th>
+						<th width="auto">主编</th>
+						<th with="auto">执笔</th>
+						<th width="auto">字数</th>
+						<th width="auto">出版社名称</th>
+						<th with="auto">是否再版</th>
+						<th with="auto">立项系数</th>
+						<th with="auto">级别</th>
+						<th with="auto">语言类别</th>
+						<th with="auto">业绩点</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${projectList}" var="project">
+					<c:forEach items="${bookList}" var="book">
 						<tr>
 							<td><input name="ids" type="checkbox"></td>
-							<td>${project.projectinfo_Id }</td>
-							<td>${project.projectinfo_origin}</td>
-							<td>${project.projectinfo_Name}</td>
-							<td>${project.projectinfo_Leader}</td>
-							<td>${project.projectinfo_StartTime}</td>
-							<td class="text-center">${project.projectinfo_FinishTime}</td>
-							<td class="text-center">${project.projectinfo_StartMoney}</td>
-							<td class="text-center">${project.projectinfo_getGpa}</td>
-							<td class="text-center">${project.gpaDistr}</td>
+							<td>${book.book_id }</td>
+							<td>${book.book_name}</td>
+							<td>${book.book_object}</td>
+							<td>${book.book_Tname}</td>
+							<td class="text-center">${book.book_Ename}</td>
+							<td class="text-center">${book.book_Enum}</td>
+							<td class="text-center">${book.repiblic}</td>
+							<td class="text-center">${book.build_id}</td>
+							<td class="text-center">${book.booklev}</td>
+							<td class="text-center">${book.language}</td>
+							<td class="text-center">${book.book_press}</td>
+							
 							<td class="text-center">
 								<button type="button" class="btn bg-olive btn-xs">修改</button>
 								<button type="button"

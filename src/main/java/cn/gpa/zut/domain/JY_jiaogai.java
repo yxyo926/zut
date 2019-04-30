@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class JY_jiaogai {
 
+	
 	  private String reforminfo_id;
 	  private String userteam_id;
 	  private String reforminfo_name;
@@ -12,6 +13,8 @@ public class JY_jiaogai {
 	  private Date reforminfo_starttime;
 	  private Date reforminfo_finishtime;
 	  private String reforminfo_place;
+	  private Double  record_piont;
+		private Double  gpaDistr;
 	public String getReforminfo_id() {
 		return reforminfo_id;
 	}
@@ -59,6 +62,18 @@ public class JY_jiaogai {
 	}
 	public void setReforminfo_place(String reforminfo_place) {
 		this.reforminfo_place = reforminfo_place;
+	}
+	public Double getRecord_piont() {
+		return record_piont;
+	}
+	public void setRecord_piont(Double record_piont) {
+		this.record_piont = record_piont;
+	}
+	public Double getGpaDistr() {
+		return gpaDistr;
+	}
+	public void setGpaDistr(Double gpaDistr) {
+		this.gpaDistr = gpaDistr;
 	}
 	  
 	  

@@ -10,6 +10,7 @@ import cn.gpa.zut.dao.JY_ProjectDao;
 import cn.gpa.zut.domain.JY_Category;
 import cn.gpa.zut.domain.JY_HuoJiang;
 import cn.gpa.zut.domain.JY_KeCheng;
+import cn.gpa.zut.domain.JY_Lunwen;
 import cn.gpa.zut.domain.JY_ProjectLev;
 import cn.gpa.zut.domain.JY_Record;
 import cn.gpa.zut.domain.JY_ZhuanYe;
@@ -74,6 +75,36 @@ public class Jy_ProjectServiceImpl implements Jy_ProjectService {
 	public double findKhgpaByprojectId(String project_id) throws Exception {
 		// TODO Auto-generated method stub
 		return jy_projectDao.findKhgpaByprojectId(project_id);
+	}
+
+	@Override
+	public List<JY_jiaogai> findJiaogaiById(String userId) {
+		// TODO Auto-generated method stub
+		return jy_projectDao.findJiaogaiById(userId);
+	}
+
+	@Override
+	public List<JY_ZhuanYe> findZhuanyeById(String userId) {
+		// TODO Auto-generated method stub
+		return jy_projectDao.findZhuanyeById(userId);
+	}
+
+	@Override
+	public List<JY_KeCheng> findKechengById(String userId) {
+		// TODO Auto-generated method stub
+		return jy_projectDao.findKechengById(userId);
+	}
+
+	@Override
+	public List<JY_HuoJiang> findHuojiangById(String userId) {
+		// TODO Auto-generated method stub
+		return jy_projectDao.findHuojiangById(userId);
+	}
+
+	@Override
+	public List<JY_Lunwen> findLunwenById(String userId) {
+		// TODO Auto-generated method stub
+		return jy_projectDao.findLunwenById(userId);
 	}
 
 	

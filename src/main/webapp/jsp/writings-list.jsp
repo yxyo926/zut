@@ -45,19 +45,19 @@
 			</div>
 	<div class="mt-20">
 				<table
-					class="table table-border table-bordered table-hover table-bg table-sort">
+					class="table table-border table-bordered radius table-striped table-hover table-bg table-sort">
 					<thead>
-						<tr class="text-c">
+						<tr class="success">
 							<th width="25"><input type="checkbox" value="" name=""></th>
 							<th width="auto">信息编号</th>
-							<th width="auto">论文作者</th>
-							<th width="auto">论文名称</th>
-							<th width="auto">期刊名称</th>
-							<th with="auto">期刊级别</th>
-							<th width="auto">CN号</th>
-							<th width="auto">ISSN号</th>
-							<th width="auto">发表时间</th>
-							<th with="auto">组织级别</th>
+							<th width="auto">作者</th>
+							<th width="auto">著作名称</th>
+							<th width="auto">出版社名称</th>
+							<th with="auto">ISBN号</th>
+							<th width="auto">出版时间</th>
+							<th width="auto">字数</th>
+							<th width="auto">立项单位</th>
+							<th with="auto">出版社级别</th>
 							<th with="auto">总业绩点</th>
 							<th with="auto">我的业绩点</th>
 							<th with="auto">操作</th>

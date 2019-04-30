@@ -49,4 +49,10 @@ public class Jy_BookServiceImpl implements Jy_BookService {
 		return bookdao.FindBookZhuBian();
 	}
 
+	@Override
+	public List<JY_Book> findbookById(String userId) {
+		// TODO Auto-generated method stub
+		return bookdao.findAllById(userId);
+	}
+
 }

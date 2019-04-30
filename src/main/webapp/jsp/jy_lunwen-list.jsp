@@ -1,4 +1,5 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -50,34 +51,30 @@
 					<tr class="text-c">
 						<th width="25"><input type="checkbox" value="" name=""></th>
 						<th width="auto">信息编号</th>
-						<th width="auto">项目来源</th>
-						<th width="auto">项目名称</th>
-						<th width="auto">项目负责人</th>
-						<th with="auto">开始时间</th>
-						<th width="auto">完成时间</th>
-						<th width="auto">立项经费</th>
+						<th width="auto">论文作者</th>
+						<th width="auto">论文名称</th>
+						<th width="auto">论文级别</th>
+						<th width="auto">ISSN号</th>
 						<th with="auto">总业绩点</th>
 						<th with="auto">我的业绩点</th>
 						<th with="auto">操作</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${projectList}" var="project">
+					<c:forEach items="${paperList}" var="project">
 						<tr>
 							<td><input name="ids" type="checkbox"></td>
-							<td>${project.projectinfo_Id }</td>
-							<td>${project.projectinfo_origin}</td>
-							<td>${project.projectinfo_Name}</td>
-							<td>${project.projectinfo_Leader}</td>
-							<td>${project.projectinfo_StartTime}</td>
-							<td class="text-center">${project.projectinfo_FinishTime}</td>
-							<td class="text-center">${project.projectinfo_StartMoney}</td>
-							<td class="text-center">${project.projectinfo_getGpa}</td>
+							<td>${project.paperinfo_id }</td>
+							<td>${project.paperinfo_author}</td>
+							<td>${project.paperinfo_name}</td>
+							<td>${project.project_id}</td>
+							<td>${project.paperinfo_ISSN}</td>
+							<td class="text-center">${project.record_piont}</td>
 							<td class="text-center">${project.gpaDistr}</td>
 							<td class="text-center">
 								<button type="button" class="btn bg-olive btn-xs">修改</button>
 								<button type="button"
-									onclick="location.href='${pageContext.request.contextPath}/gpadistr/findAllGpa.do?id=${project.projectinfo_Id}'"
+									onclick="location.href='${pageContext.request.contextPath}/gpadistr/findAllGpa.do?id=${project.paperinfo_id}'"
 									class="btn bg-olive btn-xs">详情</button>
 							</td>
 						</tr>
@@ -95,7 +92,7 @@
 					"bStateSave": true,//状态保存
 					"aoColumnDefs": [
 					  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-					  {"orderable":false,"aTargets":[0,8,9]}// 制定列不参与排序
+					  {"orderable":false,"aTargets":[0,8]}// 制定列不参与排序
 					]
 				});
 				

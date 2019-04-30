@@ -168,6 +168,23 @@ public class Jy_BookController {
 		}
 		out.close();
 	}
+	
+	
+	//展示表格
+	   @RequestMapping("/book_findAllById.do")
+	   public ModelAndView bookfindAllById(ModelMap model, @RequestParam(name = "id", required = true) String userId)
+			throws Exception {
+		System.out.println(userId);
+		ModelAndView mv = new ModelAndView();
+		List<JY_Book> projects = jy_bookservice.findbookById(userId);
+		UUIDUtils uuidUtils = new UUIDUtils();
+		String uuidString = uuidUtils.getUUID();
+		model.addAttribute("infoId", uuidString);
+		System.out.println(uuidString);
+		mv.addObject("bookList", projects);
+		mv.setViewName("jy_book-list");
+		return mv;
+	}
 
 	@RequestMapping("/FindBookLev.do")
 	public ModelAndView FindBookLev() throws Exception{

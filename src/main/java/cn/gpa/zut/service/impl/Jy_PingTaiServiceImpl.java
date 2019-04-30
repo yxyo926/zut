@@ -28,4 +28,10 @@ public class Jy_PingTaiServiceImpl implements Jy_PingTaiService {
 		jy_pingtai.Add_pt(jy_pt);
 	}
 
+	@Override
+	public List<JY_pingtai> findpingtaiById(String userId) {
+		// TODO Auto-generated method stub
+		return jy_pingtai.findPingtaiById(userId);
+	}
+
 }

@@ -190,6 +190,25 @@ public class Jy_PingTaiController {
 		
 	}
 	
+	//展示表格
+	   @RequestMapping("/pingtai_findAllById.do")
+	   public ModelAndView pingtaifindAllById(ModelMap model, @RequestParam(name = "id", required = true) String userId)
+			throws Exception {
+		System.out.println(userId);
+		ModelAndView mv = new ModelAndView();
+		List<JY_pingtai> projects = jy_pingtaiservice.findpingtaiById(userId);
+		UUIDUtils uuidUtils = new UUIDUtils();
+		String uuidString = uuidUtils.getUUID();
+		model.addAttribute("infoId", uuidString);
+		System.out.println(uuidString);
+		mv.addObject("projectList", projects);
+		mv.setViewName("jy_pingtai-list");
+		return mv;
+	}
+	   
+	   
+	   
+	   
 	
 	//提交教学平台信息
 		@RequestMapping("/Add_pingtai.do")
@@ -215,7 +234,7 @@ public class Jy_PingTaiController {
 			jy_pt.setPlateforminfo_name(pt_name);
 			jy_pt.setPlateforminfo_type(pt_type);
 			jy_pt.setPlateforminfo_organize(pt_place);
-			jy_pt.setPlateforminfo_levid(pingtai_lev);
+			jy_pt.setPlateforminfo_Tlev(pingtai_lev);
 			jy_pt.setPlateforminfo_Tlev(kaohe_lev);
 			jy_pt.setPlateforminfo_starttime(starttime);
 			jy_pt.setPlateforminfo_finishtime(finishtime);

@@ -5,19 +5,22 @@ import java.util.Date;
 public class JY_ZhuanYe {
 	
 	                    
-	    private String majorinfo_id;
+	    private String project_id;
 	    private String projectlev_id;
 	    private String majorinfo_name;
 	    private String majorinfo_mname;
+		private String majorinfo_person;
 	    private String majorinfo_college;
 	    private Date majorinfo_starttime;
 	    private Date  majorinfo_endtime;
 	    private String majorinfo_place;
-		public String getMajorinfo_id() {
-			return majorinfo_id;
+		private Double  record_piont;
+	    private Double  gpaDistr;
+		public String getProject_id() {
+			return project_id;
 		}
-		public void setMajorinfo_id(String majorinfo_id) {
-			this.majorinfo_id = majorinfo_id;
+		public void setProject_id(String project_id) {
+			this.project_id = project_id;
 		}
 		public String getProjectlev_id() {
 			return projectlev_id;
@@ -36,6 +39,12 @@ public class JY_ZhuanYe {
 		}
 		public void setMajorinfo_mname(String majorinfo_mname) {
 			this.majorinfo_mname = majorinfo_mname;
+		}
+		public String getMajorinfo_person() {
+			return majorinfo_person;
+		}
+		public void setMajorinfo_person(String majorinfo_person) {
+			this.majorinfo_person = majorinfo_person;
 		}
 		public String getMajorinfo_college() {
 			return majorinfo_college;
@@ -61,6 +70,20 @@ public class JY_ZhuanYe {
 		public void setMajorinfo_place(String majorinfo_place) {
 			this.majorinfo_place = majorinfo_place;
 		}
+		public Double getRecord_piont() {
+			return record_piont;
+		}
+		public void setRecord_piont(Double record_piont) {
+			this.record_piont = record_piont;
+		}
+		public Double getGpaDistr() {
+			return gpaDistr;
+		}
+		public void setGpaDistr(Double gpaDistr) {
+			this.gpaDistr = gpaDistr;
+		}
+
+		
 	   
 	    
 	    

@@ -12,6 +12,9 @@ public class JY_HuoJiang {
 	private Date rewardinfo_gettime  ;  
 	private String rewardinfo_organizename;
 	private String rewardinfo_place;
+	private Double  record_piont;
+	private Double  gpaDistr;
+
 	public String getRewardinfo_id() {
 		return rewardinfo_id;
 	}
@@ -47,6 +50,18 @@ public class JY_HuoJiang {
 	}
 	public void setRewardinfo_place(String rewardinfo_place) {
 		this.rewardinfo_place = rewardinfo_place;
+	}
+	public Double getRecord_piont() {
+		return record_piont;
+	}
+	public void setRecord_piont(Double record_piont) {
+		this.record_piont = record_piont;
+	}
+	public Double getGpaDistr() {
+		return gpaDistr;
+	}
+	public void setGpaDistr(Double gpaDistr) {
+		this.gpaDistr = gpaDistr;
 	}
 	
 	

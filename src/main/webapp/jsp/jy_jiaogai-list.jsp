@@ -49,13 +49,12 @@
 				<thead>
 					<tr class="text-c">
 						<th width="25"><input type="checkbox" value="" name=""></th>
-						<th width="auto">信息编号</th>
-						<th width="auto">项目来源</th>
+						<th width="auto">申报编号编号</th>
 						<th width="auto">项目名称</th>
-						<th width="auto">项目负责人</th>
+						<th width="auto">专业名称</th>
+						<th width="auto">项目级别</th>
 						<th with="auto">开始时间</th>
 						<th width="auto">完成时间</th>
-						<th width="auto">立项经费</th>
 						<th with="auto">总业绩点</th>
 						<th with="auto">我的业绩点</th>
 						<th with="auto">操作</th>
@@ -65,19 +64,18 @@
 					<c:forEach items="${projectList}" var="project">
 						<tr>
 							<td><input name="ids" type="checkbox"></td>
-							<td>${project.projectinfo_Id }</td>
-							<td>${project.projectinfo_origin}</td>
-							<td>${project.projectinfo_Name}</td>
-							<td>${project.projectinfo_Leader}</td>
-							<td>${project.projectinfo_StartTime}</td>
-							<td class="text-center">${project.projectinfo_FinishTime}</td>
-							<td class="text-center">${project.projectinfo_StartMoney}</td>
-							<td class="text-center">${project.projectinfo_getGpa}</td>
+							<td>${project.reforminfo_id }</td>
+							<td>${project.userteam_id}</td>
+							<td>${project.reforminfo_name}</td>
+							<td>${project.reforminfo_place}</td>
+							<td>${project.reforminfo_starttime}</td>
+							<td class="text-center">${project.reforminfo_finishtime}</td>
+							<td class="text-center">${project.record_piont}</td>
 							<td class="text-center">${project.gpaDistr}</td>
 							<td class="text-center">
 								<button type="button" class="btn bg-olive btn-xs">修改</button>
 								<button type="button"
-									onclick="location.href='${pageContext.request.contextPath}/gpadistr/findAllGpa.do?id=${project.projectinfo_Id}'"
+									onclick="location.href='${pageContext.request.contextPath}/gpadistr/findAllGpa.do?id=${project.reforminfo_id}'"
 									class="btn bg-olive btn-xs">详情</button>
 							</td>
 						</tr>

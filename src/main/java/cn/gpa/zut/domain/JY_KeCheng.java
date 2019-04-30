@@ -13,6 +13,9 @@ public class JY_KeCheng {
 	private Date classinfo_starttime;
 	private Date classinfo_endtime;
 	private String classinfo_place;
+	private Double  record_piont;
+	private Double  gpaDistr;
+	
 	public String getClassinfo_id() {
 		return classinfo_id;
 	}

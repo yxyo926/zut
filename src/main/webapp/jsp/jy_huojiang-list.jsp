@@ -40,7 +40,7 @@
 				onclick="location.href='${pageContext.request.contextPath}/project/getSort.do'"><i
 					class="Hui-iconfont">&#xe600;</i> 添加记录</a>
 			</span> <span class="r">共有数据：<strong><c:out
-						value="${fn:length(projectList)}"></c:out></strong> 条
+						value="${fn:length(rewadrinfoList)}"></c:out></strong> 条
 			</span>
 		</div>
 		<div class="mt-20">
@@ -49,31 +49,27 @@
 				<thead>
 					<tr class="text-c">
 						<th width="25"><input type="checkbox" value="" name=""></th>
-						<th width="auto">信息编号</th>
-						<th width="auto">项目来源</th>
-						<th width="auto">项目名称</th>
-						<th width="auto">项目负责人</th>
-						<th with="auto">开始时间</th>
-						<th width="auto">完成时间</th>
-						<th width="auto">立项经费</th>
+						<th width="auto">获奖项目id</th>
+						<th width="auto">获奖项目名称</th>
+						<th width="auto">级别id</th>
+						<th width="auto">获奖时间</th>
+						<th with="auto">颁奖单位</th>
 						<th with="auto">总业绩点</th>
 						<th with="auto">我的业绩点</th>
 						<th with="auto">操作</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${projectList}" var="project">
+					<c:forEach items="${rewadrinfoList}" var="rewardinfo">
 						<tr>
 							<td><input name="ids" type="checkbox"></td>
-							<td>${project.projectinfo_Id }</td>
-							<td>${project.projectinfo_origin}</td>
-							<td>${project.projectinfo_Name}</td>
-							<td>${project.projectinfo_Leader}</td>
-							<td>${project.projectinfo_StartTime}</td>
-							<td class="text-center">${project.projectinfo_FinishTime}</td>
-							<td class="text-center">${project.projectinfo_StartMoney}</td>
-							<td class="text-center">${project.projectinfo_getGpa}</td>
-							<td class="text-center">${project.gpaDistr}</td>
+							<td>${rewardinfo.rewardinfo_id }</td>
+							<td>${rewardinfo.rewardinfo_name}</td>
+							<td>${rewardinfo.projectlev_id}</td>
+							<td>${rewardinfo.rewardinfo_gettime}</td>
+							<td>${rewardinfo.rewardinfo_organizename}</td>
+							<td class="text-center">${project.record_piont}</td>
+							<td class="text-center">${project.gpaDistr}</td> 
 							<td class="text-center">
 								<button type="button" class="btn bg-olive btn-xs">修改</button>
 								<button type="button"
@@ -95,7 +91,7 @@
 					"bStateSave": true,//状态保存
 					"aoColumnDefs": [
 					  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-					  {"orderable":false,"aTargets":[0,8,9]}// 制定列不参与排序
+					  {"orderable":false,"aTargets":[0,8]}// 制定列不参与排序
 					]
 				});
 				

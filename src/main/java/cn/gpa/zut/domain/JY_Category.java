@@ -3,6 +3,9 @@ package cn.gpa.zut.domain;
 public class JY_Category {
 	private String category_id;
 	private String category_name;
+	private Double  record_piont;
+	private Double  gpaDistr;
+	
 	public String getCategory_id() {
 		return category_id;
 	}

@@ -45,7 +45,7 @@
 		</div>
 		<div class="mt-20">
 			<table
-				class="table table-border table-bordered table-hover table-bg table-sort">
+				class="table table-border table-bordered radius table-striped table-hover table-bg table-sort">
 				<thead>
 					<tr class="text-c">
 						<th width="25"><input type="checkbox" value="" name=""></th>

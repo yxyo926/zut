@@ -1,6 +1,6 @@
 /*****************************************************************
- * jQuery Validate扩展验证方法  (linjq)    
- * Modified by guojunhui
+ * jQuery Validate扩展验证方法   
+ * rewrite by me
  * Date modified:01/01/2017  
 *****************************************************************/
 $(function(){
@@ -189,7 +189,13 @@ $(function(){
 		var reg = /^[\u4e00-\u9fa5]{1}[A-Z]{1}[A-Z_0-9]{5}$/;
 		return this.optional(element) || (tel.test(value)); 
 	},"请输入正确车牌号");
+	//CN号校验
+	   jQuery.validator.addMethod("isCN", function(value, element) {
+		var cn = /CN\d{2}-\d{4}/;
+		return this.optional(element) || /^CN\d{2}-\d{4}+$/.test(value); 
+	    },"请输入正确的CN号");
 });
+  
 //身份证号码的验证规则
 function isIdCardNo(num){ 
 　   //if (isNaN(num)) {alert("输入的不是数字！"); return false;} 

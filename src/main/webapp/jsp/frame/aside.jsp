@@ -6,7 +6,7 @@
 		<div class="menu_dropdown bk_2">
 			
 	
-	
+	<%-- 
 				<dl id="menu-article">
 				<dt>
 					<i class="Hui-iconfont"></i>创建小组<i
@@ -17,7 +17,7 @@
 						<li><a data-href="${pageContext.request.contextPath}/team/findAll_user.do" data-title="创建小组">创建小组</a></li>
 					</ul>
 				</dd>
-			</dl>		
+			</dl>		 --%>
 			
 			<dl id="menu-article">
 			
@@ -51,14 +51,13 @@
 					<ul>
 					<%-- 	<li><a data-href="${pageContext.request.contextPath}/jy_project/findAll_category.do" data-title="教研项目管理">教研项目申报</a></li>
 						 --%>
-						<li><a data-href="${pageContext.request.contextPath}/jy_project/Jiaogai_Lev.do" data-title="教改项目管理">教改项目申报</a></li>
-						<li><a data-href="${pageContext.request.contextPath}/jy_project/Zhuanye_Lev.do" data-title="专业项目管理">专业项目申报</a></li>
-						<li><a data-href="${pageContext.request.contextPath}/jy_project/Kecheng_Lev.do" data-title="课程项目管理">课程项目申报</a></li>
-						<li><a data-href="${pageContext.request.contextPath}/jy_project/Huojiang_Lev.do" data-title="获奖项目管理">获奖项目申报</a></li>
-						
-						<li><a data-href="${pageContext.request.contextPath}/jy_book/FindBookLev.do" data-title="教材业绩管理">教材项目申报 </a></li>
-						<li><a data-href="${pageContext.request.contextPath}/jy_project/lunwen_Lev.do" data-title="论文业绩录入">论文业绩录入</a></li>
-						<li><a data-href="${pageContext.request.contextPath}/jy_pingtai/FindAll_lev.do" data-title="教研平台业绩申报">教研平台业绩录入</a></li>
+						<li><a data-href="${pageContext.request.contextPath}/jy_project/Jiaogai_findAllById.do?id=${sessionScope.user.user_Id}" data-title="教改项目管理">教改项目申报</a></li>
+						<li><a data-href="${pageContext.request.contextPath}/jy_project/Zhuanye_findAllById.do?id=${sessionScope.user.user_Id}" data-title="专业项目管理">专业项目申报</a></li>
+						<li><a data-href="${pageContext.request.contextPath}/jy_project/Kecheng_findAllById.do?id=${sessionScope.user.user_Id}" data-title="课程项目管理">课程项目申报</a></li>
+						<li><a data-href="${pageContext.request.contextPath}/jy_project/Huojiang_findAllById.do?id=${sessionScope.user.user_Id}" data-title="获奖项目管理">获奖项目申报</a></li>
+						<li><a data-href="${pageContext.request.contextPath}/jy_book/book_findAllById.do?id=${sessionScope.user.user_Id}" data-title="教材业绩管理">教材项目申报 </a></li>
+						<li><a data-href="${pageContext.request.contextPath}/jy_project/lunwen_findAllById.do?id=${sessionScope.user.user_Id}" data-title="论文业绩录入">论文业绩录入</a></li>
+						<li><a data-href="${pageContext.request.contextPath}/jy_pingtai/pingtai_findAllById.do?id=${sessionScope.user.user_Id}" data-title="教研平台业绩申报">教研平台业绩录入</a></li>
 					</ul>
 				</dd>
 			</dl>
@@ -85,8 +84,7 @@
 					<li><a
 						data-href="../jsp/jy_record.jsp"
 						data-title="查看申报记录">查看申报记录</a></li>
-				</ul>
-					
+				</ul>	
 			</dd>
 		</dl>
 			<dl>
@@ -102,7 +100,7 @@
 					</ul>
 			</dd>
 			</dl>
-			<dl>
+			<%-- <dl>
 			<dt>
 				<i class="Hui-iconfont"></i>参数管理<i
 					class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
@@ -114,7 +112,7 @@
 						data-title="图表查看">参数管理</a></li>
 					</ul>
 			</dd>
-			</dl>
+			</dl> --%>
 		</div>
 	</aside>
 	<div class="dislpayArrow hidden-xs">
