@@ -44,6 +44,13 @@ public class GpaDistrController {
 		mv.setViewName("record-list");
 		return mv;
 	}
+	@RequestMapping("/upload.do")
+	public ModelAndView testupload(ModelMap model)
+			throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("uploadtest");
+		return mv;
+	}
      
 		
 //		///保留无用代码

@@ -4,27 +4,25 @@ import java.util.Date;
 
 public class User {
 	private String user_Id;
-	private String department_Id;
+	private Integer department_Id;
 	private String user_password;
 	private String user_name;
-	private Integer user_gender;
-	private String user_post;
+	private String salt;//???
 	private String user_phone;
 	private String user_email;
-	private Date user_birthday;
-	private String user_college;
+	private Date create_time;
 	private Integer user_active;
-	private Integer user_Permissions;
+	private Integer is_admin;
 	public String getUser_Id() {
 		return user_Id;
 	}
 	public void setUser_Id(String user_Id) {
 		this.user_Id = user_Id;
 	}
-	public String getDepartment_Id() {
+	public Integer getDepartment_Id() {
 		return department_Id;
 	}
-	public void setDepartment_Id(String department_Id) {
+	public void setDepartment_Id(Integer department_Id) {
 		this.department_Id = department_Id;
 	}
 	public String getUser_password() {
@@ -39,18 +37,6 @@ public class User {
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
 	}
-	public Integer getUser_gender() {
-		return user_gender;
-	}
-	public void setUser_gender(Integer user_gender) {
-		this.user_gender = user_gender;
-	}
-	public String getUser_post() {
-		return user_post;
-	}
-	public void setUser_post(String user_post) {
-		this.user_post = user_post;
-	}
 	public String getUser_phone() {
 		return user_phone;
 	}
@@ -63,29 +49,30 @@ public class User {
 	public void setUser_email(String user_email) {
 		this.user_email = user_email;
 	}
-	public Date getUser_birthday() {
-		return user_birthday;
-	}
-	public void setUser_birthday(Date user_birthday) {
-		this.user_birthday = user_birthday;
-	}
-	public String getUser_college() {
-		return user_college;
-	}
-	public void setUser_college(String user_college) {
-		this.user_college = user_college;
-	}
+	
 	public Integer getUser_active() {
 		return user_active;
 	}
 	public void setUser_active(Integer user_active) {
 		this.user_active = user_active;
 	}
-	public Integer getUser_Permissions() {
-		return user_Permissions;
+	public String getSalt() {
+		return salt;
 	}
-	public void setUser_Permissions(Integer user_Permissions) {
-		this.user_Permissions = user_Permissions;
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+	public Date getCreate_time() {
+		return create_time;
+	}
+	public void setCreate_time(Date create_time) {
+		this.create_time = create_time;
+	}
+	public Integer getIs_admin() {
+		return is_admin;
+	}
+	public void setIs_admin(Integer is_admin) {
+		this.is_admin = is_admin;
 	}
 	
 	}
