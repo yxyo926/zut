@@ -15,7 +15,7 @@ public interface IUserDao {
 	@Select("select * from user")
 	public List<User> findAll();
 	//根据ID找对象
-    @Select("select * from user where user_Id=#{username}")
+    @Select("select * from sys_user where user_Id=#{username}")
 	public User findByUsername(String username);
      //根据id查对象
   	@Select("select * from sys_user where user_id=#{id}")

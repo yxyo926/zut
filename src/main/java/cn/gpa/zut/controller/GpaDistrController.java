@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.gpa.zut.domain.GpaDistr;
@@ -48,8 +50,16 @@ public class GpaDistrController {
 	public ModelAndView testupload(ModelMap model)
 			throws Exception {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("uploadtest");
+		mv.setViewName("testupload");
 		return mv;
+	}
+	@RequestMapping("/save.do")
+	@ResponseBody
+	public String save(@RequestParam(required = false,value="files")MultipartFile[] files )
+			throws Exception {
+		System.out.println(files.length);
+
+		return "dd";
 	}
      
 		

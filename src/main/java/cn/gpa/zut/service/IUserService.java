@@ -8,6 +8,6 @@ public interface IUserService {
 
 	List<User> findAll();
 	
-	User checkLogin(String username,String password);
+	User checkLogin(String id);
 
 }

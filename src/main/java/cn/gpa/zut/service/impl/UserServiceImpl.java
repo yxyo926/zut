@@ -21,10 +21,10 @@ public class UserServiceImpl implements IUserService {
 		return userDao.findAll();
 	}
 	@Override
-	 public User checkLogin(String username, String password) {
+	 public User checkLogin(String id) {
 	        
-	        User user = userDao.findByUsername(username);
-	        if(user != null && user.getUser_password().equals(password)){
+	        User user = userDao.findById(id);
+	        if(user != null && user.getUser_Id().equals(id)){
 	        
 	            return user;
 	        }

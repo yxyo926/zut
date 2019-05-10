@@ -125,7 +125,7 @@
 			<dd>
 				<ul>
 					<li><a
-						data-href="${pageContext.request.contextPath}/gpadistr/upload"
+						data-href="${pageContext.request.contextPath}/gpadistr/upload.do"
 						data-title="查看申报记录">查看申报记录</a></li>
 				</ul>
 			</dd>

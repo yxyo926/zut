@@ -32,7 +32,7 @@ public class UserController {
     @RequestMapping("/checkLogin.do")
     public String checkLogin(User user,Model model){
         //调用service方法
-        user = userServivce.checkLogin(user.getUser_Id(), user.getUser_password());
+        user = userServivce.checkLogin(user.getUser_Id());
         System.out.println(user.getUser_Id());
         System.out.println(user.getUser_password());
         //若有user则添加到model里并且跳转到成功页面
@@ -48,7 +48,7 @@ public class UserController {
         //调用service方法
     	user.setUser_Id(userId);
     	user.setUser_password(ps);
-        user = userServivce.checkLogin(user.getUser_Id(), user.getUser_password());
+        user = userServivce.checkLogin(user.getUser_Id());
         System.out.println(user.getUser_Id());
         System.out.println(user.getUser_password());
         //若有user则添加到model里并且跳转到成功页面
