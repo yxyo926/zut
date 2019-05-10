@@ -28,7 +28,7 @@
 		</div>
 
 	<article class="page-container">
-	<form class="form form-horizontal" id="">
+	<form class="form form-horizontal" id="" action="${pageContext.request.contextPath}/wenyi/Add_chuban.do" method="Post">
 		
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span
@@ -42,9 +42,9 @@
 		<label class="form-label col-xs-4 col-sm-2"><span
 				class="c-red">*</span>类型：</label>
 			<div class="formControls col-xs-6 col-sm-3">
-				<span class="select-box"> <select name="select_lev" class="select">
-							<option value="">学术类型</option>
-							<option value="">非学术类型</option>
+				<span class="select-box"> <select name="project_type" class="select">
+							<option value="1">学术类型</option>
+							<option value="0">非学术类型</option>
 				</select>
 				</span>
 			</div>
@@ -54,45 +54,74 @@
 		<label class="form-label col-xs-4 col-sm-2"><span
 				class="c-red">*</span>非学术类等级：</label>
 			<div class="formControls col-xs-6 col-sm-3">
-				<span class="select-box"> <select name="select_xueshu" class="select">
-							<option value="1200">国家级刊物</option>
-							<option value="650">省级刊物</option>
+				<span class="select-box"> <select name="lev_select" class="select">
+							<option value="">---请选择---</option>
+				<c:forEach items="${Fxueshu_lev}" var="Fxueshu_lev">
+					<option value="${Fxueshu_lev.project_id} ">${Fxueshu_lev.projectlev_name}</option>		
+				</c:forEach>
+				</select>
+				</span>
+			</div>
+		</div>
+		<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-2"><span
+				class="c-red">*</span>中原工学院署名：</label>
+			<div class="formControls col-xs-6 col-sm-3">
+				<span class="select-box"> <select name="wy_zutsign" class="select">
+							<option value="">---请选择---</option>
+				<c:forEach items="${wy_zutsign}" var="wy_zutsign">
+					<option value="${wy_zutsign.project_id} ">${wy_zutsign.projectlev_name}</option>		
+				</c:forEach>
+				</select>
+				</span>
+			</div>
+		</div>
+		<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-2"><span
+				class="c-red">*</span>立项：</label>
+			<div class="formControls col-xs-6 col-sm-3">
+				<span class="select-box"> <select name="builed_lev" class="select">
+							<option value="">---请选择---</option>
+					<c:forEach items="${builed_lev}" var="builed_lev">
+						<option value="${builed_lev.project_id} ">${builed_lev.projectlev_name}</option>		
+					</c:forEach>
+				</select>
+				</span>
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span
+				class="c-red">*</span>出版社名称：</label>
+			<div class="formControls col-xs-8 col-sm-3">
+				<input type="text" class="input-text radius size-S" value=""
+					placeholder="" id="" name="press_name">
+			</div>
+			
+		</div>
+		<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-2"><span
+				class="c-red">*</span>出版社等级：</label>
+			<div class="formControls col-xs-6 col-sm-3">
+				<span class="select-box"> <select name="press_lev" class="select">
+							<option value="">---请选择---</option>
+				<c:forEach items="${press_lev}" var="press_lev">
+					<option value="${press_lev.project_id} ">${press_lev.projectlev_name}</option>		
+				</c:forEach>
 				</select>
 				</span>
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span
-				class="c-red">*</span>第一署名：</label>
-			<div class="formControls col-xs-8 col-sm-3">
-				<input type="text" class="input-text radius size-S" value=""
-					placeholder="" id="" name="">
-			</div>
-		</div>
-		<div class="row cl">
-
-			<label class="form-label col-xs-4 col-sm-2"><span
-				class="c-red">*</span>第二署名：</label>
-			<div class="formControls col-xs-8 col-sm-3">
-				<input type="text" class="input-text radius size-S" value=""
-					placeholder="" id="" name="">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span
-				class="c-red">*</span>出版社名称：</label>
-			<div class="formControls col-xs-8 col-sm-3">
-				<input type="text" class="input-text radius size-S" value=""
-					placeholder="" id="" name="">
-			</div>
-			
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span
 				class="c-red">*</span>期刊名称：</label>
 			<div class="formControls col-xs-8 col-sm-3">
-				<input type="text" class="input-text radius size-S" value=""
-					placeholder="" id="" name="">
+			<span class="select-box"> <select name="qk_name" class="select">
+							<option value="">---请选择---</option>
+				<c:forEach items="${qk_name}" var="qk_name">
+					<option value="${qk_name.project_id} ">${qk_name.projectlev_name}</option>		
+				</c:forEach>
+				</select>
 			</div>
 			
 		</div>
@@ -101,7 +130,7 @@
 				class="c-red">*</span>期刊期数：</label>
 			<div class="formControls col-xs-8 col-sm-3">
 				<input type="text" class="input-text radius size-S" value=""
-					placeholder="" id="" name="">
+					placeholder="" id="" name="qk_num">
 			</div>
 			
 		</div>
@@ -110,17 +139,18 @@
 				class="c-red">*</span>作品页数/曲数：</label>
 			<div class="formControls col-xs-8 col-sm-3">
 				<input type="text" class="input-text radius size-S" value=""
-					placeholder="" id="" name="">
+					placeholder="" id="" name="zp_num">
 			</div>
 		</div>
 		<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-2"><span
 				class="c-red">*</span>页面大小：</label>
 			<div class="formControls col-xs-6 col-sm-3">
-				<span class="select-box"> <select name="" class="select">
-							<option value="1200">16Kb及以上</option>
-							<option value="650">32Kb及以上</option>
-							<option value="15000">专辑</option>
+				<span class="select-box"> <select name="Zp_size" class="select">
+							<option value="">---请选择---</option>
+				<c:forEach items="${zp_size}" var="zp_size">
+					<option value="${zp_size.project_id} ">${zp_size.projectlev_name}</option>		
+				</c:forEach>
 				</select>
 				</span>
 			</div>
@@ -130,16 +160,25 @@
 			<label class="form-label col-xs-4 col-sm-2"><span
 				class="c-red">*</span>出版时间：</label> 
 				<input type="text" onfocus="WdatePicker()"
-				id="logmin" class="input-text Wdate" style="width: 120px;">
+				id="logmin" name="CB_time" class="input-text Wdate" style="width: 120px;">
 			
 		</div>
-
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span
-				class="c-red">*</span>文件上传：</label> 
-				<input type="file"  name="pictureFile"/> 
+					class="c-red">*</span>用户组：</label>
+			<div class="formControls col-xs-6 col-sm-4">
+					<input type="text" class="input-text" value="" placeholder=""
+					   id="userteam_name" name="userteam_name">
+			</div>
+			<label class="form-label col-xs-4 col-sm-2"><span
+					class="c-red">*</span>用户组人数：</label>
+			<div class="formControls col-xs-8 col-sm-4">
+				<input type="text" class="input-text" value="" placeholder=""
+					   id="userteam_num" name="userteam_num">
+
+			</div>
 		</div>
-		
+
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
 				<button	class="btn btn-primary radius" type="submit">下一步</button>

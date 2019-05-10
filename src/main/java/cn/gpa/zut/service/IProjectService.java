@@ -9,5 +9,6 @@ public interface IProjectService {
 	List<Project> findAll() throws Exception;
 	void save(Project project)throws Exception;
 	List<Project> findAllById(String id);
-	Project   findAllByPaper(String paperId);
+	Project   findById(String id);
+	void update(Project project);
 }

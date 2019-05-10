@@ -16,6 +16,7 @@ import cn.gpa.zut.domain.JY_ProjectLev;
 import cn.gpa.zut.domain.JY_Record;
 import cn.gpa.zut.domain.JY_ZhuanYe;
 import cn.gpa.zut.domain.JY_jiaogai;
+import cn.gpa.zut.domain.Paper;
 
 
 
@@ -36,9 +37,10 @@ public interface JY_ProjectDao {
 		@Select("select projectlev_khgpa from tch_projectlev where project_id='${project_id}' ")
 		public double findKhgpaByprojectId(@Param("project_id")String project_id)throws Exception;
 
-		@Insert("insert into tch_record(record_id,record_sort,record_project_id,record_sbtime,record_state,team_id,Record_local) "
-				+ "value(#{Record_id},#{record_sort},#{record_project_id},#{record_sbtime},#{state},#{team_id},#{Record_local})")
+		@Insert("insert into tch_record(record_id,record_sort,record_project_id,record_sbtime,record_state,record_local,record_piont) "
+				+ "value(#{record_id},#{record_sort},#{record_project_id},#{record_sbtime},#{state},#{Record_local},#{record_piont})")
 		Boolean Add_Record(JY_Record jy_record)throws Exception;
+		
 		
 		
 		
@@ -48,7 +50,7 @@ public interface JY_ProjectDao {
 		
 		
 		@Insert("insert into tch_majorinfo(project_id,projectlev_id,majorinfo_name,majorinfo_mname,majorinfo_college,majorinfo_starttime,majorinfo_endtime,majorinfo_place) "
-				+ "value(#{majorinfo_id},#{projectlev_id},#{majorinfo_name},#{majorinfo_mname},#{majorinfo_college},#{majorinfo_starttime},#{majorinfo_endtime},#{majorinfo_place})")
+				+ "value(#{project_id},#{projectlev_id},#{majorinfo_name},#{majorinfo_mname},#{majorinfo_college},#{majorinfo_starttime},#{majorinfo_endtime},#{majorinfo_place})")
 		Boolean Add_ZhuanYe(JY_ZhuanYe zhuanye)throws Exception;
 		
 		
@@ -60,15 +62,22 @@ public interface JY_ProjectDao {
 		@Insert("insert into tch_rewardinfo(rewardinfo_id,projectlev_id,rewardinfo_name,rewardinfo_organizename,rewardinfo_gettime,rewardinfo_place) "
 				+ "value(#{rewardinfo_id},#{projectlev_id},#{rewardinfo_name},#{rewardinfo_organizename},#{rewardinfo_gettime},#{rewardinfo_place})")
 		Boolean Add_HuoJiang(JY_HuoJiang huojiang)throws Exception;
+		
+		@Insert("insert into tch_paperinfo(paperinfo_Id,paperinfo_Author,paperinfo_Name,paperinfo_ISSN,paperinfo_Time,paperinfo_Lev,paperinfo_orglev)"
+				+ " values(#{paperinfo_id},#{paperinfo_author},#{paperinfo_name},#{paperinfo_ISSN},#{paperinfo_time},#{project_id},#{rewardinfo_organizename})")
+		Boolean Add_LunWen(JY_Lunwen lunwen)throws Exception;
+		
+		
+		
+		
 		//查询名下信息
-		@Select("select paperinfo_id,project_id,paperinfo_name,paperinfo_author,"
-				+ "paperinfo_ISSN,record_piont,userteam_getGpa "
-				+ "from tch_paperinfo inner join tch_record on" + 
-				" tch_paperinfo.paperinfo_id=tch_record.record_project_id INNER JOIN sci_gpadistr on "
-				+ "tch_record.record_Id=sci_gpadistr.record_id and sci_gpadistr.user_Id=#{id}")
+		@Select("select paperinfo_Id,paperinfo_Author,paperinfo_Name,"
+				+ "paperinfo_ISSN,paperinfo_Time,paperinfo_Lev,paperinfo_orglev, record_piont,userteam_getGpa from tch_paperinfo inner join tch_record "
+				+ "on tch_paperinfo.paperinfo_Id=tch_record.record_project_id INNER JOIN "
+				+ "tch_gpadistr on tch_record.record_id=tch_gpadistr.record_id and tch_gpadistr.user_Id=#{id}")
 		@Results({
 	    	@Result(id = true, property = "paperinfo_id", column = "paperinfo_id"),
-	        @Result(property = "project_id", column = "project_id"),
+//	        @Result(property = "project_id", column = "project_id"),
 	        @Result(property = "paperinfo_name", column = "paperinfo_name"),
 	        @Result(property = "paperinfo_author", column = "paperinfo_author"),
 	        @Result(property = "paperinfo_ISSN", column = "paperinfo_ISSN"),
@@ -78,11 +87,10 @@ public interface JY_ProjectDao {
 		List<JY_Lunwen> findLunwenById(String id); 
 		
 		@Select("select classinfo_id,project_lev,classinfo_name,classinfo_majorname,"			
-				+ "classinfo_belongs,classinfo_starttime,classinfo_endtime,classinfo_place"
-				+ ",record_piont,userteam_getGpa"
+				+ "classinfo_belongs,classinfo_starttime,classinfo_endtime,classinfo_place,record_piont,userteam_getGpa"
 				+ " from tch_classinfo inner join tch_record on " + 
-				"tch_classinfo.classinfo_id=tch_record.record_project_id INNER JOIN sci_gpadistr on "
-				+ "tch_record.record_Id=sci_gpadistr.record_id and sci_gpadistr.user_Id=#{id}")
+				"tch_classinfo.classinfo_id=tch_record.record_project_id INNER JOIN tch_gpadistr on "
+				+ "tch_record.record_id=tch_gpadistr.record_id and tch_gpadistr.user_Id=#{id}")
 	    @Results({
 	    	@Result(id = true, property = "classinfo_id", column = "classinfo_id"),
 	        @Result(property = "classinfo_lev", column = "project_lev"),
@@ -98,11 +106,10 @@ public interface JY_ProjectDao {
 		List<JY_KeCheng> findKechengById(String id); 
 		
 		@Select("select rewardinfo_id,rewardinfo_name,projectlev_id,rewardinfo_gettime,"		
-			+ "rewardinfo_organizename ,rewardinfo_place,"
-			+"record_piont,userteam_getGpa"
+			+ "rewardinfo_organizename ,rewardinfo_place,record_piont,userteam_getGpa"
 		        + " from tch_rewardinfo inner join tch_record on" + 
-			" tch_rewardinfo.rewardinfo_id=tch_record.record_project_id INNER JOIN sci_gpadistr on "
-			+ "tch_record.record_Id=sci_gpadistr.record_id and sci_gpadistr.user_Id=#{id}")
+			" tch_rewardinfo.rewardinfo_id=tch_record.record_project_id INNER JOIN tch_gpadistr on "
+			+ "tch_record.record_id=tch_gpadistr.record_id and tch_gpadistr.user_Id=#{id}")
        @Results({
     	@Result(id = true, property = "rewardinfo_id", column = "rewardinfo_id"),
         @Result(property = "rewardinfo_name", column = "rewardinfo_name"),
@@ -119,8 +126,8 @@ public interface JY_ProjectDao {
 			+ "reforminfo_sort, reforminfo_starttime,reforminfo_finishtime,"
 			+"reforminfo_place,reforminfo_getGpa,record_piont,userteam_getGpa"
 		        + " from tch_reforminfo inner join tch_record on " + 
-			"tch_reforminfo.project_id=tch_record.record_project_id INNER JOIN sci_gpadistr on "
-			+ "tch_record.record_Id=sci_gpadistr.record_id and sci_gpadistr.user_Id=#{id}")
+			"tch_reforminfo.project_id=tch_record.record_project_id INNER JOIN tch_gpadistr on "
+			+ "tch_record.record_id=tch_gpadistr.record_id and tch_gpadistr.user_Id=#{id}")
     @Results({
     	@Result(id = true, property = "reforminfo_id", column = "project_id"),
         @Result(property = "projectlev_id", column = "projectlev_id"),
@@ -138,8 +145,8 @@ public interface JY_ProjectDao {
 				+ "majorinfo_mname,majorinfo_college,majorinfo_starttime,"
 				+"majorinfo_endtime,majorinfo_place,record_piont,userteam_getGpa"
 			        + " from tch_majorinfo inner join tch_record on " + 
-				"tch_majorinfo.project_id=tch_record.record_project_id INNER JOIN sci_gpadistr on "
-				+ "tch_record.record_Id=sci_gpadistr.record_id and sci_gpadistr.user_Id=#{id}")
+				"tch_majorinfo.project_id=tch_record.record_project_id INNER JOIN tch_gpadistr on "
+				+ "tch_record.record_id=tch_gpadistr.record_id and tch_gpadistr.user_Id=#{id}")
 	    @Results({
 	    	@Result(id = true, property = "project_id", column = "project_id"),
 	        @Result(property = "projectlev_id", column = "projectlev_id"),

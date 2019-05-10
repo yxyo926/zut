@@ -6,17 +6,18 @@ package cn.gpa.zut.domain;
  */
 public class Ftp {
 
-	private String ipAddr;
+	private static String ipAddr;
 	
 	private Integer port;//
 	
-	private String userName;//
+	private static String userName;//
 	
-	private String pwd;//
+	private static String pwd;//
 	
-	private String path;//
+	private static String path;//
 
-	public String getIpAddr() {
+	public static String getIpAddr() {
+		ipAddr="119.23.12.86";
 		return ipAddr;
 	}
 
@@ -25,6 +26,7 @@ public class Ftp {
 	}
 
 	public Integer getPort() {
+		port=21;
 		return port;
 	}
 
@@ -32,7 +34,8 @@ public class Ftp {
 		this.port = port;
 	}
 
-	public String getUserName() {
+	public static String getUserName() {
+		userName="test";
 		return userName;
 	}
 
@@ -40,7 +43,8 @@ public class Ftp {
 		this.userName = userName;
 	}
 
-	public String getPwd() {
+	public static String getPwd() {
+		pwd="123456";
 		return pwd;
 	}
 
@@ -48,7 +52,7 @@ public class Ftp {
 		this.pwd = pwd;
 	}
 
-	public String getPath() {
+	public static String getPath() {
 		return path;
 	}
 

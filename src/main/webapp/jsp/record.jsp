@@ -27,13 +27,14 @@
 					class="c-red">*</span>记录编号：</label>
 				<div class="formControls col-xs-4 col-sm-2">
 					<input type="text" class="input-text" name="record_Id"
-						id="record_id" readonly="true" value="${sessionScope.recordId}">
+						id="record_id" readonly="true"
+						value="${sessionScope.record.record_Id}">
 				</div>
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>信息编号：</label>
 				<div class="formControls col-xs-4 col-sm-2">
 					<input type="text" class="input-text"
-						value="${sessionScope.infoId}" placeholder="" id="info_id"
+						value="${sessionScope.infoID}" placeholder="" id="info_id"
 						readonly="true" name="recordinfo_id">
 				</div>
 			</div>
@@ -78,7 +79,7 @@
 					class="input-file">
 				</span>
 			</div>
-			
+
 			<div id="div"></div>
 			<div class="row cl">
 				<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
@@ -95,7 +96,7 @@
 				</div>
 			</div>
 		</form>
-		
+
 	</article>
 
 	<jsp:include page="frame/footer.jsp"></jsp:include>

@@ -25,7 +25,7 @@
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>信息编号：</label>
 				<div class="formControls col-xs-8 col-sm-4">
-					<input type="text" class="input-text" value="${sessionScope.infoId}" placeholder=""
+					<input type="text" class="input-text" value="${sessionScope.infoID}" placeholder=""
 						readonly="true" id="" name="plateforminfo_id">
 				</div>
 			</div>
@@ -35,7 +35,6 @@
 				<div class="formControls col-xs-3 col-sm-4">
 					<input type="text" class="input-text radius size-S" value="${sessionScope.user.user_name}"
 						readonly="true"  placeholder="" id="" name="paperinfo_Author">
-				
 				<input type="hidden" class="input-text radius size-S" value="${sessionScope.user.user_Id}"
 						readonly="true"  placeholder="" id="" name="plateforminfo_organize">
 						</div>
@@ -44,28 +43,18 @@
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>平台名称：</label>
 				<div class="formControls col-xs-3 col-sm-4">
-					<input type="text" class="input-text radius size-S" value=""
+					<input type="text" class="input-text radius size-S" value="${sessionScope.object.plateforminfo_name}"
 						placeholder="" id="" name="plateforminfo_name">
 				</div>
 			</div>
 			<div class="row cl">
-				<!-- <label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>论文类别：</label>
-				<div class="formControls col-xs-8 col-sm-3">
-					<span class="select-box"> <select name="paperinfo_sort" class="select">
-							<option value="1">自然科学</option>
-							<option value="2">人文科学</option>
-					</select>
-					</span>
-				</div> -->
-
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>平台级别：</label>
 				<div class="formControls col-xs-6 col-sm-4">
 					<span class="select-box"> <select name="plateforminfo_lev"
 						class="select">
-							<c:forEach items="${dictParas}" var="para">
-								<option value="${para.dictpara_id}">${para.dictpara_lev}</option>
+							<c:forEach items="${typesort}" var="para">
+								<option value="${para.id}">${para.name}</option>
 							</c:forEach>
 					</select>
 					</span>
@@ -76,7 +65,7 @@
 					class="c-red">*</span>获准时间：</label>
 				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text"
-						onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})"
+						onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"
 						id="datemin" class="input-text Wdate" name="plateforminfo_starttime">
 				</div>
 			</div>
@@ -85,7 +74,7 @@
 					class="c-red">*</span>结束时间：</label>
 				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text"
-						onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})"
+						onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"
 						id="datemin" class="input-text Wdate" name="plateforminfo_finishtime">
 				</div>
 			</div>

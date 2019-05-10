@@ -37,7 +37,7 @@
 			<span class="l"> <a href="javascript:;" onclick="datadel()"
 				class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i>
 					删除记录</a> <a class="btn btn-primary radius" href="javascript:;"
-				onclick="location.href='${pageContext.request.contextPath}/project/getSort.do'"><i
+				onclick="location.href='${pageContext.request.contextPath}/jy_pingtai/FindAll_lev.do'"><i
 					class="Hui-iconfont">&#xe600;</i> 添加记录</a>
 			</span> <span class="r">共有数据：<strong><c:out
 						value="${fn:length(projectList)}"></c:out></strong> 条
@@ -57,6 +57,7 @@
 						<th width="auto">开始时间</th>
 						<th width="auto">完成时间</th>
 						<th with="auto">总业绩点</th>
+						<th with="auto">个人业绩点</th>
 						<th with="auto">操作</th>
 					</tr>
 				</thead>
@@ -71,7 +72,7 @@
 							<td>${plateform.plateforminfo_organize}</td>
 							<td class="text-center">${plateform.plateforminfo_starttime}</td>
 							<td class="text-center">${plateform.plateforminfo_finishtime}</td>
-<%-- 							<td class="text-center">${plateform.record_point}</td> --%>
+							<td class="text-center">${plateform.record_piont}</td>
 							<td class="text-center">${plateform.gpaDistr}</td>
 							<td class="text-center">
 								<button type="button" class="btn bg-olive btn-xs">修改</button>

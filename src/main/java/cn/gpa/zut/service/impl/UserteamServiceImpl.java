@@ -34,4 +34,16 @@ public class UserteamServiceImpl implements IUserteamService {
 		userteamDao.save(userteam);
 	}
 
+	@Override
+	public Userteam findByRecordId(String record_Id) {
+		// TODO Auto-generated method stub
+		return userteamDao.findByRecordId(record_Id);
+	}
+
+	@Override
+	public Userteam findById(String userteamID) {
+		// TODO Auto-generated method stub
+		return userteamDao.findById(userteamID);
+	}
+
 }

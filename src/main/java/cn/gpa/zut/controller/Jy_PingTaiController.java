@@ -36,7 +36,7 @@ import cn.gpa.zut.utils.UUIDUtils;
 
 @Controller
 @RequestMapping("/jy_pingtai")
-@SessionAttributes(value = { "infoId", "Userteam", "totalGpa", "recordId", "sort" })
+@SessionAttributes(value = { "infoId", "Userteam", "totalGpa", "record", "sort"})
 public class Jy_PingTaiController {
 	@Autowired
 	private Jy_PingTaiService jy_pingtaiservice;
@@ -58,11 +58,6 @@ public class Jy_PingTaiController {
 					@RequestMapping("/gpadistribute.do")
 					public ModelAndView gpaDistribute(Userteam userteam) throws Exception {
 						ModelAndView mv = new ModelAndView();
-						// mv.addObject("userteam", userteam);
-						/*
-						 * request.setAttribute("userteam_name", "zfy");
-						 * request.setAttribute("userteam_num", "10");
-						 */
 						List<User> users = userService.findAll();
 						mv.addObject("users", users);
 						System.out.println("分配页面出现了");
@@ -72,37 +67,34 @@ public class Jy_PingTaiController {
 					// 保存业绩点分配记录
 					@RequestMapping("/gpasave.do")
 					public String saveUsers(ModelMap model, @ModelAttribute("Userteam") Userteam uerUserteam,
-							SessionStatus sessionStatus, @ModelAttribute("form") Paper paper) {
-						UUIDUtils uuidUtils = new UUIDUtils();
-						String recordString = uuidUtils.getUUID();
-						List<GpaDistr> gpaDistrs = paper.getGpaDistrs();
-						for (int i = 0; i < gpaDistrs.size(); i++) {
-							String uuidString = uuidUtils.getUUID();
-							GpaDistr gpaDistr = paper.getGpaDistrs().get(i);
+							SessionStatus sessionStatus, @ModelAttribute("form") Allot allot, @ModelAttribute("record") JY_Record  record) {
+						
+						UUIDUtils uuidUtils = new UUIDUtils();//分配id
+						List<GpaDistr> gpaDistrs = allot.getGpaDistrs();						
+						for (int i = 0; i < gpaDistrs.size(); i++) {		
+							String uuidString = uuidUtils.getUUID();							
+							GpaDistr gpaDistr = allot.getGpaDistrs().get(i);
 							gpaDistr.setGpadistr_id(uuidString);
-							gpaDistr.setRecord_id(recordString);
-							gpaDistr.setUserteam_id(uerUserteam.getUserteam_id());
-							System.out.println(gpaDistr.getUser_Id());
-							gpaDistrService.save(gpaDistr);
+							gpaDistr.setRecord_id(record.getRecord_id());							
+							gpaDistr.setUserteam_id(uerUserteam.getUserteam_id());							
+							gpaDistrService.tch_save(gpaDistr);
 						}
-						model.addAttribute("recordId", recordString);
+
 						System.out.println("业绩点保存了");
-
 						return "record";
-
 					}
 
 					@RequestMapping("/record.do")
 					public ModelAndView record() throws Exception {
 						ModelAndView mv = new ModelAndView();
-						mv.setViewName("record");
+						mv.setViewName("jy_record");
 						return mv;
 					}
 
 					// 凭证提交
 					@RequestMapping("/recordsave.do")
 					//@ResponseBody
-					public String saveRecord(MultipartFile file, Record record, HttpServletRequest request) throws IllegalStateException, IOException {
+					public String saveRecord(MultipartFile file, @ModelAttribute("record") JY_Record  record, HttpServletRequest request) throws Exception {
 						HttpSession session = request.getSession(true);
 						
 						SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSS");
@@ -129,18 +121,19 @@ public class Jy_PingTaiController {
 						//文件名
 						rfilename=newFileName;
 						// 完整的url
-						
 						fileUrl = date.get(Calendar.YEAR) + "/" + (date.get(Calendar.MONTH) + 1) + "/" + newFileName;
 						System.out.println(fileUrl);
+						record.setRecord_local(fileUrl);
+						jy_projectservice.Add_Record(record);
 						session.removeAttribute("Userteam");
 						session.removeAttribute("infoId");
 						session.removeAttribute("totalGpa");
 						session.removeAttribute("recordId");
 						System.out.println(fileUrl);
-						record.setRecord_proof(fileUrl);
-						recordService.save(record);
 						//return "redirect:findAll.do";
-						return "redirect:downshow.do";
+						User user=(User) session.getAttribute("user");
+						
+						return "redirect:pingtai_findAllById.do?id="+user.getUser_Id();
 
 					}
 					
@@ -150,7 +143,6 @@ public class Jy_PingTaiController {
 						mv.setViewName("fail");
 						return mv;
 					}
-					
 					 @RequestMapping("/down.do")  
 				     public void down(HttpServletRequest request,HttpServletResponse response) throws Exception{  
 				        
@@ -159,13 +151,9 @@ public class Jy_PingTaiController {
 				         InputStream bis = new BufferedInputStream(new FileInputStream(new File(fileName)));  
 				           
 				         String filename = rfilename ;  
-				         
-				         filename = URLEncoder.encode(rfilename,"UTF-8");  
-				         
+				         filename = URLEncoder.encode(rfilename,"UTF-8");  				         
 				         response.addHeader("Content-Disposition", "attachment;filename=" + filename);    
-				             
 				         response.setContentType("multipart/form-data");   
-				         
 				         BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());  
 				         int len = 0;  
 				         while((len = bis.read()) != -1){  
@@ -174,12 +162,7 @@ public class Jy_PingTaiController {
 				         }  
 				         out.close();  
 				     }
-				     //wotai
-	
-	
-	
-	
-	
+
 	@RequestMapping("/FindAll_lev.do")
 	public ModelAndView findLevBycategory() throws Exception{
 		ModelAndView mv=new ModelAndView();
@@ -189,6 +172,7 @@ public class Jy_PingTaiController {
 		return mv;
 		
 	}
+	
 	
 	//展示表格
 	   @RequestMapping("/pingtai_findAllById.do")
@@ -207,8 +191,7 @@ public class Jy_PingTaiController {
 	}
 	   
 	   
-	   
-	   
+	
 	
 	//提交教学平台信息
 		@RequestMapping("/Add_pingtai.do")
@@ -229,8 +212,8 @@ public class Jy_PingTaiController {
 			System.out.println("平台等级id"+pingtai_lev);
 			System.out.println("平台kaohe_lev值"+kaohe_lev);
 			
-			String id=UUID.randomUUID().toString(); 
-			jy_pt.setPlateforminfo_id(id);
+			String project_id=UUID.randomUUID().toString(); 
+			jy_pt.setPlateforminfo_id(project_id);
 			jy_pt.setPlateforminfo_name(pt_name);
 			jy_pt.setPlateforminfo_type(pt_type);
 			jy_pt.setPlateforminfo_organize(pt_place);
@@ -240,24 +223,24 @@ public class Jy_PingTaiController {
 			jy_pt.setPlateforminfo_finishtime(finishtime);
 			
 			jy_pingtaiservice.Add_pingtai(jy_pt);
-			
-			String project_record=UUID.randomUUID().toString();
-			Date sbtime=new Date();
-			String tablename="tch_reforminfo";
-			JY_Record jy_record=new JY_Record();
-			jy_record.setRecord_id(project_record);
-			jy_record.setRecord_project_id(id);
-			jy_record.setRecord_sort(tablename);
-			jy_record.setRecord_sbtime(sbtime);
-			jy_record.setState(0);
-			
-			jy_projectservice.Add_Record(jy_record);
 			Double sumGpa = sumGPA(pingtai_lev,kaohe_lev);
+			
+			String tablename="tch_plateforminfo";
+			JY_Record jy_record=new JY_Record();
+			String record_id=UUID.randomUUID().toString();
+			jy_record.setRecord_id(record_id);//记录id
+			jy_record.setRecord_piont(sumGpa);
+			jy_record.setRecord_project_id(project_id);//项目信息id
+			jy_record.setRecord_sbtime(new Date());
+			jy_record.setRecord_sort(tablename);
+			jy_record.setState(0);
 //
 			Userteam userteam = isExist(userteam_name, userteam_num);
 			model.addAttribute("Userteam", userteam);
+			model.addAttribute("infoId", project_id);
 			model.addAttribute("totalGpa", sumGpa);
-			String sort = "assess";
+			String sort = "jy_pingtai";
+			model.addAttribute("record",jy_record);
 			model.addAttribute("sort", sort);
 			return "redirect:gpadistribute.do";
 		}

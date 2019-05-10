@@ -2,7 +2,6 @@ package cn.gpa.zut.service;
 
 import java.util.List;
 
-import cn.gpa.zut.domain.Assess;
 import cn.gpa.zut.domain.JY_Category;
 import cn.gpa.zut.domain.JY_HuoJiang;
 import cn.gpa.zut.domain.JY_KeCheng;
@@ -11,6 +10,7 @@ import cn.gpa.zut.domain.JY_ProjectLev;
 import cn.gpa.zut.domain.JY_Record;
 import cn.gpa.zut.domain.JY_ZhuanYe;
 import cn.gpa.zut.domain.JY_jiaogai;
+import cn.gpa.zut.domain.Paper;
 
 public interface Jy_ProjectService {
 	
@@ -32,9 +32,13 @@ public interface Jy_ProjectService {
 	Boolean Add_KeCheng(JY_KeCheng kecheng)throws Exception;
 		//提交获奖信息
 	Boolean Add_HuoJiang(JY_HuoJiang huojiang)throws Exception;
+	//提交论文信息
+		Boolean Add_LunWen(JY_Lunwen lunwen)throws Exception;
 	
 	Boolean Add_Record(JY_Record jy_record)throws Exception;
-
+	
+	
+	
 	List<JY_jiaogai> findJiaogaiById(String userId);
 
 	List<JY_ZhuanYe> findZhuanyeById(String userId);

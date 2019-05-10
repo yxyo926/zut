@@ -34,9 +34,15 @@ public ISubjectDao subjectDao;
 	}
 
 	@Override
-	public Subject findAllByPaper(String paperId) {
+	public void update(Subject subject) {
 		// TODO Auto-generated method stub
-		return null;
+		subjectDao.update(subject);
+	}
+
+	@Override
+	public Subject findById(String id) {
+		// TODO Auto-generated method stub
+		return subjectDao.findById(id);
 	}
 
 }

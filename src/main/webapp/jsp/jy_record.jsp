@@ -20,13 +20,13 @@
 	</div>
 	<article class="page-container">
 		<form class="form form-horizontal" id="form-paper-add"
-			action="${pageContext.request.contextPath}/${sessionScope.sort}/jy_recordsave.do"
+			action="${pageContext.request.contextPath}/${sessionScope.sort}/recordsave.do"
 			method="post">
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>记录编号：</label>
 				<div class="formControls col-xs-4 col-sm-2">
-					<input type="text" class="input-text" name="record_Id"
+					<input type="text" class="input-text" name="record_id"
 						id="record_id" readonly="true" value="${sessionScope.recordId}">
 				</div>
 				<label class="form-label col-xs-4 col-sm-2"><span
@@ -34,7 +34,7 @@
 				<div class="formControls col-xs-4 col-sm-2">
 					<input type="text" class="input-text"
 						value="${sessionScope.infoId}" placeholder="" id="info_id"
-						readonly="true" name="recordinfo_id">
+						readonly="true" name="record_project_id">
 				</div>
 			</div>
 			<div class="row cl " id="input_conatiner"></div>
@@ -59,7 +59,16 @@
 				<div class="formControls col-xs-4 col-sm-2">
 					<input type="text" class="input-text radius size-S"
 						value="sci_${sessionScope.sort}info" placeholder="" id=""
-						name="category_Id">
+						name="record_sort">
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2"><span
+					class="c-red">*</span>业绩点：</label>
+				<div class="formControls col-xs-4 col-sm-2">
+					<input type="text" class="input-text radius size-S"
+						value="sci_${sessionScope.totalGpa}info" placeholder="" id=""
+						readonly="true" name="record_piont">
 				</div>
 			</div>
 			<div class="row cl">
@@ -76,7 +85,7 @@
 					name="uploadfile-1" id="uploadfile-1" readonly><a
 					href="javascript:void();" class="btn btn-primary radius"><i
 						class="iconfont"></i> 浏览文件</a> <input type="file" multiple
-					name="record_proof" class="input-file">
+					name="Record_local" class="input-file">
 				</span>
 			</div>
 			<div id="div"></div>

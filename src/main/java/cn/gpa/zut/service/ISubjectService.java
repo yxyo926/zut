@@ -9,5 +9,6 @@ public interface ISubjectService {
 	List<Subject> findAll() throws Exception;
 	void save(Subject subject)throws Exception;
 	List<Subject> findAllById(String id);
-	Subject   findAllByPaper(String paperId);
+	void update(Subject subject);
+	Subject findById(String id);
 }

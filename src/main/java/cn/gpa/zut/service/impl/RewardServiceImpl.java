@@ -34,9 +34,15 @@ public IRewardDao rewardDao;
 	}
 
 	@Override
-	public Reward findAllByPaper(String paperId) {
+	public Reward findById(String paperId) {
 		// TODO Auto-generated method stub
-		return null;
+		return rewardDao.findById(paperId);
+	}
+
+	@Override
+	public void update(Reward reward) {
+		// TODO Auto-generated method stub
+		rewardDao.update(reward);
 	}
 
 }

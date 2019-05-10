@@ -9,5 +9,7 @@ public interface IPlateformService {
 	List<Plateform> findAll() throws Exception;
 	void save(Plateform plateform)throws Exception;
 	List<Plateform> findAllById(String id);
-	Plateform   findAllByPaper(String paperId);
+	
+	Plateform findById(String id);
+	void update(Plateform plateform);
 }

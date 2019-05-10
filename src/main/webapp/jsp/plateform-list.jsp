@@ -58,6 +58,7 @@
 						<th width="auto">考核等级</th>
 						<th with="auto">总业绩点</th>
 						<th with="auto">我的业绩点</th>
+						<th with="auto">审核状态</th>
 						<th with="auto">操作</th>
 					</tr>
 				</thead>
@@ -67,18 +68,26 @@
 							<td><input name="ids" type="checkbox"></td>
 							<td>${plateform.plateforminfo_id }</td>
 							<td>${plateform.plateforminfo_name}</td>
-							<td>${plateform.plateforminfo_lev}</td>
-							<td>${plateform.plateforminfo_organize}</td>
+							<td>${plateform.sys_Dict.name}</td>
+							<td>${plateform.user.user_name}</td>
 							<td>${plateform.plateforminfo_starttime}</td>
 							<td>${plateform.plateforminfo_finishtime}</td>
-							
-							<td class="text-center">${plateform.plateforninfo_checklev}</td>
+							<td class="text-center">${plateform.sys_Ratio.ratio_name}</td>
 							<td class="text-center">${plateform.plateforminfo_getGpa}</td>
 							<td class="text-center">${plateform.gpaDistr}</td>
+							<td class="text-center">${plateform.statuString}</td>
 							<td class="text-center">
-								<button type="button" class="btn bg-olive btn-xs">修改</button>
-								<button type="button"
-									onclick="location.href='${pageContext.request.contextPath}/gpadistr/findAllGpa.do?id=${plateform.plateforminfo_id}'"
+								<c:if test="${plateform.record_status==3}">
+								<button type="button" href="javascript:;"
+									onclick="info_edit('编辑','updateInfo.do?id=${plateform.plateforminfo_id}','4','','510')"
+									 class="btn bg-olive btn-xs">修改</button>
+								</c:if >
+								<%-- <a href="javascript:void(0);" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#customerEditDialog" onclick="alter()" onclick="addchecklev1(${subject.subjectinfo_id});">考核</a> --%>
+								<c:if test="${plateform.record_status!=2}">
+								<button type="button" href="javascript:;" class="btn btn-primary btn-xs"  onclick="addchecklev1('${plateform.plateforminfo_id}');" data-toggle="modal" data-target="#customerEditDialog">考核</button>
+								</c:if >
+								<button type="button" 
+									onclick="location.href='${pageContext.request.contextPath}/gpadistr/findAllGpa.do?id=${plateform.plateforminfo_id }'"
 									class="btn bg-olive btn-xs">详情</button>
 							</td>
 						</tr>
@@ -86,49 +95,127 @@
 				</tbody>
 			</table>
 		</div>
-		<jsp:include page="frame/footer.jsp"></jsp:include>
-
-		<!--请在下方写此页面业务相关的脚本-->
+		<!--考核对话框 -->
+		<div class="modal fade" id="customerEditDialog" tabindex="-1"
+			role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">添加考核信息</h4>
+					</div>
+					<div class="modal-body">
+					<form class="form-horizontal" id="form">
+							<div class="row cl">
+								<label class="form-label col-xs-4 col-sm-2"><span
+									class="c-red">*</span>信息编号：</label>
+								<div class="formControls col-xs-8 col-sm-4">
+									<input type="text" class="input-text"
+										value="" placeholder=""
+										readonly="true" id="plateforminfo_id" name="plateforminfo_id">
+								</div>
+							</div>
+							<div class="row cl">
+								<label class="form-label col-xs-4 col-sm-2"><span
+									class="c-red">*</span>申报人：</label>
+								<div class="formControls col-xs-3 col-sm-4">
+									<input type="text" class="input-text radius size-S"
+										value="${sessionScope.user.user_name}" readonly="true"
+										placeholder="" id="" name="paperinfo_Author"> <input
+										type="hidden" class="input-text radius size-S"
+										value="${sessionScope.user.user_Id}" readonly="true"
+										placeholder="" id="" name="plateforminfo_organize">
+								</div>
+							</div>
+							<div class="row cl">
+								<label class="form-label col-xs-4 col-sm-2"><span
+									class="c-red">*</span>名称：</label>
+								<div class="formControls col-xs-3 col-sm-4">
+									<input type="text" class="input-text radius size-S" value=""
+										placeholder="" readonly="true" id="plateforminfo_name" name="plateforminfo_name">
+								</div>
+							</div>
+							<div class="row cl">
+								<label class="form-label col-xs-4 col-sm-2"><span
+									class="c-red">*</span>考核/验收级别：</label>
+								<div class="formControls col-xs-6 col-sm-4">
+									<span class="select-box"> <select name="plateforminfo_checklev" id="plateforminfo_checklev" class="select">
+									<option value="---请选择---"></option>
+											<c:forEach items="${dictRatios}" var="para">
+												<option value="${para.ratio_id}">${para.ratio_name}</option>
+											</c:forEach>
+									</select>
+									</span>
+								</div>
+							</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button onClick="savechecklev();"
+						class="btn btn-primary radius"  data-dismiss="modal">
+						<i class="Hui-iconfont">&#xe632;</i> 保存并提交审核
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<jsp:include page="frame/footer.jsp"></jsp:include>
+    <!--请在下方写此页面业务相关的脚本-->
 		<script type="text/javascript">
-			$(function(){
-				$('.table-sort').dataTable({
-					"aaSorting": [[ 1, "desc" ]],//默认第几个排序
-					"bStateSave": true,//状态保存
-					"aoColumnDefs": [
-					  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-					  {"orderable":false,"aTargets":[0,8,9]}// 制定列不参与排序
-					]
-				});
-				
+		function checklev_edit(title,url,id,w,h){
+			layer_show(title,url,w,h);
+		}
+		function info_edit(title, url, id, w, h) {
+			layer_show(title, url, w, h);
+		}
+		function checklev_edit(title, url, id, w, h) {
+			layer_show(title, url, w, h);
+		}
+		function addchecklev1(uinfoid){
+			$.ajax({
+				type:"get",
+				url:"${pageContext.request.contextPath}/plateform/addchecklev.do",
+				data:{"infoid":uinfoid},
+				success:function(data){
+					$("#plateforminfo_id").val(data.plateforminfo_id);
+					$("#plateforminfo_name").val(data.plateforminfo_name);
+				}
 			});
-				/*管理员-角色-添加*/
-				function admin_role_add(title, url, w, h) {
-					layer_show(title, url, w, h);
+		}
+		function savechecklev(){
+			var id=$("#plateforminfo_id").val();
+			var lev=$("#plateforminfo_checklev").val();
+			$.ajax({
+				type:"post",
+				url:"${pageContext.request.contextPath}/plateform/savechecklev.do",
+				data:{"plateforminfo_id":id,"plateforminfo_checklev":lev},
+				success:function(data){
+					confirm(data);
+					if (data) {
+						/* window.location.href = ''; */
+						location.href='${pageContext.request.contextPath}/subject/gpadistribute.do';
 				}
-				/*管理员-角色-编辑*/
-				function admin_role_edit(title, url, id, w, h) {
-					layer_show(title, url, w, h);
 				}
-				/*管理员-角色-删除*/
-				function admin_role_del(obj, id) {
-					layer.confirm('角色删除须谨慎，确认要删除吗？', function(index) {
-						$.ajax({
-							type : 'POST',
-							url : '',
-							dataType : 'json',
-							success : function(data) {
-								$(obj).parents("tr").remove();
-								layer.msg('已删除!', {
-									icon : 1,
-									time : 1000
-								});
-							},
-							error : function(data) {
-								console.log(data.msg);
-							},
-						});
-					});
-				}
+			});	
+		}
+		$(function() {
+			$('.table-sort').dataTable({
+				"aaSorting" : [ [ 1, "desc" ] ],//默认第几个排序
+				"bStateSave" : true,//状态保存
+				"aoColumnDefs" : [
+				//{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+				{
+					"orderable" : false,
+					"aTargets" : [ 0, 8, 9 ]
+				} // 制定列不参与排序
+				]
+			});
+
+		});
 			</script>
 </body>
 </html>

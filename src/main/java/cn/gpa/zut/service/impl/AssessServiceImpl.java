@@ -34,9 +34,15 @@ public class AssessServiceImpl implements IAssessService {
 	}
 
 	@Override
-	public Assess findAllByPaper(String paperId) {
+	public Assess findById(String paperId) {
 		// TODO Auto-generated method stub
-		return null;
+		return assessDao.findById(paperId);
+	}
+
+	@Override
+	public void update(Assess assess) {
+		// TODO Auto-generated method stub
+		assessDao.update(assess);
 	}
 
 }

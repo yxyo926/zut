@@ -26,7 +26,7 @@
 					class="c-red">*</span>信息编号：</label>
 				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text" class="input-text"
-						value="${sessionScope.infoId}" placeholder="" readonly="true"
+						value="${sessionScope.infoID}" placeholder="" readonly="true"
 						id="" name="assessinfo_id">
 				</div>
 			</div>
@@ -42,21 +42,16 @@
 				</div>
 			</div>
 			<div class="row cl">
-				<!-- <label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>论文类别：</label>
-				<div class="formControls col-xs-8 col-sm-3">
-					<span class="select-box"> <select name="paperinfo_sort" class="select">
-							<option value="1">自然科学</option>
-							<option value="2">人文科学</option>
-					</select>
-					</span>
-				</div> -->
 
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>项目名称：</label>
 				<div class="formControls col-xs-6 col-sm-4">
-					<span class="select-box"> <select name="assessinfo_rname"
+					<span class="select-box"> <select id="assessinfo_rname" name="assessinfo_rname"
 						class="select">
+						<option value="${sessionScope.object.assessinfo_rname}"  selected = "selected">---请选择---</option>
+							<c:forEach items="${sessionScope.dictRatios}" var="ratio">
+								<option value="${ratio.projectinfo_Id}">${ratio.projectinfo_Name}</option>
+							</c:forEach>
 							
 					</select>
 					</span>
@@ -68,8 +63,9 @@
 				<div class="formControls col-xs-6 col-sm-4">
 					<span class="select-box"> <select name="assessinfo_aname"
 						class="select">
-							<c:forEach items="${dictParas}" var="para">
-								<option value="${para.dictpara_id}">${para.dictpara_lev}</option>
+							<option value="${sessionScope.object.assessinfo_rname}">---请选择---</option>
+						   <c:forEach items="${typesort}" var="para">
+								<option value="${para.id}">${para.name}</option>
 							</c:forEach>
 					</select>
 					</span>
@@ -80,7 +76,7 @@
 					class="c-red">*</span>评价日期：</label>
 				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text"
-						onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})"
+						onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"
 						id="datemin" class="input-text Wdate" name="assessinfo_time">
 				</div>
 			</div>

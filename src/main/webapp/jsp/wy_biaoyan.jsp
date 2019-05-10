@@ -28,19 +28,19 @@
 		</div>
 
 	<article class="page-container">
-	<form class="form form-horizontal" id="">
+	<form class="form form-horizontal" id="" action="${pageContext.request.contextPath}/wenyi/Add_biaoyan.do" method="Post">
 		
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span
 				class="c-red">*</span>项目类别：</label>
 			<div class="formControls col-xs-8 col-sm-3">
-				<span class="select-box"> <select name="" class="select">
+				<span class="select-box"> <select name="project_type" class="select">
 				<option value="">-----请选择-----</option>
-				<option value="">艺术展览</option>
-				<option value="">作品收藏</option>
-				<option value="">文艺演出</option>
-				<option value="">录制播出</option>	
-				<option value="">录制播出</option>				
+				<option value="艺术展览">艺术展览</option>
+				<option value="作品收藏">作品收藏</option>
+				<option value="文艺演出">文艺演出</option>
+				<option value="录制播出">录制播出</option>	
+				<option value="录制播出">录制播出</option>				
 				</select>
 				</span>
 			</div>
@@ -50,51 +50,30 @@
 				class="c-red">*</span>项目名称：</label>
 			<div class="formControls col-xs-8 col-sm-3">
 				<input type="text" class="input-text radius size-S" value=""
-					placeholder="" id="" name="">
+					placeholder="" id="" name="project_name">
 			</div>
 			
 		</div>
 		
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span
-				class="c-red">*</span>展览场所：</label>
+				class="c-red">*</span>场所：</label>
 			<div class="formControls col-xs-8 col-sm-3">
-				<span class="select-box"> <select name="" class="select">
-				<option value="">-----请选择-----</option>
-				<option value="200">全国美术作品展</option>
-				<option value="80">全国美术作品单项展</option>	
-				<option value="100">中国文联下属一级协会</option>	
-				<option value="3560*35%">省文联下属一级协会</option>				
-			
-				</select>
-				</span>
-			</div>
-
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span
-				class="c-red">*</span>表演场所：</label>
-			<div class="formControls col-xs-8 col-sm-3">
-				<span class="select-box"> <select name="" class="select">
-				<option value="">-----请选择-----</option>
-				<option value="600">国家级专场</option>
-				<option value="60">国家级演出</option>	
-				<option value="60*35%">省级演出</option>				
-			
-				</select>
-				</span>
-			</div>
-
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span
-				class="c-red">*</span>录制场所：</label>
-			<div class="formControls col-xs-8 col-sm-3">
-				<span class="select-box"> <select name="" class="select">
-				<option value="">-----请选择-----</option>
-				<option value="120">国家级</option>
-				<option value="120*35%">省级</option>				
-			
+				<span class="select-box"> <select name="project_lev" class="select">
+				<!-- <option value="">-----请选择-----</option>
+				<option value="200">展览-全国美术作品展</option>
+				<option value="80">展览-全国美术作品单项展</option>	
+				<option value="100">展览-中国文联下属一级协会</option>	
+				<option value="35">展览-省文联下属一级协会</option>
+				<option value="600">演出-国家级专场</option>
+				<option value="60">演出-国家级演出</option>	
+				<option value="60*35%">演出-省级演出</option>					
+				<option value="120">录制-国家级</option>
+				<option value="120*35%">录制-省级</option>	 -->
+				<option value="">---请选择---</option>
+				<c:forEach items="${project_lev}" var="project_lev">
+					<option value="${project_lev.project_id} ">${project_lev.projectlev_name}</option>		
+				</c:forEach>
 				</select>
 				</span>
 			</div>
@@ -103,18 +82,28 @@
 
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span
-				class="c-red">*</span>开始时间：</label> 
+				class="c-red">*</span>项目时间：</label> 
 				<input type="text" onfocus="WdatePicker()"
-				id="logmin" class="input-text Wdate" style="width: 120px;">
+				id="logmin" name="project_Time" class="input-text Wdate" style="width: 120px;">
 		
 		</div>
-
+		
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span
-				class="c-red">*</span>文件上传：</label> 
-				<input type="file"  name="File"/> 
+					class="c-red">*</span>用户组：</label>
+			<div class="formControls col-xs-6 col-sm-4">
+					<input type="text" class="input-text" value="" placeholder=""
+					   id="userteam_name" name="userteam_name">
+			</div>
+			<label class="form-label col-xs-4 col-sm-2"><span
+					class="c-red">*</span>用户组人数：</label>
+			<div class="formControls col-xs-8 col-sm-4">
+				<input type="text" class="input-text" value="" placeholder=""
+					   id="userteam_num" name="userteam_num">
+
+			</div>
 		</div>
-		
+
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
 				<button	class="btn btn-primary radius" type="submit">下一步</button>
@@ -127,10 +116,10 @@
 	</form>
 	</article>
 
-	<script type="text/javascript" src="../../lib/jquery/1.9.1/jquery.min.js"></script> 
-	<script type="text/javascript" src="../../lib/layer/2.4/layer.js"></script>
-	<script type="text/javascript" src="../../static/h-ui/js/H-ui.js"></script> 
-	<script type="text/javascript" src="../../static/h-ui.admin/js/H-ui.admin.page.js"></script> 
+	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/jquery/1.9.1/jquery.min.js"></script> 
+	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/layer/2.4/layer.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/static/h-ui/js/H-ui.js"></script> 
+	<script type="text/javascript" src="${pageContext.request.contextPath}/static/h-ui.admin/js/H-ui.admin.page.js"></script> 
 	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
 	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
 	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/jquery.validation/1.14.0/messages_zh.js"></script> 

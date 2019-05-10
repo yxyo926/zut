@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
 
-import cn.gpa.zut.domain.DictPara;
 import cn.gpa.zut.domain.User;
 
 public interface IUserDao {

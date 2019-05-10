@@ -18,14 +18,14 @@
 			class="disabled step">第三步 提交凭证</span> 
 	</div>
 	<article class="page-container">
-		<form class="form form-horizontal" id="form-paper-add"
+		<form class="form form-horizontal" id="form"
 			action="${pageContext.request.contextPath}/patent/save.do"
 			method="post">
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>信息编号：</label>
 				<div class="formControls col-xs-8 col-sm-4">
-					<input type="text" class="input-text" value="${sessionScope.infoId}" placeholder=""
+					<input type="text" class="input-text" value="${sessionScope.infoID}" placeholder=""
 						readonly="true" id="" name="patentinfo_Id">
 				</div>
 			</div>
@@ -36,35 +36,27 @@
 					<input type="text" class="input-text radius size-S" value="${sessionScope.user.user_name}"
 						readonly="true"  placeholder="" id="" name="paperinfo_Author">
 						<input type="hidden" class="input-text radius size-S" value="${sessionScope.user.user_Id}"
-						readonly="true"  placeholder="" id="" name="patentinfo_Inventor">
+						readonly="true"  placeholder="" id="patentinfo_Inventor" name="patentinfo_Inventor">
 				</div>
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>专利名称：</label>
 				<div class="formControls col-xs-3 col-sm-4">
-					<input type="text" class="input-text radius size-S" value=""
-						placeholder="" id="" name="patentinfo_name">
+					<input type="text" class="input-text radius size-S" value="${sessionScope.object.patentinfo_name}"
+						placeholder="" id="patentinfo_name" name="patentinfo_name">
 				</div>
 			</div>
 			<div class="row cl">
-				<!-- <label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>论文类别：</label>
-				<div class="formControls col-xs-8 col-sm-3">
-					<span class="select-box"> <select name="paperinfo_sort" class="select">
-							<option value="1">自然科学</option>
-							<option value="2">人文科学</option>
-					</select>
-					</span>
-				</div> -->
 
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>专利类别：</label>
 				<div class="formControls col-xs-6 col-sm-4">
-					<span class="select-box"> <select name="patentinfo_sort"
+					<span class="select-box"> <select id="patentinfo_sort" name="patentinfo_sort"
 						class="select">
-							<c:forEach items="${dictParas}" var="para">
-								<option value="${para.dictpara_id}">${para.dictpara_lev}</option>
+						<option value="${sessionScope.object.patentinfo_sort}">---请选择---</option>
+						<c:forEach items="${typesort}" var="para">
+								<option value="${para.id}">${para.name}</option>
 							</c:forEach>
 					</select>
 					</span>
@@ -74,11 +66,12 @@
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>专利人数：</label>
 				<div class="formControls col-xs-6 col-sm-4">
-					<span class="select-box"> <select name="patentinfo_num"
+					<span class="select-box"> <select id="patentinfo_num" name="patentinfo_num"
 						class="select">
-							
-								<option value="1">1</option>
-								<option value="2">2</option>
+						<option value="${sessionScope.object.patentinfo_num}">---请选择---</option>
+							<c:forEach items="${sessionScope.dictRatios}" var="ratio">
+								<option value="${ratio.ratio_id}">${ratio.ratio_name}</option>
+							</c:forEach>
 					</select>
 					</span>
 				</div>
@@ -88,7 +81,7 @@
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>授权号：</label>
 				<div class="formControls col-xs-8 col-sm-4">
-					<input type="text" class="input-text" value="" placeholder="" id=""
+					<input type="text" class="input-text" value="${sessionScope.object.patentinfo_authorization}" placeholder="" id=""
 						name="patentinfo_authorization">
 				</div>
 			</div>
@@ -163,6 +156,36 @@
 		function bangnum(id) {
 			document.getElementById('userteam_num').value=$(id).find("option:selected").attr("parentcode");
 		}
+		
+		$('#patentinfo_sort').change(function(){
+			 $.ajax({
+					type:"get",
+					url:"${pageContext.request.contextPath}/paper/getgpasort.do",
+					data:{"id": $('#patentinfo_sort').val()},
+					scriptCharset: 'utf-8',
+					success:function(data) {
+						console.log(data);                  
+	                       if(data!=null){
+	                    	   $("#paperinfo_Lev").empty();
+	                    	 /*   $("#paperinfo_Lev").empty(); */
+	                           $("#paperinfo_Lev").prepend("<option value='0'>请选择</option>");
+	                          /*  var jsarr = JSON.parse(data); */
+	                          var jsarr = data;
+	                           //遍历
+	                            $.each(jsarr,function(i,item){
+	                                  $.each(item,function(j,val){
+	                                      $("#paperinfo_Lev").append("<option value="+val.id+">"+val.name+"</option>");                                     
+	                                  })
+
+	                              }); 
+	                       }                  
+
+						
+					}
+				});
+	        });
+		
+		
 		$(function() {
 			$('.skin-minimal input').iCheck({
 				checkboxClass : 'icheckbox-blue',

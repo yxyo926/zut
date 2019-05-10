@@ -37,7 +37,7 @@
 			<span class="l"> <a href="javascript:;" onclick="datadel()"
 				class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i>
 					删除记录</a> <a class="btn btn-primary radius" href="javascript:;"
-				onclick="location.href='${pageContext.request.contextPath}/project/getSort.do'"><i
+				onclick="location.href='${pageContext.request.contextPath}/jy_project/Kecheng_Lev.do'"><i
 					class="Hui-iconfont">&#xe600;</i> 添加记录</a>
 			</span> <span class="r">共有数据：<strong><c:out
 						value="${fn:length(classinfoList)}"></c:out></strong> 条

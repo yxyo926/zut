@@ -26,9 +26,9 @@ public IPlateformDao plateformDao;
 	}
 
 	@Override
-	public Plateform findAllByPaper(String paperId) {
+	public Plateform findById(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		return plateformDao.findById(id);
 	}
 
 	@Override
@@ -41,6 +41,12 @@ public IPlateformDao plateformDao;
 	public List<Plateform> findAllById(String id) {
 		// TODO Auto-generated method stub
 		return plateformDao.findAllById(id);
+	}
+
+	@Override
+	public void update(Plateform plateform) {
+		// TODO Auto-generated method stub
+		plateformDao.update(plateform);
 	}
 
 }

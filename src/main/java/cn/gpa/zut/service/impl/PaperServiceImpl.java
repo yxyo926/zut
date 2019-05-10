@@ -32,9 +32,14 @@ public class PaperServiceImpl implements IPaperService {
 		return paperDao.findAllById(id);
 	}
 	@Override
-	public Paper findAllByPaper(String paperId) {
+	public Paper findByPaperId(String paperId) {
 		// TODO Auto-generated method stub
-		return paperDao.findAllByPaper(paperId);
+		return paperDao.findByPaperId(paperId);
+	}
+	@Override
+	public void update(Paper paper) {
+		// TODO Auto-generated method stub
+		paperDao.update(paper);
 	}
 	
 }

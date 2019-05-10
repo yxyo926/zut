@@ -56,10 +56,11 @@
 							<th with="auto">ISBN号</th>
 							<th width="auto">出版时间</th>
 							<th width="auto">字数</th>
-							<th width="auto">立项单位</th>
 							<th with="auto">出版社级别</th>
+							<th width="auto">著作类型</th>
 							<th with="auto">总业绩点</th>
 							<th with="auto">我的业绩点</th>
+							<th with="auto">审核状态</th>
 							<th with="auto">操作</th>
 						</tr>
 					</thead>
@@ -68,21 +69,23 @@
 							<tr>
 								<td><input name="ids" type="checkbox"></td>
 								<td>${writings.writingsinfo_Id }</td>
-								<td>${writings.writingsinfo_Editor}</td>
+								<td>${writings.user.user_name}</td>
 								<td>${writings.writingsinfo_Name}</td>
 								<td>${writings.writingsinfo_Press}</td>
 								<td>${writings.writingsinfo_ISBN}</td>
 								<td>${writings.writingsinfo_time}</td>
 								<td>${writings.writingsinfo_wordsnum }</td>
-								<td class="text-center">${writings.writinginfo_org }</td>
-								<td class="text-center">${writings.writinginfo_lev}</td>
+								<td class="text-center">${writings.sys_Ratio.ratio_name}</td>
+								<td class="text-center">${writings.sys_Dict.name}</td>
 								<td class="text-center">${writings.writinginfo_getGpa }</td>
 								<td class="text-center">${writings.gpaDistr}</td>
-								<td class="text-center">
-									<button type="button" class="btn bg-olive btn-xs">修改</button>
-									<button type="button"
-									onclick="location.href='${pageContext.request.contextPath}/gpadistr/findAllGpa.do?id=${writings.writingsinfo_Id }'"
-									class="btn bg-olive btn-xs">详情</button>
+								<td class="text-center">${writings.statuString}</td>
+								<td>
+								<c:if test="${writings.record_status==3}">
+									 <button type="button" href="javascript:;" onclick="info_edit('编辑','updateInfo.do?id=${writings.writingsinfo_Id}','4','','510')"
+									 class="btn bg-olive btn-xs">修改</button>
+									 </c:if>
+									<button type="button" onclick="location.href='${pageContext.request.contextPath}/gpadistr/findAllGpa.do?id=${writings.writingsinfo_Id }'" class="btn bg-olive btn-xs">详情</button>
 							</td>
 							</tr>
 						</c:forEach>
@@ -93,6 +96,9 @@
 
 			<!--请在下方写此页面业务相关的脚本-->
 			<script type="text/javascript">
+			function info_edit(title, url, id, w, h) {
+				layer_show(title, url, w, h);
+			}
 			$(function(){
 				$('.table-sort').dataTable({
 					"aaSorting": [[ 1, "desc" ]],//默认第几个排序

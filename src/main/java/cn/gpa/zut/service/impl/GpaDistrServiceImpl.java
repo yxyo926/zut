@@ -28,4 +28,33 @@ public class GpaDistrServiceImpl implements IGpaDistrService {
 		return gpaDistrDao.findAllById(Id);
 	}
 
+	@Override
+	public void update(GpaDistr gpaDistr) {
+		// TODO Auto-generated method stub
+		gpaDistrDao.update(gpaDistr);
+	}
+
+	@Override
+	public void deletebyID(GpaDistr gpaDistr) {
+		// TODO Auto-generated method stub
+		gpaDistrDao.delete(gpaDistr);
+	}
+
+	@Override
+	public List<GpaDistr> findAllByRecordId(String record_Id) {
+		// TODO Auto-generated method stub
+		return gpaDistrDao.findAllByRecordId(record_Id);
+	}
+	@Override
+	public void wy_save(GpaDistr gpaDistr) {
+		// TODO Auto-generated method stub
+		gpaDistrDao.wy_save(gpaDistr);
+	}
+	@Override
+	public void tch_save(GpaDistr gpaDistr) {
+		// TODO Auto-generated method stub
+		gpaDistrDao.tch_save(gpaDistr);
+		
+	}
+
 }

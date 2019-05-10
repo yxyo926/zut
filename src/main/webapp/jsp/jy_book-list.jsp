@@ -37,7 +37,7 @@
 			<span class="l"> <a href="javascript:;" onclick="datadel()"
 				class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i>
 					删除记录</a> <a class="btn btn-primary radius" href="javascript:;"
-				onclick="location.href='${pageContext.request.contextPath}/project/getSort.do'"><i
+				onclick="location.href='${pageContext.request.contextPath}/jy_book/FindBookLev.do'"><i
 					class="Hui-iconfont">&#xe600;</i> 添加记录</a>
 			</span> <span class="r">共有数据：<strong><c:out
 						value="${fn:length(projectList)}"></c:out></strong> 条
@@ -60,7 +60,9 @@
 						<th with="auto">立项系数</th>
 						<th with="auto">级别</th>
 						<th with="auto">语言类别</th>
-						<th with="auto">业绩点</th>
+						<th with="auto">总业绩点</th>
+						<th with="auto">所得业绩点</th>
+						<th with="auto">操作</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -78,6 +80,8 @@
 							<td class="text-center">${book.booklev}</td>
 							<td class="text-center">${book.language}</td>
 							<td class="text-center">${book.book_press}</td>
+							<td class="text-center">${book.record_piont}</td>
+							<td class="text-center">${book.gpaDistr}</td>
 							
 							<td class="text-center">
 								<button type="button" class="btn bg-olive btn-xs">修改</button>

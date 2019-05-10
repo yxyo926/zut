@@ -18,21 +18,14 @@
 			class="disabled step">第三步 提交凭证</span> 
 	</div>
 	<article class="page-container">
-		<form class="form form-horizontal" id="form-paper-add"action="${pageContext.request.contextPath}/paper/save.do"	method="post">
-			<div class="row cl">
-				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>信息编号：</label>
-				<div class="formControls col-xs-8 col-sm-4">
-					<input type="text" class="input-text" value="${sessionScope.infoId}" placeholder=""
-						readonly="true" id="" name="paperinfo_Id">
-				</div>
-			</div>
+		<form class="form form-horizontal" id="form-paper-add"action="${pageContext.request.contextPath}/jy_project/save.do"	method="post">
+		
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>申报人：</label>
 				<div class="formControls col-xs-3 col-sm-4">
 					<input type="text" class="input-text radius size-S" value="${sessionScope.user.user_name}"
-						readonly="true"  placeholder="" id="" name="paperinfo_Author">
+						readonly="true"  placeholder="" id="" name="paperinfo_author">
 				</div>
 			</div>
 			<div class="row cl">
@@ -40,17 +33,17 @@
 					class="c-red">*</span>论文名称：</label>
 				<div class="formControls col-xs-3 col-sm-4">
 					<input type="text" class="input-text radius size-S" value=""
-						placeholder="" id="" name="paperinfo_Name">
+						placeholder="" id="" name="paperinfo_name">
 				</div>
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>论文级别：</label>
 				<div class="formControls col-xs-6 col-sm-4">
-					<span class="select-box"> <select name="paperinfo_Lev"
+					<span class="select-box"> <select name="project_id"
 						class="select">
 							<c:forEach items="${list_lev}" var="list_lev">
-								<option value="${list_lev.projectlev_khgpa}">${list_lev.projectlev_name}</option>
+								<option value="${list_lev.project_id}">${list_lev.projectlev_name}</option>
 							</c:forEach>
 					</select>
 					</span>
@@ -61,18 +54,10 @@
 					class="c-red">*</span>组织级别：</label>
 				<div class="formControls col-xs-6 col-sm-4">
 					<input type="text" class="input-text radius size-S" value=""
-						placeholder="" id="" name="paperinfo_Orlev">
+						placeholder="" id="" name="rewardinfo_organizename">
 				</div>
 			</div>
 
-			<div class="row cl">
-				<label class="form-label col-xs-4 col-sm-2"><span
-					class="c-red">*</span>CN号：</label>
-				<div class="formControls col-xs-8 col-sm-4">
-					<input type="text" class="input-text" value="" placeholder="" id=""
-						name="paperinfo_CN">
-				</div>
-			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>ISSN号：</label>
@@ -86,7 +71,7 @@
 					class="c-red">*</span>发表日期：</label>
 				<div class="formControls col-xs-8 col-sm-4">
 					<input type="text"
-						onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})"
+						onfocus="WdatePicker()"
 						id="datemin" class="input-text Wdate" name="paperinfo_Time">
 				</div>
 			</div>
@@ -94,13 +79,8 @@
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>用户组：</label>
 				<div class="formControls col-xs-6 col-sm-4">
-					<span class="select-box"> <select name="userteam_name" class="select"
-						id="useteam_name" onchange="bangnum(this)">
-							<c:forEach items="${userteams}" var="userteam">
-								<option parentcode="${userteam.userteam_num}" value="${userteam.userteam_name}">${userteam.userteam_name}</option>
-							</c:forEach>
-					</select>
-					</span>
+					<input type="text" class="input-text" value="" placeholder=""
+						id="userteam_num" name="userteam_name">
 				</div>
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>用户组人数：</label>
@@ -110,14 +90,6 @@
 
 				</div>
 			</div>
-
-
-			</div>
-			<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span
-				class="c-red">*</span>文件上传：</label> 
-				<input type="file"  name="pictureFile"/> 
-		</div>
 			<div class="row cl">
 				<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
 					<button onClick="paper_save_submit();"
@@ -157,9 +129,7 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
 	<script type="text/javascript">
-		function bangnum(id) {
-			document.getElementById('userteam_num').value=$(id).find("option:selected").attr("parentcode");
-		}
+		
 		$(function() {
 			$('.skin-minimal input').iCheck({
 				checkboxClass : 'icheckbox-blue',

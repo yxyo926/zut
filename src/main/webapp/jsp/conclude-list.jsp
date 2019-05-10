@@ -52,10 +52,10 @@
 						<th width="auto">信息编号</th>
 						<th width="auto">项目名称</th>
 						<th width="auto">申报人</th>
-						<th width="auto">组织单位级别</th>
 						<th with="auto">结项级别</th>
 						<th with="auto">总业绩点</th>
 						<th with="auto">我的业绩点</th>
+						<th with="auto">审核状态</th>
 						<th with="auto">操作</th>
 					</tr>
 				</thead>
@@ -64,14 +64,18 @@
 						<tr>
 							<td><input name="ids" type="checkbox"></td>
 							<td>${conclude.concludeinfo_id }</td>
-							<td>${conclude.concludeinfo_name}</td>
-							<td>${conclude.concludeinfo_person}</td>
-							<td>${conclude.concludeinfo_olev}</td>
-							<td>${conclude.concludeinfo_lev}</td>
+							<td>${conclude.project.projectinfo_Name}</td>
+							<td>${conclude.user.user_name}</td>
+							<td>${conclude.sys_Dict.name}</td>
 							<td>${conclude.concludetinfo_getGpa}</td>
 							<td class="text-center">${conclude.gpaDistr}</td>
+							<td class="text-center">${conclude.statuString}</td>
 							<td class="text-center">
-								<button type="button" class="btn bg-olive btn-xs">修改</button>
+								<c:if test="${conclude.record_status==3}">
+									<%--  <a href="#" class="btn btn-primary btn-xs" data-toggle="modal"  data-target="#customerEditDialog" onclick="editINfo(${project.projectinfo_Id});">修改</a> --%>
+									 <button type="button" href="javascript:;" onclick="info_edit('编辑','updateInfo.do?id=${conclude.concludeinfo_id}','4','','510')"
+									 class="btn bg-olive btn-xs">修改</button>
+									 </c:if>
 								<button type="button"
 									onclick="location.href='${pageContext.request.contextPath}/gpadistr/findAllGpa.do?id=${conclude.concludeinfo_id}'"
 									class="btn bg-olive btn-xs">详情</button>
@@ -85,6 +89,9 @@
 
 		<!--请在下方写此页面业务相关的脚本-->
 		<script type="text/javascript">
+		function info_edit(title, url, id, w, h) {
+			layer_show(title, url, w, h);
+		}
 			$(function(){
 				$('.table-sort').dataTable({
 					"aaSorting": [[ 1, "desc" ]],//默认第几个排序

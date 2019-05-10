@@ -53,11 +53,11 @@
 							<th width="auto">发明人</th>
 							<th width="auto">专利名称</th>
 							<th width="auto">专利类别</th>
-							<th with="auto">专利状态</th>
 							<th width="auto">授权号</th>
 							<th width="auto">专利权人数</th>
 							<th with="auto">总业绩点</th>
 							<th with="auto">我的业绩点</th>
+							<th with="auto">审核状态</th>
 							<th with="auto">操作</th>
 						</tr>
 					</thead>
@@ -66,16 +66,20 @@
 							<tr>
 								<td><input name="ids" type="checkbox"></td>
 								<td>${patent.patentinfo_Id }</td>
-								<td>${patent.patentinfo_Inventor}</td>
+								<td>${patent.user.user_name}</td>
 								<td>${patent.patentinfo_name}</td>
-								<td>${patent.patentinfo_sort}</td>
-								<td>${patent.patentinfo_status}</td>
+								<td>${patent.sys_Dict.name}</td>
 								<td>${patent.patentinfo_authorization }</td>
-								<td>${patent.patentinfo_num }</td>
+								<td>${patent.sys_Ratio.ratio_name }</td>
 								<td class="text-center">${patent.patentinfoinfo_getGpa }</td>
 								<td class="text-center">${patent.gpaDistr}</td>
+								<td class="text-center">${patent.statuString}</td>
 								<td class="text-center">
-									<button type="button" class="btn bg-olive btn-xs">修改</button>
+								<c:if test="${patent.record_status==3}">
+									<%--  <a href="#" class="btn btn-primary btn-xs" data-toggle="modal"  data-target="#customerEditDialog" onclick="editINfo(${project.projectinfo_Id});">修改</a> --%>
+									 <button type="button" href="javascript:;" onclick="info_edit('编辑','updateInfo.do?id=${patent.patentinfo_Id}','4','','510')"
+									 class="btn bg-olive btn-xs">修改</button>
+									 </c:if>
 								<button type="button"
 									onclick="location.href='${pageContext.request.contextPath}/gpadistr/findAllGpa.do?id=${patent.patentinfo_Id}'"
 									class="btn bg-olive btn-xs">详情</button>
@@ -89,6 +93,9 @@
 
 			<!--请在下方写此页面业务相关的脚本-->
 			<script type="text/javascript">
+			function info_edit(title, url, id, w, h) {
+				layer_show(title, url, w, h);
+			}
 			$(function(){
 				$('.table-sort').dataTable({
 					"aaSorting": [[ 1, "desc" ]],//默认第几个排序

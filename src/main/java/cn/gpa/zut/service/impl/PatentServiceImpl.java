@@ -34,9 +34,15 @@ public IPatentDao patentDao;
 	}
 
 	@Override
-	public Patent findAllByPaper(String paperId) {
+	public Patent findById(String paperId) {
 		// TODO Auto-generated method stub
-		return null;
+		return patentDao.findById(paperId);
+	}
+
+	@Override
+	public void update(Patent patent) {
+		// TODO Auto-generated method stub
+		patentDao.update(patent);
 	}
 
 }

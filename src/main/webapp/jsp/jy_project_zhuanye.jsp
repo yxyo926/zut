@@ -62,7 +62,7 @@
 				<select name="lev_select" class="select">
 					<option value="">---请选择---</option>
 						<c:forEach items="${list_lev}" var="list_lev">
-							<option value="${list_lev.projectlev_khgpa} ">${list_lev.projectlev_name}</option>		
+							<option value="${list_lev.project_id} ">${list_lev.projectlev_name}</option>		
 						</c:forEach>
 				</select>
 				</span>
@@ -77,20 +77,12 @@
 			- <input  type="text"	onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d' })"
 				id="logmax" name="logmax" class="input-text Wdate" style="width: 120px;">
 		</div>
+		
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>用户组：</label>
 			<div class="formControls col-xs-6 col-sm-4">
-					<%-- <span class="select-box"> <select name="userteam_name"
-													  class="select" id="useteam_name" onchange="bangnum(this)">
-							<c:forEach items="${userteams}" var="userteam">
-								<option parentcode="${userteam.userteam_num}"
-										value="${userteam.userteam_name}">${userteam.userteam_name}</option>
-							</c:forEach>
-					</select>
-					</span> --%>
-					<div class="formControls col-xs-8 col-sm-4">
-				<input type="text" class="input-text" value="" placeholder=""
+						<input type="text" class="input-text" value="" placeholder=""
 					   id="userteam_name" name="userteam_name">
 			</div>
 			<label class="form-label col-xs-4 col-sm-2"><span
@@ -101,8 +93,6 @@
 
 			</div>
 		</div>
-		
-
 		
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">

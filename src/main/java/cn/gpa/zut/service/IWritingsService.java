@@ -8,5 +8,6 @@ public interface IWritingsService {
 	List<Writings> findAll() throws Exception;
 	void save(Writings writings)throws Exception;
 	List<Writings> findAllById(String id);
-	Writings   findAllByPaper(String paperId);
+	Writings   findById(String paperId);
+	void update(Writings wrtings);
 }

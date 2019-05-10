@@ -33,10 +33,17 @@ public IProjectDao projectDao;
 		return projectDao.findAllById(id);
 	}
 
+
 	@Override
-	public Project findAllByPaper(String paperId) {
+	public Project findById(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		return projectDao.findById(id);
+	}
+
+	@Override
+	public void update(Project project) {
+		// TODO Auto-generated method stub
+		projectDao.update(project);
 	}
 
 }

@@ -35,9 +35,15 @@ public class WritingsServiceImpl implements IWritingsService{
 	}
 
 	@Override
-	public Writings findAllByPaper(String paperId) {
+	public Writings findById(String paperId) {
 		// TODO Auto-generated method stub
-		return null;
+		return writingsDao.findById(paperId);
+	}
+
+	@Override
+	public void update(Writings writings) {
+		// TODO Auto-generated method stub
+		writingsDao.update(writings);
 	}
 
 }

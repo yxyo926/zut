@@ -28,7 +28,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/jy_book")
-@SessionAttributes(value = { "infoId", "Userteam", "totalGpa", "recordId", "sort" })
+@SessionAttributes(value = { "infoId", "Userteam", "totalGpa", "record", "sort" })
 public class Jy_BookController {
 	@Autowired 
 	private Jy_BookService jy_bookservice;
@@ -51,11 +51,6 @@ public class Jy_BookController {
 	@RequestMapping("/gpadistribute.do")
 	public ModelAndView gpaDistribute(Userteam userteam) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		// mv.addObject("userteam", userteam);
-		/*
-		 * request.setAttribute("userteam_name", "zfy");
-		 * request.setAttribute("userteam_num", "10");
-		 */
 		List<User> users = userService.findAll();
 		mv.addObject("users", users);
 		System.out.println("分配页面出现了");
@@ -66,20 +61,20 @@ public class Jy_BookController {
 	// 保存业绩点分配记录
 	@RequestMapping("/gpasave.do")
 	public String saveUsers(ModelMap model, @ModelAttribute("Userteam") Userteam uerUserteam,
-							SessionStatus sessionStatus, @ModelAttribute("form") Paper paper) {
+							SessionStatus sessionStatus, @ModelAttribute("form") Paper paper,@ModelAttribute("record") JY_Record record) {
 		UUIDUtils uuidUtils = new UUIDUtils();
-		String recordString = uuidUtils.getUUID();
+		
 		List<GpaDistr> gpaDistrs = paper.getGpaDistrs();
 		for (int i = 0; i < gpaDistrs.size(); i++) {
 			String uuidString = uuidUtils.getUUID();
 			GpaDistr gpaDistr = paper.getGpaDistrs().get(i);
 			gpaDistr.setGpadistr_id(uuidString);
-			gpaDistr.setRecord_id(recordString);
+			gpaDistr.setRecord_id(record.getRecord_id());
 			gpaDistr.setUserteam_id(uerUserteam.getUserteam_id());
 			System.out.println(gpaDistr.getUser_Id());
-			gpaDistrService.save(gpaDistr);
+			gpaDistrService.tch_save(gpaDistr);
 		}
-		model.addAttribute("recordId", recordString);
+		model.addAttribute("recordId", record.getRecord_id());
 		System.out.println("业绩点保存了");
 
 		return "record";
@@ -89,14 +84,14 @@ public class Jy_BookController {
 	@RequestMapping("/record.do")
 	public ModelAndView record() throws Exception {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("record");
+		mv.setViewName("jy_record");
 		return mv;
 	}
 
 	// 凭证提交
 	@RequestMapping("/recordsave.do")
 	//@ResponseBody
-	public String saveRecord(MultipartFile file, Record record, HttpServletRequest request) throws IllegalStateException, IOException {
+	public String saveRecord(MultipartFile file, @ModelAttribute("record") JY_Record record, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession(true);
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSS");
@@ -125,16 +120,19 @@ public class Jy_BookController {
 		// 完整的url
 
 		fileUrl = date.get(Calendar.YEAR) + "/" + (date.get(Calendar.MONTH) + 1) + "/" + newFileName;
-		System.out.println(fileUrl);
+		
+		record.setRecord_local(fileUrl);
+		
+
+		jy_projectservice.Add_Record(record);
+		//return "redirect:findAll.do";
 		session.removeAttribute("Userteam");
 		session.removeAttribute("infoId");
 		session.removeAttribute("totalGpa");
-		session.removeAttribute("recordId");
-		System.out.println(fileUrl);
-		record.setRecord_proof(fileUrl);
-		recordService.save(record);
-		//return "redirect:findAll.do";
-		return "redirect:downshow.do";
+		session.removeAttribute("record");
+	
+		User user=(User) session.getAttribute("user");
+		return "redirect:book_findAllById.do?id="+user.getUser_Id();
 
 	}
 
@@ -177,10 +175,7 @@ public class Jy_BookController {
 		System.out.println(userId);
 		ModelAndView mv = new ModelAndView();
 		List<JY_Book> projects = jy_bookservice.findbookById(userId);
-		UUIDUtils uuidUtils = new UUIDUtils();
-		String uuidString = uuidUtils.getUUID();
-		model.addAttribute("infoId", uuidString);
-		System.out.println(uuidString);
+
 		mv.addObject("bookList", projects);
 		mv.setViewName("jy_book-list");
 		return mv;
@@ -226,29 +221,27 @@ public class Jy_BookController {
 		book.setBuild_id(builed);
 		book.setRepiblic(1);
 		book.setBook_press(book_press);
-		
 		jy_bookservice.Add_Book(book);
 		
 		String project_record=UUID.randomUUID().toString();
 		Date sbtime=new Date();
 		String tablename="tch_bookinfo";
+		double sumGpa =sumGPA( book_lev, language, builed,book_Enum,zhubian);
 		JY_Record jy_record=new JY_Record();
 		jy_record.setRecord_id(project_record);
 		jy_record.setRecord_project_id(id);
 		jy_record.setRecord_sort(tablename);
 		jy_record.setRecord_sbtime(sbtime);
+		jy_record.setRecord_piont(sumGpa);
 		jy_record.setState(0);
-		jy_projectservice.Add_Record(jy_record);
-		System.out.println("教材等级"+book_lev);
-		System.out.println("语言类型"+language);
-		System.out.println("立项"+builed);			
-		double sumGpa =sumGPA( book_lev, language, builed,book_Enum,zhubian);
+		
 
 		//wojia
 		Userteam userteam = isExist(userteam_name, userteam_num);
 		model.addAttribute("Userteam", userteam);
 		model.addAttribute("totalGpa", sumGpa);
-		String sort = "assess";
+		model.addAttribute("record", jy_record);
+		String sort = "jy_book";
 		model.addAttribute("sort", sort);
 		
 		return "redirect:gpadistribute.do";
@@ -271,9 +264,6 @@ public class Jy_BookController {
 			System.out.println(booklev+"：："+booklev);
 			System.out.println(language+"：："+booklanguage);
 			System.out.println(builed+"：："+bookbuiled);			
-			
-			
-			
 			return lev*language*builed*num*zb ;
 	}
 
@@ -295,33 +285,4 @@ public class Jy_BookController {
 		userteamService.save(userteam);
 		return userteam;
 	}
-	@RequestMapping("/fileupload.do")
-	public @ResponseBody
-	String upload(MultipartFile file, HttpServletRequest request) throws IOException {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSS");
-		String res = sdf.format(new Date());
-		// uploads文件夹位置
-		String rootPath = request.getSession().getServletContext().getRealPath("resource/uploads/");
-		// 原始名称
-		String originalFileName = file.getOriginalFilename();
-		// 新文件名
-		String newFileName = "sliver" + res + originalFileName.substring(originalFileName.lastIndexOf("."));
-		// 创建年月文件夹
-		Calendar date = Calendar.getInstance();
-		File dateDirs = new File(date.get(Calendar.YEAR) + File.separator + (date.get(Calendar.MONTH) + 1));
-		// 新文件
-		File newFile = new File(rootPath + File.separator + dateDirs + File.separator + newFileName);
-		// 判断目标文件所在目录是否存在
-		if (!newFile.getParentFile().exists()) {
-			// 如果目标文件所在的目录不存在，则创建父目录
-			newFile.getParentFile().mkdirs();
-		}
-		System.out.println(newFile);
-		// 将内存中的数据写入磁盘
-		file.transferTo(newFile);
-		// 完整的url
-		String fileUrl = date.get(Calendar.YEAR) + "/" + (date.get(Calendar.MONTH) + 1) + "/" + newFileName;
-		return fileUrl;
-	}
-	
 }

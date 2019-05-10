@@ -107,6 +107,12 @@ public class Jy_ProjectServiceImpl implements Jy_ProjectService {
 		return jy_projectDao.findLunwenById(userId);
 	}
 
+	@Override
+	public Boolean Add_LunWen(JY_Lunwen lunwen) throws Exception {
+		// TODO Auto-generated method stub
+		return jy_projectDao.Add_LunWen(lunwen);
+	}
+
 	
 
 }

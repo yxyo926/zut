@@ -7,6 +7,8 @@ public class GpaDistr {
 	private String   user_Id;
 	private String   userteam_profession;
 	private Double   userteam_getGpa;
+	private Userteam userteam;
+	private User  user;
 	public String getGpadistr_id() {
 		return gpadistr_id;
 	}
@@ -42,6 +44,24 @@ public class GpaDistr {
 	}
 	public void setUserteam_getGpa(Double userteam_getGpa) {
 		this.userteam_getGpa = userteam_getGpa;
+	}
+	@Override
+	public String toString() {
+		return "GpaDistr [gpadistr_id=" + gpadistr_id + ", userteam_id=" + userteam_id + ", record_id=" + record_id
+				+ ", user_Id=" + user_Id + ", userteam_profession=" + userteam_profession + ", userteam_getGpa="
+				+ userteam_getGpa + "]";
+	}
+	public Userteam getUserteam() {
+		return userteam;
+	}
+	public void setUserteam(Userteam userteam) {
+		this.userteam = userteam;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 

@@ -17,17 +17,18 @@ public interface Jy_PingTaiDao {
 	public List<JY_ProjectLev> findLevBycategory() throws Exception;
 	     
 	@Insert("insert into tch_plateforminfo"
-			+ "(plateforminfo_id,plateforminfo_Tlev ,plateforminfo_name,plateforminfo_type,plateforminfo_organize,plateforminfo_starttime,plateforminfo_finishtime ) "
+			+ "(plateforminfo_id,plateforminfo_Tlev ,plateforminfo_name,plateforminfo_type,plateforminfo_organize,"
+			+ "plateforminfo_starttime,plateforminfo_finishtime ) "
 			+ "value"
 			+ "(#{plateforminfo_id},#{plateforminfo_Tlev},#{plateforminfo_name},#{plateforminfo_type},#{plateforminfo_organize},#{plateforminfo_starttime},#{plateforminfo_finishtime})")
 			Boolean Add_pt(JY_pingtai jy_pingtai)throws Exception;
 	
 	//查询用户名下信息
 		@Select(" select plateforminfo_id,plateforminfo_name,plateforminfo_Tlev,plateforminfo_type,"
-				+ "plateforminfo_organize,plateforminfo_starttime,plateforminfo_finishtime,userteam_getGpa "
+				+ "plateforminfo_organize,plateforminfo_starttime,plateforminfo_finishtime,record_piont,userteam_getGpa "
 				+ "from tch_plateforminfo inner join tch_record on" + 
-				" tch_plateforminfo.plateforminfo_id=tch_record.record_project_id INNER JOIN sci_gpadistr on "
-				+ "tch_record.record_Id=sci_gpadistr.record_id and sci_gpadistr.user_Id=#{id}")
+				" tch_plateforminfo.plateforminfo_id=tch_record.record_project_id INNER JOIN tch_gpadistr on "
+				+ "tch_record.record_Id=tch_gpadistr.record_id and tch_gpadistr.user_Id=#{id}")
 	    @Results({
 	    	@Result(id = true, property = "plateforminfo_id", column = "plateforminfo_id"),
 	        @Result(property = "plateforminfo_name", column = "plateforminfo_name"),
@@ -36,6 +37,7 @@ public interface Jy_PingTaiDao {
 	        @Result(property = "plateforminfo_organize", column = "plateforminfo_organize"),
 	        @Result(property = "plateforminfo_starttime", column = "plateforminfo_starttime"),
 	        @Result(property = "plateforminfo_finishtime", column = "plateforminfo_finishtime"),
+	        @Result(property = "record_piont", column = "record_piont"),
 	    	@Result(property = "gpaDistr",column="userteam_getGpa")
 	    })
 		List<JY_pingtai> findPingtaiById(String id);

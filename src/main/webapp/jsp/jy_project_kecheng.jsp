@@ -71,7 +71,7 @@
 				<select name="lev_select"  class="select">
 					<option value="">---请选择---</option>
 						<c:forEach items="${list_lev}" var="list_lev">
-							<option value="${list_lev.projectlev_khgpa} ">${list_lev.projectlev_name}</option>		
+							<option value="${list_lev.project_id} ">${list_lev.projectlev_name}</option>		
 						</c:forEach>
 				</select>
 				</span>
@@ -90,10 +90,8 @@
 			<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>用户组：</label>
 			<div class="formControls col-xs-6 col-sm-4">
-				<div class="formControls col-xs-8 col-sm-4">
-				<input type="text" class="input-text" value="" placeholder=""
+					<input type="text" class="input-text" value="" placeholder=""
 					   id="userteam_name" name="userteam_name">
-			</div>
 			</div>
 			<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>用户组人数：</label>
@@ -103,7 +101,6 @@
 
 			</div>
 		</div>
-		
 
 		
 		<div class="row cl">

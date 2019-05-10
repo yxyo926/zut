@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -56,9 +57,9 @@
 							<th with="auto">颁奖单位</th>
 							<th width="auto">获奖时间</th>
 							<th width="auto">合作单位排名</th>
-							<th width="auto">合作单位数量</th>
 							<th with="auto">总业绩点</th>
 							<th with="auto">我的业绩点</th>
+							<th with="auto">审核状态</th>
 							<th with="auto">操作</th>
 						</tr>
 					</thead>
@@ -68,16 +69,20 @@
 								<td><input name="ids" type="checkbox"></td>
 								<td>${reward.reward_Id }</td>
 								<td>${reward.reward_infoID}</td>
-								<td>${reward.reward_person}</td>
-								<td>${reward.reward_name}</td>
+								<td>${reward.user.user_name}</td>
+								<td>${reward.sys_Dict.name}</td>
 								<td>${reward.reward_Organization}</td>
-								<td>${reward.reward_Time }</td>
-								<td>${reward.reward_rank }</td>
-								<td class="text-center">${reward.reward_num }</td>
+								<td><fmt:formatDate value="${reward.reward_Time }" pattern="yyyy-MM-dd"/></td>
+								<td>${reward.sys_Ratio.ratio_name}</td>
 								<td class="text-center">${reward.reward_getGpa}</td>
 								<td class="text-center">${reward.gpaDistr}</td>
+								<td class="text-center">${reward.statuString}</td>
 								<td class="text-center">
-									<button type="button" class="btn bg-olive btn-xs">修改</button>
+								<c:if test="${reward.record_status==3}">
+									<%--  <a href="#" class="btn btn-primary btn-xs" data-toggle="modal"  data-target="#customerEditDialog" onclick="editINfo(${project.projectinfo_Id});">修改</a> --%>
+									 <button type="button" href="javascript:;" onclick="info_edit('编辑','updateInfo.do?id=${reward.reward_Id}','4','','510')"
+									 class="btn bg-olive btn-xs">修改</button>
+									 </c:if>
 									<button type="button"
 									onclick="location.href='${pageContext.request.contextPath}/gpadistr/findAllGpa.do?id=${reward.reward_Id}'"
 									class="btn bg-olive btn-xs">详情</button>
@@ -91,6 +96,9 @@
 
 			<!--请在下方写此页面业务相关的脚本-->
 			<script type="text/javascript">
+			function info_edit(title, url, id, w, h) {
+				layer_show(title, url, w, h);
+			}
 			$(function(){
 				$('.table-sort').dataTable({
 					"aaSorting": [[ 1, "desc" ]],//默认第几个排序

@@ -6,7 +6,6 @@ public class JY_Record {
 		private String record_id;
 		private String record_project_id;
 		private String record_sort;
-		private double record_point;
 		private Date record_sbtime;
 		private String Record_local;
 		private int state;
@@ -29,12 +28,6 @@ public class JY_Record {
 		}
 		public void setRecord_sort(String record_sort) {
 			this.record_sort = record_sort;
-		}
-		public double getRecord_point() {
-			return record_point;
-		}
-		public void setRecord_point(double record_point) {
-			this.record_point = record_point;
 		}
 		public Date getRecord_sbtime() {
 			return record_sbtime;

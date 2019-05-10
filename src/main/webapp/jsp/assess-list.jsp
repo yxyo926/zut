@@ -17,22 +17,6 @@
 			href="javascript:location.replace(location.href);" title="刷新"><i
 			class="Hui-iconfont">&#xe68f;</i></a>
 	</nav>
-	<div class="page-container">
-		<div class="text-c">
-			日期范围： <input type="text"
-				onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})"
-				id="datemin" class="input-text Wdate" style="width: 120px;">
-			- <input type="text"
-				onfocus="WdatePicker({minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d'})"
-				id="datemax" class="input-text Wdate" style="width: 120px;">
-			<input type="text" class="input-text" style="width: 250px"
-				placeholder="输入会员名称、电话、邮箱" id="" name="">
-			<button type="submit" class="btn btn-success" id="" name="">
-				<i class="icon-search"></i> 搜用户
-			</button>
-
-		</div>
-
 		<div class="cl pd-5 bg-1 bk-gray mt-20">
 			<span class="l"> <a href="javascript:;" onclick="datadel()"
 				class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i>
@@ -49,27 +33,33 @@
 				<thead>
 					<tr class="text-c">
 						<th width="auto"><input type="checkbox" value="" name=""></th>
-						<th width="auto">信息编号</th>
+						<th>#</th>>
 						<th width="auto">评价名称</th>
 						<th width="auto">项目名称</th>
 						<th width="auto">申报人</th>
 						<th with="auto">总业绩点</th>
 						<th with="auto">我的业绩点</th>
+						<th with="auto">审核状态</th>
 						<th with="auto">操作</th>
 					</tr>
 				</thead>
 				<tbody>
-						<c:forEach items="${assessList}" var="assess">
+						<c:forEach items="${assessList}" var="assess" varStatus="rr">
 							<tr>
 								<td><input name="ids" type="checkbox"></td>
-								<td>${assess.assessinfo_id }</td>
-								<td>${assess.assessinfo_aname}</td>
-								<td>${assess.assessinfo_rname}</td>
-								<td>${assess.assessinfo_person}</td>
+								<td>${rr.index+1}</td>
+								<td>${assess.sys_Dict.name}</td>
+								<td>${assess.project.projectinfo_Name}</td>
+								<td>${assess.user.user_name}</td>	
 								<td>${assess.assessinfo_getGpa}</td>
 								<td class="text-center">${assess.gpaDistr}</td>
+								<td class="text-center">${assess.statuString}</td>
 								<td class="text-center">
-									<button type="button" class="btn bg-olive btn-xs">修改</button>
+									<c:if test="${assess.record_status==3}">
+									<%--  <a href="#" class="btn btn-primary btn-xs" data-toggle="modal"  data-target="#customerEditDialog" onclick="editINfo(${project.projectinfo_Id});">修改</a> --%>
+									 <button type="button" href="javascript:;" onclick="info_edit('编辑','updateInfo.do?id=${assess.assessinfo_id}','4','','510')"
+									 class="btn bg-olive btn-xs">修改</button>
+									 </c:if>
 									<button type="button"
 									onclick="location.href='${pageContext.request.contextPath}/gpadistr/findAllGpa.do?id=${assess.assessinfo_id}'"
 									class="btn bg-olive btn-xs">详情</button>
@@ -83,6 +73,9 @@
 
 		<!--请在下方写此页面业务相关的脚本-->
 		<script type="text/javascript">
+		function info_edit(title, url, id, w, h) {
+			layer_show(title, url, w, h);
+		}
 			$(function(){
 				$('.table-sort').dataTable({
 					"aaSorting": [[ 1, "desc" ]],//默认第几个排序

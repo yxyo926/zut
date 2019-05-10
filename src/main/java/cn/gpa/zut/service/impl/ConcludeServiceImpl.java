@@ -35,9 +35,15 @@ public class ConcludeServiceImpl implements IConcludeService {
 	}
 
 	@Override
-	public Conclude findAllByPaper(String paperId) {
+	public Conclude findById(String paperId) {
 		// TODO Auto-generated method stub
-		return null;
+		return concludeDao.findById(paperId);
+	}
+
+	@Override
+	public void update(Conclude conclude) {
+		// TODO Auto-generated method stub
+		concludeDao.update(conclude);
 	}
 
 }

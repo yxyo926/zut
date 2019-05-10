@@ -15,7 +15,6 @@ public class JY_KeCheng {
 	private String classinfo_place;
 	private Double  record_piont;
 	private Double  gpaDistr;
-	
 	public String getClassinfo_id() {
 		return classinfo_id;
 	}
@@ -70,9 +69,20 @@ public class JY_KeCheng {
 	public void setClassinfo_place(String classinfo_place) {
 		this.classinfo_place = classinfo_place;
 	}
+	public Double getRecord_piont() {
+		return record_piont;
+	}
+	public void setRecord_piont(Double record_piont) {
+		this.record_piont = record_piont;
+	}
+	public Double getGpaDistr() {
+		return gpaDistr;
+	}
+	public void setGpaDistr(Double gpaDistr) {
+		this.gpaDistr = gpaDistr;
+	}
+	
 
-	
-	
 	
 	
 

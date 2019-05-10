@@ -35,8 +35,8 @@ public interface Jy_BookDao {
 			+ "bookinfo_Tname,bookinfo_Enum,bookinfo_Pname,bookinfo_republic,bookinfo_buildlev, "
 			+ "bookinfo_booklev,bookinfo_language,bookinfo_press,record_piont,userteam_getGpa "
 			+ "from tch_bookinfo inner join tch_record on" + 
-			" tch_bookinfo.bookinfo_id=tch_record.record_project_id INNER JOIN sci_gpadistr on "
-			+ "tch_record.record_Id=sci_gpadistr.record_id and sci_gpadistr.user_Id=#{id}")
+			" tch_bookinfo.bookinfo_id=tch_record.record_project_id INNER JOIN tch_gpadistr on "
+			+ "tch_record.record_id=tch_gpadistr.record_id and tch_gpadistr.user_Id=#{id}")
     @Results({
     	@Result(id = true, property = "book_id", column = "bookinfo_id"),
         @Result(property = "book_name", column = "bookinfo_name"),

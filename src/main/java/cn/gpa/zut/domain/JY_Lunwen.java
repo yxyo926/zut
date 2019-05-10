@@ -1,13 +1,16 @@
 package cn.gpa.zut.domain;
 
+import java.util.Date;
+
 public class JY_Lunwen {
 	
     private String paperinfo_id;
 	private String project_id;     
 	private String paperinfo_name ;   
-	private String paperinfo_author  ;  
+	private String paperinfo_author;  
 	private String paperinfo_ISSN;
 	private String rewardinfo_organizename;
+	private Date paperinfo_time;
 	private Double  record_piont;
 	private Double  gpaDistr;
 	public String getPaperinfo_id() {
@@ -46,6 +49,12 @@ public class JY_Lunwen {
 	public void setRewardinfo_organizename(String rewardinfo_organizename) {
 		this.rewardinfo_organizename = rewardinfo_organizename;
 	}
+	public Date getPaperinfo_time() {
+		return paperinfo_time;
+	}
+	public void setPaperinfo_time(Date paperinfo_time) {
+		this.paperinfo_time = paperinfo_time;
+	}
 	public Double getRecord_piont() {
 		return record_piont;
 	}
@@ -59,6 +68,6 @@ public class JY_Lunwen {
 		this.gpaDistr = gpaDistr;
 	}
 	
-
+	
 	
 }
